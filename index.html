@@ -224,154 +224,152 @@ document.addEventListener('DOMContentLoaded', () => {
   // Set current year in footer
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  const modal = document.getElementById('modal');  
-  const openButtons = document.querySelectorAll('.open-modal');  
-  const closeModalBtn = document.getElementById('closeModal');  
-  const cancelBtn = document.getElementById('cancelBtn');  
-  const modalSubmit = document.getElementById('modalSubmit');  
-  const getCodeLink = document.getElementById('getCodeLink');  
+  const modal = document.getElementById('modal');    
+  const openButtons = document.querySelectorAll('.open-modal');    
+  const closeModalBtn = document.getElementById('closeModal');    
+  const cancelBtn = document.getElementById('cancelBtn');    
+  const modalSubmit = document.getElementById('modalSubmit');    
+  const getCodeLink = document.getElementById('getCodeLink');    
 
-  const validCoupon = "panda_XclSiVemEDiA";  
-  const whatsappLink = "https://wa.me/message/54DK3SWKHWVBB1";  
-  const selarLink = "https://selar.com/m/MiAmor-net";  
+  const validCoupon = "panda_XclSiVemEDiA";    
+  const whatsappLink = "https://wa.me/message/54DK3SWKHWVBB1";    
+  const selarLink = "https://selar.com/m/MiAmor-net";    
 
-  // --- TOOLTIP ALERT ---
-const tooltip = document.createElement('div');
-tooltip.id = 'tooltipAlert';
-tooltip.style.position = 'absolute';
-tooltip.style.backgroundColor = '#222';
-tooltip.style.color = '#fff';
-tooltip.style.padding = '8px 12px';
-tooltip.style.borderRadius = '6px';
-tooltip.style.fontSize = '13px';
-tooltip.style.fontFamily = 'Arial, sans-serif';
-tooltip.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
-tooltip.style.display = 'none';
-tooltip.style.zIndex = '99999';
-tooltip.style.whiteSpace = 'nowrap';
-tooltip.style.pointerEvents = 'none';
-tooltip.style.textAlign = 'center';
+  // --- TOOLTIP ALERT ---  
+  const tooltip = document.createElement('div');  
+  tooltip.id = 'tooltipAlert';  
+  tooltip.style.position = 'absolute';  
+  tooltip.style.backgroundColor = '#222';  
+  tooltip.style.color = '#fff';  
+  tooltip.style.padding = '8px 12px';  
+  tooltip.style.borderRadius = '6px';  
+  tooltip.style.fontSize = '13px';  
+  tooltip.style.fontFamily = 'Arial, sans-serif';  
+  tooltip.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';  
+  tooltip.style.display = 'none';  
+  tooltip.style.zIndex = '99999';  
+  tooltip.style.whiteSpace = 'nowrap';  
+  tooltip.style.textAlign = 'center';
 
-// Arrow on top
-const tooltipArrow = document.createElement('div');
-tooltipArrow.style.position = 'absolute';
-tooltipArrow.style.width = '0';
-tooltipArrow.style.height = '0';
-tooltipArrow.style.borderLeft = '6px solid transparent';
-tooltipArrow.style.borderRight = '6px solid transparent';
-tooltipArrow.style.borderBottom = '6px solid #222'; // arrow pointing up
-tooltip.appendChild(tooltipArrow);
+  // Arrow attached at top of rectangle, pointing up
+  const tooltipArrow = document.createElement('div');  
+  tooltipArrow.style.position = 'absolute';  
+  tooltipArrow.style.width = '0';  
+  tooltipArrow.style.height = '0';  
+  tooltipArrow.style.borderLeft = '6px solid transparent';  
+  tooltipArrow.style.borderRight = '6px solid transparent';  
+  tooltipArrow.style.borderBottom = '6px solid #222'; // arrow pointing up  
+  tooltipArrow.style.top = '-6px';  
+  tooltipArrow.style.left = '50%';  
+  tooltipArrow.style.transform = 'translateX(-50%)';  
+  tooltip.appendChild(tooltipArrow);  
 
-document.body.appendChild(tooltip);
+  document.body.appendChild(tooltip);  
 
-function showTooltip(field, message) {
-    tooltip.innerHTML = '';
-    const textSpan = document.createElement('span');
-    textSpan.textContent = message;
-    tooltip.appendChild(textSpan);
-    tooltip.appendChild(tooltipArrow);
+  function showTooltip(field, message) {  
+      tooltip.innerHTML = '';  
+      const textSpan = document.createElement('span');  
+      textSpan.textContent = message;  
+      tooltip.appendChild(textSpan);  
+      tooltip.appendChild(tooltipArrow);  
 
-    tooltip.style.display = 'block';
-    tooltip.style.top = '0';
-    tooltip.style.left = '0';
+      tooltip.style.display = 'block';  
+      tooltip.style.top = '0';  
+      tooltip.style.left = '0';  
 
-    requestAnimationFrame(() => {
-        const rect = field.getBoundingClientRect();
-        const scrollY = window.scrollY || window.pageYOffset;
-        const scrollX = window.scrollX || window.pageXOffset;
+      requestAnimationFrame(() => {  
+          const rect = field.getBoundingClientRect();  
+          const scrollY = window.scrollY || window.pageYOffset;  
+          const scrollX = window.scrollX || window.pageXOffset;  
 
-        const tooltipHeight = tooltip.offsetHeight;
-        const tooltipWidth = tooltip.offsetWidth;
-        const arrowHeight = 6;
+          const tooltipHeight = tooltip.offsetHeight;  
+          const tooltipWidth = tooltip.offsetWidth;  
 
-        // Position tooltip above the field
-        const top = rect.top + scrollY - tooltipHeight - arrowHeight - 8; // 8px margin
-        const left = rect.left + scrollX + rect.width / 2 - tooltipWidth / 2;
+          // Tooltip **below the field**
+          const top = rect.bottom + scrollY + 8; // 8px margin  
+          const left = rect.left + scrollX + rect.width / 2 - tooltipWidth / 2;  
 
-        tooltip.style.top = `${top}px`;
-        tooltip.style.left = `${left}px`;
+          tooltip.style.top = `${top}px`;  
+          tooltip.style.left = `${left}px`;  
 
-        // Position arrow at the top of tooltip rectangle
-        tooltipArrow.style.left = `${tooltipWidth / 2 - arrowHeight}px`;
-        tooltipArrow.style.top = `${tooltipHeight}px`; // arrow sits on top of tooltip box
-        tooltipArrow.style.borderBottom = '6px solid #222';
-        tooltipArrow.style.borderTop = 'none';
+          // Arrow on top of rectangle pointing up
+          tooltipArrow.style.top = '-6px';  
+          tooltipArrow.style.left = '50%';  
+          tooltipArrow.style.transform = 'translateX(-50%)';  
 
-        // Hide tooltip when field is focused
-        const hideTooltip = () => {
-            tooltip.style.display = 'none';
-            field.removeEventListener('focus', hideTooltip);
-        };
-        field.addEventListener('focus', hideTooltip);
-    });
-  }
-
-  // --- MODAL OPEN/CLOSE ---
-  function openModal(e){  
-      e.preventDefault();  
-      modal.style.display = 'flex';  
-      modal.setAttribute('aria-hidden','false');  
-      document.getElementById('fullName').focus();  
+          // Automatically hide tooltip after 5 seconds
+          setTimeout(() => {
+              tooltip.style.display = 'none';
+          }, 5000);
+      });  
   }  
 
-  function closeModal(){  
-      modal.style.display = 'none';  
-      modal.setAttribute('aria-hidden','true');  
-  }  
+  // --- MODAL OPEN/CLOSE ---  
+  function openModal(e){    
+      e.preventDefault();    
+      modal.style.display = 'flex';    
+      modal.setAttribute('aria-hidden','false');    
+      document.getElementById('fullName').focus();    
+  }    
 
-  openButtons.forEach(btn => btn.addEventListener('click', openModal));  
-  closeModalBtn.addEventListener('click', closeModal);  
-  cancelBtn.addEventListener('click', closeModal);  
+  function closeModal(){    
+      modal.style.display = 'none';    
+      modal.setAttribute('aria-hidden','true');    
+  }    
 
-  modal.addEventListener('click', e => {  
-      if(e.target === modal) closeModal();  
-  });  
+  openButtons.forEach(btn => btn.addEventListener('click', openModal));    
+  closeModalBtn.addEventListener('click', closeModal);    
+  cancelBtn.addEventListener('click', closeModal);    
 
-  document.addEventListener('keydown', e => {  
-      if(e.key === 'Escape') closeModal();  
-  });  
+  modal.addEventListener('click', e => {    
+      if(e.target === modal) closeModal();    
+  });    
 
-  getCodeLink.addEventListener('click', e => {  
-      e.preventDefault();  
-      window.open(selarLink, '_blank');  
-  });  
+  document.addEventListener('keydown', e => {    
+      if(e.key === 'Escape') closeModal();    
+  });    
 
-  // --- SUBMIT HANDLER ---
-  modalSubmit.addEventListener('click', () => {  
-      const fields = [
-          { id: 'fullName', name: 'Full Name' },
-          { id: 'email', name: 'Email' },
-          { id: 'phone', name: 'Phone' },
-          { id: 'username', name: 'Username' },
-          { id: 'plan', name: 'Plan' },
-          { id: 'coupon', name: 'Activation Code' }
-      ];
+  getCodeLink.addEventListener('click', e => {    
+      e.preventDefault();    
+      window.open(selarLink, '_blank');    
+  });    
 
-      const firstEmpty = fields.find(f => !document.getElementById(f.id).value.trim());
-      if(firstEmpty) {
-          showTooltip(document.getElementById(firstEmpty.id), `⚠️ Please fill in this field.`);
-          document.getElementById(firstEmpty.id).focus();
-          return;
-      }
+  // --- SUBMIT HANDLER ---  
+  modalSubmit.addEventListener('click', () => {    
+      const fields = [  
+          { id: 'fullName', name: 'Full Name' },  
+          { id: 'email', name: 'Email' },  
+          { id: 'phone', name: 'Phone' },  
+          { id: 'username', name: 'Username' },  
+          { id: 'plan', name: 'Plan' },  
+          { id: 'coupon', name: 'Activation Code' }  
+      ];  
 
-      const couponValue = document.getElementById('coupon').value.trim();
-      if(couponValue !== validCoupon){  
-          showTooltip(document.getElementById('coupon'), "❌ Invalid activation code.");
-          document.getElementById('coupon').focus();
+      const firstEmpty = fields.find(f => !document.getElementById(f.id).value.trim());  
+      if(firstEmpty) {  
+          showTooltip(document.getElementById(firstEmpty.id), `⚠️ Please fill in this field.`);  
+          document.getElementById(firstEmpty.id).focus();  
           return;  
       }  
 
-      modalSubmit.textContent = "Please wait...";  
-      modalSubmit.style.opacity = "0.6";  
-      modalSubmit.disabled = true;  
+      const couponValue = document.getElementById('coupon').value.trim();  
+      if(couponValue !== validCoupon){    
+          showTooltip(document.getElementById('coupon'), "❌ Invalid activation code.");  
+          document.getElementById('coupon').focus();  
+          return;    
+      }    
 
-      setTimeout(() => {  
-          window.location.href = whatsappLink;  
-          closeModal();  
-      }, 3000);  
-  });  
+      modalSubmit.textContent = "Please wait...";    
+      modalSubmit.style.opacity = "0.6";    
+      modalSubmit.disabled = true;    
+
+      setTimeout(() => {    
+          window.location.href = whatsappLink;    
+          closeModal();    
+      }, 3000);    
+  });    
 
 });
-</script>
+  </script>
 </body>
  </html>
