@@ -236,85 +236,74 @@ document.addEventListener('DOMContentLoaded', () => {
   const selarLink = "https://selar.com/m/MiAmor-net";  
 
   // --- TOOLTIP ALERT ---
-  const tooltip = document.createElement('div');
-  tooltip.id = 'tooltipAlert';
-  tooltip.style.position = 'absolute';
-  tooltip.style.backgroundColor = '#222';
-  tooltip.style.color = '#fff';
-  tooltip.style.padding = '8px 12px';
-  tooltip.style.borderRadius = '6px';
-  tooltip.style.fontSize = '13px';
-  tooltip.style.fontFamily = 'Arial, sans-serif';
-  tooltip.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
-  tooltip.style.display = 'none';
-  tooltip.style.zIndex = '99999';
-  tooltip.style.whiteSpace = 'nowrap';
+const tooltip = document.createElement('div');
+tooltip.id = 'tooltipAlert';
+tooltip.style.position = 'absolute';
+tooltip.style.backgroundColor = '#222';
+tooltip.style.color = '#fff';
+tooltip.style.padding = '8px 12px';
+tooltip.style.borderRadius = '6px';
+tooltip.style.fontSize = '13px';
+tooltip.style.fontFamily = 'Arial, sans-serif';
+tooltip.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+tooltip.style.display = 'none';
+tooltip.style.zIndex = '99999';
+tooltip.style.whiteSpace = 'nowrap';
+tooltip.style.pointerEvents = 'none';
+tooltip.style.textAlign = 'center';
 
-  const tooltipArrow = document.createElement('div');
-  tooltipArrow.style.position = 'absolute';
-  tooltipArrow.style.width = '0';
-  tooltipArrow.style.height = '0';
-  tooltipArrow.style.borderLeft = '6px solid transparent';
-  tooltipArrow.style.borderRight = '6px solid transparent';
-  tooltipArrow.style.borderTop = '6px solid #222';
-  tooltipArrow.style.transformOrigin = 'center';
-  tooltip.appendChild(tooltipArrow);
+// Arrow on top
+const tooltipArrow = document.createElement('div');
+tooltipArrow.style.position = 'absolute';
+tooltipArrow.style.width = '0';
+tooltipArrow.style.height = '0';
+tooltipArrow.style.borderLeft = '6px solid transparent';
+tooltipArrow.style.borderRight = '6px solid transparent';
+tooltipArrow.style.borderBottom = '6px solid #222'; // arrow pointing up
+tooltip.appendChild(tooltipArrow);
 
-  document.body.appendChild(tooltip);
+document.body.appendChild(tooltip);
 
-  function showTooltip(field, message) {
-      tooltip.innerHTML = '';
-      const textSpan = document.createElement('span');
-      textSpan.textContent = message;
-      tooltip.appendChild(textSpan);
-      tooltip.appendChild(tooltipArrow);
+function showTooltip(field, message) {
+    tooltip.innerHTML = '';
+    const textSpan = document.createElement('span');
+    textSpan.textContent = message;
+    tooltip.appendChild(textSpan);
+    tooltip.appendChild(tooltipArrow);
 
-      tooltip.style.display = 'block';
-      tooltip.style.top = '0';
-      tooltip.style.left = '0';
+    tooltip.style.display = 'block';
+    tooltip.style.top = '0';
+    tooltip.style.left = '0';
 
-      requestAnimationFrame(() => {
-          const rect = field.getBoundingClientRect();
-          const scrollY = window.scrollY || window.pageYOffset;
-          const scrollX = window.scrollX || window.pageXOffset;
-          const tooltipHeight = tooltip.offsetHeight;
-          const arrowHeight = 6;
+    requestAnimationFrame(() => {
+        const rect = field.getBoundingClientRect();
+        const scrollY = window.scrollY || window.pageYOffset;
+        const scrollX = window.scrollX || window.pageXOffset;
 
-          let top = rect.bottom + scrollY + 8 + arrowHeight; // default below
-          let placeAbove = false;
+        const tooltipHeight = tooltip.offsetHeight;
+        const tooltipWidth = tooltip.offsetWidth;
+        const arrowHeight = 6;
 
-          // Flip above if too close to bottom
-          if (rect.bottom + scrollY + tooltipHeight + arrowHeight + 8 > window.innerHeight + scrollY) {
-              top = rect.top + scrollY - tooltipHeight - arrowHeight - 8;
-              placeAbove = true;
-          }
+        // Position tooltip above the field
+        const top = rect.top + scrollY - tooltipHeight - arrowHeight - 8; // 8px margin
+        const left = rect.left + scrollX + rect.width / 2 - tooltipWidth / 2;
 
-          tooltip.style.top = `${top}px`;
-          tooltip.style.left = `${rect.left + scrollX}px`;
+        tooltip.style.top = `${top}px`;
+        tooltip.style.left = `${left}px`;
 
-          // Position arrow
-          tooltipArrow.style.left = '50%';
-          tooltipArrow.style.transform = 'translateX(-50%)';
+        // Position arrow at the top of tooltip rectangle
+        tooltipArrow.style.left = `${tooltipWidth / 2 - arrowHeight}px`;
+        tooltipArrow.style.top = `${tooltipHeight}px`; // arrow sits on top of tooltip box
+        tooltipArrow.style.borderBottom = '6px solid #222';
+        tooltipArrow.style.borderTop = 'none';
 
-          if (placeAbove) {
-              tooltipArrow.style.borderTop = '6px solid #222';
-              tooltipArrow.style.borderBottom = 'none';
-              tooltipArrow.style.top = '100%';
-              tooltipArrow.style.bottom = 'auto';
-          } else {
-              tooltipArrow.style.borderBottom = '6px solid #222';
-              tooltipArrow.style.borderTop = 'none';
-              tooltipArrow.style.bottom = '-6px';
-              tooltipArrow.style.top = 'auto';
-          }
-
-          // Hide tooltip when field is focused
-          const hideTooltip = () => {
-              tooltip.style.display = 'none';
-              field.removeEventListener('focus', hideTooltip);
-          };
-          field.addEventListener('focus', hideTooltip);
-      });
+        // Hide tooltip when field is focused
+        const hideTooltip = () => {
+            tooltip.style.display = 'none';
+            field.removeEventListener('focus', hideTooltip);
+        };
+        field.addEventListener('focus', hideTooltip);
+    });
   }
 
   // --- MODAL OPEN/CLOSE ---
