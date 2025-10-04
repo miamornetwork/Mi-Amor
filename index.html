@@ -218,81 +218,7 @@
     </div>
   </div>
 
-  <script>
-  // Set current year in footer
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  const modal = document.getElementById('modal');
-  const openButtons = document.querySelectorAll('.open-modal');
-  const closeModalBtn = document.getElementById('closeModal');
-  const cancelBtn = document.getElementById('cancelBtn');
-  const modalSubmit = document.getElementById('modalSubmit');
-  const getCodeLink = document.getElementById('getCodeLink');
-
-  const validCoupon = "panda_XclSiVemEDiA"; // 🔒 your valid coupon code
-  const whatsappLink = "https://wa.me/message/54DK3SWKHWVBB1";
-  const selarLink = "https://selar.com/m/MiAmor-net";
-
-  // Function to open modal
-  function openModal(e){
-    e.preventDefault();
-    modal.style.display = 'flex';
-    modal.setAttribute('aria-hidden','false');
-    document.getElementById('fullName').focus();
-  }
-
-  function closeModal(){
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden','true');
-    // Clear inline errors when modal closes
-    const errorEls = modal.querySelectorAll('.inline-error');
-    errorEls.forEach(e=>e.remove());
-    const invalidInputs = modal.querySelectorAll('.input-invalid');
-    invalidInputs.forEach(i=>i.classList.remove('input-invalid'));
-    modalSubmit.disabled = false;
-    modalSubmit.textContent = "Submit";
-  }
-
-  openButtons.forEach(btn=>{
-    btn.addEventListener('click', openModal);
-  });
-
-  closeModalBtn.addEventListener('click', closeModal);
-  cancelBtn.addEventListener('click', closeModal);
-
-  modal.addEventListener('click', e=>{
-    if(e.target === modal) closeModal();
-  });
-
-  document.addEventListener('keydown', e=>{
-    if(e.key === 'Escape') closeModal();
-  });
-
-  getCodeLink.addEventListener('click', e=>{
-    e.preventDefault();
-    window.open(selarLink, '_blank');
-  });
-
-  // Function to show inline error
-  function showError(inputEl, message){
-    inputEl.classList.add('input-invalid');
-    let errorEl = inputEl.nextElementSibling;
-    if(!errorEl || !errorEl.classList.contains('inline-error')){
-      errorEl = document.createElement('span');
-      errorEl.className = 'inline-error';
-      inputEl.after(errorEl);
-    }
-    errorEl.textContent = message;
-  }
-
-  function clearError(inputEl){
-    inputEl.classList.remove('input-invalid');
-    let errorEl = inputEl.nextElementSibling;
-    if(errorEl && errorEl.classList.contains('inline-error')) errorEl.remove();
-  }
-
-  // Submit button click handler
-<script>  
+  <script>  
   // Set current year in footer  
   document.getElementById('year').textContent = new Date().getFullYear();  
   
@@ -391,190 +317,26 @@
     if(!coupon) emptyFields.push('Activation Code');  
   
     if(emptyFields.length > 0){  
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-
-  // Set current year in footer
-  const yearEl = document.getElementById('year');
-  if(yearEl) yearEl.textContent = new Date().getFullYear();
-
-  const modal = document.getElementById('modal'); // form modal
-  const openButtons = document.querySelectorAll('.open-modal'); // "Get started" button(s)
-  const closeModalBtn = document.getElementById('closeModal');
-  const cancelBtn = document.getElementById('cancelBtn');
-  const modalSubmit = document.getElementById('modalSubmit');
-  const getCodeLink = document.getElementById('getCodeLink');
-
-  const validCoupon = "panda_XclSiVemEDiA"; // 🔒 your valid coupon code
-  const whatsappLink = "https://wa.me/message/54DK3SWKHWVBB1";
-  const selarLink = "https://selar.com/m/MiAmor-net";
-
-  // ---------- Create modern message modal ----------
-  const messageModal = document.createElement('div');
-  messageModal.id = 'messageModal';
-  messageModal.style.position = 'fixed';
-  messageModal.style.top = '50%';
-  messageModal.style.left = '50%';
-  messageModal.style.transform = 'translate(-50%, -50%)';
-  messageModal.style.backgroundColor = '#fff';
-  messageModal.style.padding = '20px 30px';
-  messageModal.style.borderRadius = '12px';
-  messageModal.style.boxShadow = '0 4px 20px rgba(0,0,0,0.2)';
-  messageModal.style.display = 'none';
-  messageModal.style.zIndex = '9999';
-  messageModal.style.textAlign = 'center';
-  messageModal.style.fontFamily = 'Arial, sans-serif';
-  messageModal.style.opacity = '0';
-  messageModal.style.transition = 'opacity 0.3s ease';
-  messageModal.innerHTML = `<p id="messageText" style="margin-bottom: 20px;"></p><button id="closeMessageBtn" style="padding: 8px 16px; border:none; background:#007BFF; color:#fff; border-radius:6px; cursor:pointer;">OK</button>`;
-  document.body.appendChild(messageModal);
-
-  const messageText = document.getElementById('messageText');
-  const closeMessageBtn = document.getElementById('closeMessageBtn');
-
-  function showMessage(msg) {
-    messageText.textContent = msg;
-    messageModal.style.display = 'block';
-    requestAnimationFrame(() => {
-      messageModal.style.opacity = '1';
-    });
-  }
-
-  function closeMessage() {
-    messageModal.style.opacity = '0';
-    setTimeout(() => {
-      messageModal.style.display = 'none';
-    }, 300);
-  }
-
-  closeMessageBtn.addEventListener('click', closeMessage);
-
-  // ---------- Form modal functions ----------
-  function openModal(e) {
-    e.preventDefault();
-    if(!modal) return;
-    modal.style.display = 'flex';
-    modal.style.opacity = '0';
-    modal.setAttribute('aria-hidden', 'false');
-    requestAnimationFrame(() => {
-      modal.style.transition = 'opacity 0.3s ease';
-<script>
-  // Set current year in footer
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  const modal = document.getElementById('modal');
-  const openButtons = document.querySelectorAll('.open-modal');
-  const closeModalBtn = document.getElementById('closeModal');
-  const cancelBtn = document.getElementById('cancelBtn');
-  const modalSubmit = document.getElementById('modalSubmit');
-  const getCodeLink = document.getElementById('getCodeLink');
-
-  const validCoupon = "panda_XclSiVemEDiA"; // 🔒 your valid coupon code
-  const whatsappLink = "https://wa.me/message/54DK3SWKHWVBB1";
-  const selarLink = "https://selar.com/m/MiAmor-net";
-
-  // ---------- Create modern message modal ----------
-  const messageModal = document.createElement('div');
-  messageModal.id = 'messageModal';
-  messageModal.style.position = 'fixed';
-  messageModal.style.top = '50%';
-  messageModal.style.left = '50%';
-  messageModal.style.transform = 'translate(-50%, -50%)';
-  messageModal.style.backgroundColor = '#fff';
-  messageModal.style.padding = '20px 30px';
-  messageModal.style.borderRadius = '12px';
-  messageModal.style.boxShadow = '0 4px 20px rgba(0,0,0,0.2)';
-  messageModal.style.display = 'none';
-  messageModal.style.zIndex = '9999';
-  messageModal.style.textAlign = 'center';
-  messageModal.style.fontFamily = 'Arial, sans-serif';
-  messageModal.style.opacity =script>    
-  // Set current year in footer    
-  document.getElementById('year').textContent = new Date().getFullYear();    
-    
-  const modal = document.getElementById('modal');    
-  const openButtons = document.querySelectorAll('.open-modal');    
-  const closeModalBtn = document.getElementById('closeModal');    
-  const cancelBtn = document.getElementById('cancelBtn');    
-  const modalSubmit = document.getElementById('modalSubmit');    
-  const getCodeLink = document.getElementById('getCodeLink');    
-    
-  const validCoupon = "panda_XclSiVemEDiA"; // 🔒 your valid coupon code    
-  const whatsappLink = "https://wa.me/message/54DK3SWKHWVBB1";    
-  const selarLink = "https://selar.com/m/MiAmor-net";    
-    
-  // Function to open modal    
-  function openModal(e){    
-    e.preventDefault();    
-    modal.style.display = 'flex';    
-    modal.setAttribute('aria-hidden','false');    
-    document.getElementById('fullName').focus();    
-  }    
-    
-  function closeModal(){    
-    modal.style.display = 'none';    
-    modal.setAttribute('aria-hidden','true');    
-  }    
-    
-  openButtons.forEach(btn=>{    
-    btn.addEventListener('click', openModal);    
-  });    
-    
-  closeModalBtn.addEventListener('click', closeModal);    
-  cancelBtn.addEventListener('click', closeModal);    
-    
-  modal.addEventListener('click', e=>{    
-    if(e.target === modal) closeModal();    
-  });    
-    
-  document.addEventListener('keydown', e=>{    
-    if(e.key === 'Escape') closeModal();    
-  });    
-    
-  getCodeLink.addEventListener('click', e=>{    
-    e.preventDefault();    
-    window.open(selarLink, '_blank');    
-  });    
-    
-  // Submit button click handler    
-  modalSubmit.addEventListener('click', ()=>{    
-    const name = document.getElementById('fullName').value.trim();    
-    const email = document.getElementById('email').value.trim();    
-    const phone = document.getElementById('phone').value.trim();    
-    const username = document.getElementById('username').value.trim();    
-    const plan = document.getElementById('plan').value.trim();    
-    const coupon = document.getElementById('coupon').value.trim();    
-    
-    // Check for empty fields    
-    const emptyFields = [];    
-    if(!name) emptyFields.push('Full Name');    
-    if(!email) emptyFields.push('Email');    
-    if(!phone) emptyFields.push('Phone');    
-    if(!username) emptyFields.push('Username');    
-    if(!plan) emptyFields.push('Plan');    
-    if(!coupon) emptyFields.push('Activation Code');    
-    
-    if(emptyFields.length > 0){    
-      alert(`⚠️ Please fill in all fields: ${emptyFields.join(', ')}`);    
-      return;    
-    }    
-    
-    // Check for valid coupon    
-    if(coupon !== validCoupon){    
-      alert("❌ Invalid activation code.");    
-      return;    
-    }    
-    
-    // All validations passed    
-    modalSubmit.textContent = "Please wait...";    
-    modalSubmit.style.opacity = "0.6";    
-    modalSubmit.disabled = true;    
-    
-    setTimeout(()=>{    
-      window.location.href = whatsappLink;    
-      closeModal();    
-    }, 3000);    
-  });    
+      showMessage(`⚠️ Please fill in all fields: ${emptyFields.join(', ')}`);
+      return;  
+    }  
+  
+    // Check for valid coupon  
+    if(coupon !== validCoupon){  
+      showMessage("❌ Invalid activation code.");  
+      return;  
+    }  
+  
+    // All validations passed  
+    modalSubmit.textContent = "Please wait...";  
+    modalSubmit.style.opacity = "0.6";  
+    modalSubmit.disabled = true;  
+  
+    setTimeout(()=>{  
+      window.location.href = whatsappLink;  
+      closeModal();  
+    }, 3000);  
+  });  
   </script>
 </body>
  </html>
