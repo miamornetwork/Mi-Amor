@@ -218,10 +218,6 @@
     // Set current year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    const WA_NUMBER = '2347035172111';
-    const WA_REG_MESSAGE = 'Good day,I want to pay for MIAMOR registration';
-    const WA_COUPON_MESSAGE = 'Good day,I want to pay for MIAMOR coupon code';
-
     const modal = document.getElementById('modal');
     const openButtons = document.querySelectorAll('.open-modal');
     const closeModalBtn = document.getElementById('closeModal');
@@ -258,11 +254,11 @@
 
     getCodeLink.addEventListener('click', e=>{
       e.preventDefault();
-      window.open('https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(WA_COUPON_MESSAGE), '_blank');
+      window.open('https://selar.com/m/MiAmor-net, '_blank');
     });
 
     modalSubmit.addEventListener('click', ()=>{
-      window.open('https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(WA_REG_MESSAGE), '_blank');
+      window.open('https://selar.com/m/MiAmor-net, '_blank');
       closeModal();
     });
   </script>
