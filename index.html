@@ -283,14 +283,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const scrollY = window.scrollY || window.pageYOffset;
         const scrollX = window.scrollX || window.pageXOffset;
         const arrowHeight = 6;
-        const horizontalOffset = -10; // move tooltip 10px to the left
+        const horizontalOffset = -4; // small left shift
 
         // Position tooltip below the field
         const top = rect.bottom + scrollY + 8 + arrowHeight;
         tooltip.style.top = `${top}px`;
         tooltip.style.left = `${rect.left + scrollX + horizontalOffset}px`;
 
-        // Position arrow at the top, slightly inset
+        // Position arrow at the top, inset 12px from tooltip's left
         tooltipArrow.style.top = `-${arrowHeight}px`;
         tooltipArrow.style.left = '12px';
         tooltipArrow.style.transform = 'none';
@@ -307,6 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tooltip.style.display = 'none';
         }, 5000);
     });
+  }
   }
 
   // --- MODAL OPEN/CLOSE ---  
