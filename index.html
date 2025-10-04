@@ -218,7 +218,9 @@
     </div>
   </div>
 
-<script>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+
   // Set current year in footer
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -263,11 +265,15 @@
       tooltip.textContent = message;
       tooltip.appendChild(tooltipArrow);
 
+      // Temporarily display to get height
+      tooltip.style.display = 'block';
+      tooltip.style.top = '0';
+      tooltip.style.left = '0';
+
       const rect = field.getBoundingClientRect();
       const scrollY = window.scrollY || window.pageYOffset;
       const scrollX = window.scrollX || window.pageXOffset;
-
-      const tooltipHeight = tooltip.offsetHeight || 30; // approximate if not rendered yet
+      const tooltipHeight = tooltip.offsetHeight;
       const arrowHeight = 6;
 
       // Determine if tooltip fits below the field or needs to go above
@@ -280,7 +286,6 @@
 
       tooltip.style.top = `${top}px`;
       tooltip.style.left = `${rect.left + scrollX}px`;
-      tooltip.style.display = 'block';
 
       // Position arrow
       if (placeAbove) {
@@ -373,6 +378,6 @@
   });  
 
 });
-</script>
+  </script>
 </body>
  </html>
