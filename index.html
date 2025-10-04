@@ -242,37 +242,33 @@ document.addEventListener('DOMContentLoaded', () => {
   tooltip.style.backgroundColor = '#222';
   tooltip.style.color = '#fff';
   tooltip.style.padding = '8px 12px';
-  tooltip.style.borderRadius = '8px';
+  tooltip.style.borderRadius = '6px';
   tooltip.style.fontSize = '13px';
   tooltip.style.fontFamily = 'Arial, sans-serif';
-  tooltip.style.boxShadow = '0 4px 15px rgba(0,0,0,0.3)';
+  tooltip.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
   tooltip.style.display = 'none';
   tooltip.style.zIndex = '99999';
   tooltip.style.whiteSpace = 'nowrap';
+  tooltip.style.pointerEvents = 'none';
   tooltip.style.transition = 'opacity 0.3s ease';
-  tooltip.style.opacity = '0';
 
-  // Arrow as a pseudo-element using a nested div
+  // Arrow inside tooltip
   const arrow = document.createElement('div');
   arrow.style.position = 'absolute';
   arrow.style.width = '12px';
   arrow.style.height = '12px';
   arrow.style.backgroundColor = '#222';
-  arrow.style.transform = 'rotate(45deg)'; // diamond shape for rounded arrow
-  arrow.style.boxShadow = '-2px 2px 4px rgba(0,0,0,0.2)';
+  arrow.style.transform = 'rotate(45deg)'; // diamond shape arrow
   tooltip.appendChild(arrow);
 
   document.body.appendChild(tooltip);
 
   function showTooltip(field, message) {
-      // Set text (without removing arrow)
-      tooltip.childNodes[0]?.remove(); // remove old text
-      const textNode = document.createElement('span');
-      textNode.textContent = message;
-      tooltip.insertBefore(textNode, arrow);
-
+      // Set message
+      tooltip.childNodes[0].textContent = message || '';
+      
       tooltip.style.display = 'block';
-      tooltip.style.opacity = '0'; // reset for fade-in
+      tooltip.style.opacity = '0';
 
       requestAnimationFrame(() => {
           const rect = field.getBoundingClientRect();
@@ -282,17 +278,15 @@ document.addEventListener('DOMContentLoaded', () => {
           const tooltipWidth = tooltip.offsetWidth;
           const arrowSize = 12;
 
-          // Default below field
           let top = rect.bottom + scrollY + arrowSize / 2;
           let placeAbove = false;
 
-          // Flip if not enough space
           if (rect.bottom + scrollY + tooltipHeight + arrowSize > window.innerHeight + scrollY) {
               top = rect.top + scrollY - tooltipHeight - arrowSize / 2;
               placeAbove = true;
           }
 
-          const left = rect.left + scrollX + rect.width / 2 - tooltipWidth / 2;
+          let left = rect.left + scrollX + rect.width / 2 - tooltipWidth / 2;
           tooltip.style.top = `${top}px`;
           tooltip.style.left = `${left}px`;
 
@@ -301,14 +295,12 @@ document.addEventListener('DOMContentLoaded', () => {
           if (placeAbove) {
               arrow.style.top = `${tooltipHeight - arrowSize / 2}px`;
           } else {
-              arrow.style.top = `${-arrowSize / 2}px`;
+              arrow.style.top = `-${arrowSize / 2}px`;
           }
 
-          // Fade-in
-          requestAnimationFrame(() => {
-              tooltip.style.opacity = '1';
-          });
+          tooltip.style.opacity = '1';
 
+          // Hide tooltip on focus
           const hideTooltip = () => {
               tooltip.style.opacity = '0';
               setTimeout(() => { tooltip.style.display = 'none'; }, 300);
