@@ -266,43 +266,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.body.appendChild(tooltip);  
 
-  function showTooltip(field, message) {  
-      tooltip.innerHTML = '';  
-      const textSpan = document.createElement('span');  
-      textSpan.textContent = message;  
-      tooltip.appendChild(textSpan);  
-      tooltip.appendChild(tooltipArrow);  
+  function showTooltip(field, message) {
+    // Clear previous content
+    tooltip.innerHTML = '';
+    const textSpan = document.createElement('span');
+    textSpan.textContent = message;
+    tooltip.appendChild(textSpan);
+    tooltip.appendChild(tooltipArrow);
 
-      tooltip.style.display = 'block';  
-      tooltip.style.top = '0';  
-      tooltip.style.left = '0';  
+    tooltip.style.display = 'block';
+    tooltip.style.top = '0';
+    tooltip.style.left = '0';
 
-      requestAnimationFrame(() => {  
-          const rect = field.getBoundingClientRect();  
-          const scrollY = window.scrollY || window.pageYOffset;  
-          const scrollX = window.scrollX || window.pageXOffset;  
+    requestAnimationFrame(() => {
+        const rect = field.getBoundingClientRect();
+        const scrollY = window.scrollY || window.pageYOffset;
+        const scrollX = window.scrollX || window.pageXOffset;
+        const arrowHeight = 6;
+        const horizontalOffset = -10; // move tooltip 10px to the left
 
-          const tooltipHeight = tooltip.offsetHeight;  
-          const tooltipWidth = tooltip.offsetWidth;  
+        // Position tooltip below the field
+        const top = rect.bottom + scrollY + 8 + arrowHeight;
+        tooltip.style.top = `${top}px`;
+        tooltip.style.left = `${rect.left + scrollX + horizontalOffset}px`;
 
-          // Tooltip **below the field**
-          const top = rect.bottom + scrollY + 8; // 8px margin  
-          const left = rect.left + scrollX + rect.width / 2 - tooltipWidth / 2;  
+        // Position arrow at the top, slightly inset
+        tooltipArrow.style.top = `-${arrowHeight}px`;
+        tooltipArrow.style.left = '12px';
+        tooltipArrow.style.transform = 'none';
 
-          tooltip.style.top = `${top}px`;  
-          tooltip.style.left = `${left}px`;  
+        // Hide tooltip when user focuses the field
+        const hideTooltip = () => {
+            tooltip.style.display = 'none';
+            field.removeEventListener('focus', hideTooltip);
+        };
+        field.addEventListener('focus', hideTooltip);
 
-          // Arrow on top of rectangle pointing up
-          tooltipArrow.style.top = '-6px';  
-          tooltipArrow.style.left = '12px';  
-          tooltipArrow.style.transform = 'none';  
-
-          // Automatically hide tooltip after 5 seconds
-          setTimeout(() => {
-              tooltip.style.display = 'none';
-          }, 5000);
-      });  
-  }  
+        // Auto-hide after 5 seconds
+        setTimeout(() => {
+            tooltip.style.display = 'none';
+        }, 5000);
+    });
+  }
 
   // --- MODAL OPEN/CLOSE ---  
   function openModal(e){    
