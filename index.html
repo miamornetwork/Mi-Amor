@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const whatsappLink = "https://wa.me/message/54DK3SWKHWVBB1";  
   const selarLink = "https://selar.com/m/MiAmor-net";  
 
-  // --- TOOLTIP ALERT ---
+  // --- TOOLTIP ALERT (rectangle with top arrow attached) ---
   const tooltip = document.createElement('div');
   tooltip.id = 'tooltipAlert';
   tooltip.style.position = 'absolute';
@@ -249,19 +249,15 @@ document.addEventListener('DOMContentLoaded', () => {
   tooltip.style.zIndex = '99999';
   tooltip.style.whiteSpace = 'nowrap';
   tooltip.style.pointerEvents = 'none';
-
-  const arrow = document.createElement('div');
-  arrow.style.position = 'absolute';
-  arrow.style.width = '12px';
-  arrow.style.height = '12px';
-  arrow.style.backgroundColor = '#222';
-  arrow.style.transform = 'rotate(45deg)';
-  tooltip.appendChild(arrow);
+  tooltip.style.position = 'absolute';
+  tooltip.style.textAlign = 'center';
+  tooltip.style.clipPath = 'polygon(50% 0%, 100% 12px, 100% 100%, 0% 100%, 0% 12px)'; 
+  // Polygon: top center arrow, rectangle below
 
   document.body.appendChild(tooltip);
 
   function showTooltip(field, message) {
-      tooltip.childNodes[0].textContent = message || '';
+      tooltip.textContent = message;
       tooltip.style.display = 'block';
 
       const rect = field.getBoundingClientRect();
@@ -270,23 +266,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const tooltipHeight = tooltip.offsetHeight;
       const tooltipWidth = tooltip.offsetWidth;
-      const arrowSize = 12;
 
-      let top = rect.bottom + scrollY + arrowSize / 2;
-      let placeAbove = false;
-
-      if (rect.bottom + scrollY + tooltipHeight + arrowSize > window.innerHeight + scrollY) {
-          top = rect.top + scrollY - tooltipHeight - arrowSize / 2;
-          placeAbove = true;
-      }
-
+      // Position above the field
+      const top = rect.top + scrollY - tooltipHeight - 8; // 8px spacing
       const left = rect.left + scrollX + rect.width / 2 - tooltipWidth / 2;
+
       tooltip.style.top = `${top}px`;
       tooltip.style.left = `${left}px`;
 
-      arrow.style.left = `${tooltipWidth / 2 - arrowSize / 2}px`;
-      arrow.style.top = placeAbove ? `${tooltipHeight - arrowSize / 2}px` : `-${arrowSize / 2}px`;
-
+      // Hide tooltip on focus
       const hideTooltip = () => {
           tooltip.style.display = 'none';
           field.removeEventListener('focus', hideTooltip);
