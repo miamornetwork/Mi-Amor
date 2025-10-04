@@ -281,62 +281,127 @@
   openButtons.forEach(btn=>{  
     btn.addEventListener('click', openModal);  
   });  
-  
-  closeModalBtn.addEventListener('click', closeModal);  
-  cancelBtn.addEventListener('click', closeModal);  
-  
-  modal.addEventListener('click', e=>{  
+<script>  
+// Set current year in footer  
+document.getElementById('year').textContent = new Date().getFullYear();  
+
+const modal = document.getElementById('modal');  
+const openButtons = document.querySelectorAll('.open-modal');  
+const closeModalBtn = document.getElementById('closeModal');  
+const cancelBtn = document.getElementById('cancelBtn');  
+const modalSubmit = document.getElementById('modalSubmit');  
+const getCodeLink = document.getElementById('getCodeLink');  
+
+const validCoupon = "panda_XclSiVemEDiA"; // 🔒 your valid coupon code  
+const whatsappLink = "https://wa.me/message/54DK3SWKHWVBB1";  
+const selarLink = "https://selar.com/m/MiAmor-net";  
+
+// --- TOOLTIP ALERT ---
+const tooltip = document.createElement('div');
+tooltip.id = 'tooltipAlert';
+tooltip.style.position = 'absolute';
+tooltip.style.backgroundColor = '#222';
+tooltip.style.color = '#fff';
+tooltip.style.padding = '8px 12px';
+tooltip.style.borderRadius = '6px';
+tooltip.style.fontSize = '13px';
+tooltip.style.fontFamily = 'Arial, sans-serif';
+tooltip.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+tooltip.style.display = 'none';
+tooltip.style.zIndex = '9999';
+tooltip.style.whiteSpace = 'nowrap';
+
+const tooltipArrow = document.createElement('div');
+tooltipArrow.style.position = 'absolute';
+tooltipArrow.style.width = '0';
+tooltipArrow.style.height = '0';
+tooltipArrow.style.borderLeft = '6px solid transparent';
+tooltipArrow.style.borderRight = '6px solid transparent';
+tooltipArrow.style.borderTop = '6px solid #222';
+tooltipArrow.style.bottom = '-6px';
+tooltipArrow.style.left = '50%';
+tooltipArrow.style.transform = 'translateX(-50%)';
+tooltip.appendChild(tooltipArrow);
+
+document.body.appendChild(tooltip);
+
+function showTooltip(field, message) {
+    tooltip.textContent = message;
+    tooltip.appendChild(tooltipArrow);
+
+    const rect = field.getBoundingClientRect();
+    tooltip.style.top = `${rect.bottom + window.scrollY + 8}px`;
+    tooltip.style.left = `${rect.left + window.scrollX}px`;
+    tooltip.style.display = 'block';
+
+    setTimeout(() => { tooltip.style.display = 'none'; }, 3000);
+}
+
+// --- MODAL OPEN/CLOSE ---
+function openModal(e){  
+    e.preventDefault();  
+    modal.style.display = 'flex';  
+    modal.setAttribute('aria-hidden','false');  
+    document.getElementById('fullName').focus();  
+}  
+
+function closeModal(){  
+    modal.style.display = 'none';  
+    modal.setAttribute('aria-hidden','true');  
+}  
+
+openButtons.forEach(btn => btn.addEventListener('click', openModal));  
+closeModalBtn.addEventListener('click', closeModal);  
+cancelBtn.addEventListener('click', closeModal);  
+
+modal.addEventListener('click', e => {  
     if(e.target === modal) closeModal();  
-  });  
-  
-  document.addEventListener('keydown', e=>{  
+});  
+
+document.addEventListener('keydown', e => {  
     if(e.key === 'Escape') closeModal();  
-  });  
-  
-  getCodeLink.addEventListener('click', e=>{  
+});  
+
+getCodeLink.addEventListener('click', e => {  
     e.preventDefault();  
     window.open(selarLink, '_blank');  
-  });  
-  
-  // Submit button click handler  
-  modalSubmit.addEventListener('click', ()=>{  
-    const name = document.getElementById('fullName').value.trim();  
-    const email = document.getElementById('email').value.trim();  
-    const phone = document.getElementById('phone').value.trim();  
-    const username = document.getElementById('username').value.trim();  
-    const plan = document.getElementById('plan').value.trim();  
-    const coupon = document.getElementById('coupon').value.trim();  
-  
-    // Check for empty fields  
-    const emptyFields = [];  
-    if(!name) emptyFields.push('Full Name');  
-    if(!email) emptyFields.push('Email');  
-    if(!phone) emptyFields.push('Phone');  
-    if(!username) emptyFields.push('Username');  
-    if(!plan) emptyFields.push('Plan');  
-    if(!coupon) emptyFields.push('Activation Code');  
-  
-    if(emptyFields.length > 0){  
-      showMessage(`⚠️ Please fill in this field: ${emptyFields.join(', ')}`);
-      return;  
+});  
+
+// --- SUBMIT HANDLER ---
+modalSubmit.addEventListener('click', () => {  
+    const fields = [
+        { id: 'fullName', name: 'Full Name' },
+        { id: 'email', name: 'Email' },
+        { id: 'phone', name: 'Phone' },
+        { id: 'username', name: 'Username' },
+        { id: 'plan', name: 'Plan' },
+        { id: 'coupon', name: 'Activation Code' }
+    ];
+
+    const firstEmpty = fields.find(f => !document.getElementById(f.id).value.trim());
+    if(firstEmpty) {
+        showTooltip(document.getElementById(firstEmpty.id), `⚠️ Please fill in this field.`);
+        document.getElementById(firstEmpty.id).focus();
+        return;
+    }
+
+    const couponValue = document.getElementById('coupon').value.trim();
+    if(couponValue !== validCoupon){  
+        showTooltip(document.getElementById('coupon'), "❌ Invalid activation code.");
+        document.getElementById('coupon').focus();
+        return;  
     }  
-  
-    // Check for valid coupon  
-    if(coupon !== validCoupon){  
-      showMessage("❌ Invalid activation code.");  
-      return;  
-    }  
-  
+
     // All validations passed  
     modalSubmit.textContent = "Please wait...";  
     modalSubmit.style.opacity = "0.6";  
     modalSubmit.disabled = true;  
-  
-    setTimeout(()=>{  
-      window.location.href = whatsappLink;  
-      closeModal();  
+
+    setTimeout(() => {  
+        window.location.href = whatsappLink;  
+        closeModal();  
     }, 3000);  
-  });  
-  </script>
+});  
+</script>
 </body>
  </html>
