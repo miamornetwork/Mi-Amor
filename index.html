@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
   tooltip.style.fontFamily = 'Arial, sans-serif';
   tooltip.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
   tooltip.style.display = 'none';
-  tooltip.style.zIndex = '9999';
+  tooltip.style.zIndex = '99999';
   tooltip.style.whiteSpace = 'nowrap';
 
   const tooltipArrow = document.createElement('div');
@@ -257,62 +257,59 @@ document.addEventListener('DOMContentLoaded', () => {
   tooltipArrow.style.borderLeft = '6px solid transparent';
   tooltipArrow.style.borderRight = '6px solid transparent';
   tooltipArrow.style.borderTop = '6px solid #222';
-  tooltip.appendChild(tooltipArrow);
 
   document.body.appendChild(tooltip);
 
   function showTooltip(field, message) {
-      // Clear previous text but keep arrow
-      tooltip.innerHTML = '';
-      const textNode = document.createElement('span');
-      textNode.textContent = message;
-      tooltip.appendChild(textNode);
-      tooltip.appendChild(tooltipArrow);
+      tooltip.innerHTML = ''; // clear previous message
+      const textSpan = document.createElement('span');
+      textSpan.textContent = message;
+      tooltip.appendChild(textSpan);
+      tooltip.appendChild(tooltipArrow); // append arrow after text
 
-      // Temporarily display to measure height
       tooltip.style.display = 'block';
       tooltip.style.top = '0';
       tooltip.style.left = '0';
 
-      const rect = field.getBoundingClientRect();
-      const scrollY = window.scrollY || window.pageYOffset;
-      const scrollX = window.scrollX || window.pageXOffset;
-      const tooltipHeight = tooltip.offsetHeight;
-      const arrowHeight = 6;
+      // Wait for browser to render tooltip before measuring
+      requestAnimationFrame(() => {
+          const rect = field.getBoundingClientRect();
+          const scrollY = window.scrollY || window.pageYOffset;
+          const scrollX = window.scrollX || window.pageXOffset;
+          const tooltipHeight = tooltip.offsetHeight;
+          const arrowHeight = 6;
 
-      // Determine if tooltip fits below the field or needs to go above
-      let top = rect.bottom + scrollY + 8 + arrowHeight; // default below
-      let placeAbove = false;
-      if (rect.bottom + scrollY + tooltipHeight + arrowHeight + 8 > window.innerHeight + scrollY) {
-          top = rect.top + scrollY - tooltipHeight - arrowHeight - 8; // place above
-          placeAbove = true;
-      }
+          let top = rect.bottom + scrollY + 8 + arrowHeight;
+          let placeAbove = false;
 
-      tooltip.style.top = `${top}px`;
-      tooltip.style.left = `${rect.left + scrollX}px`;
+          if (rect.bottom + scrollY + tooltipHeight + arrowHeight + 8 > window.innerHeight + scrollY) {
+              top = rect.top + scrollY - tooltipHeight - arrowHeight - 8;
+              placeAbove = true;
+          }
 
-      // Position arrow
-      if (placeAbove) {
-          tooltipArrow.style.borderTop = 'none';
-          tooltipArrow.style.borderBottom = '6px solid #222';
-          tooltipArrow.style.top = '100%';
-          tooltipArrow.style.bottom = 'auto';
-      } else {
-          tooltipArrow.style.borderBottom = 'none';
-          tooltipArrow.style.borderTop = '6px solid #222';
-          tooltipArrow.style.bottom = '-6px';
-          tooltipArrow.style.top = 'auto';
-      }
+          tooltip.style.top = `${top}px`;
+          tooltip.style.left = `${rect.left + scrollX}px`;
 
-      tooltipArrow.style.left = '50%';
-      tooltipArrow.style.transform = 'translateX(-50%)';
+          if (placeAbove) {
+              tooltipArrow.style.borderTop = 'none';
+              tooltipArrow.style.borderBottom = '6px solid #222';
+              tooltipArrow.style.top = '100%';
+              tooltipArrow.style.bottom = 'auto';
+          } else {
+              tooltipArrow.style.borderBottom = 'none';
+              tooltipArrow.style.borderTop = '6px solid #222';
+              tooltipArrow.style.bottom = '-6px';
+              tooltipArrow.style.top = 'auto';
+          }
+          tooltipArrow.style.left = '50%';
+          tooltipArrow.style.transform = 'translateX(-50%)';
 
-      // Hide tooltip when user focuses field
-      const hideTooltip = () => {
-          tooltip.style.display = 'none';
-          field.removeEventListener('focus', hideTooltip);
-      };
-      field.addEventListener('focus', hideTooltip);
+          const hideTooltip = () => {
+              tooltip.style.display = 'none';
+              field.removeEventListener('focus', hideTooltip);
+          };
+          field.addEventListener('focus', hideTooltip);
+      });
   }
 
   // --- MODAL OPEN/CLOSE ---
@@ -370,7 +367,6 @@ document.addEventListener('DOMContentLoaded', () => {
           return;  
       }  
 
-      // All validations passed  
       modalSubmit.textContent = "Please wait...";  
       modalSubmit.style.opacity = "0.6";  
       modalSubmit.disabled = true;  
