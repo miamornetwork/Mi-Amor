@@ -158,7 +158,7 @@
   
     <section id="register-cta">
       <h2 style="text-align:center;">READY TO JOIN?</h2>
-      <p class="lead">Click "Submit" to complete registration.</p>
+      <p class="lead">Click the button below to get started✅.</p>
       <div style="text-align:center;margin-top:12px">
         <a class="btn open-modal" href="#" data-source="cta">REGISTER NOW</a>
       </div>
@@ -204,12 +204,7 @@
             <option value="14000">₦14,000 (ULTRA PACKAGE)</option>
           </select>
         </div>
-        <div class="field">
-          <label>Activation Code</label>
-          <input id="coupon" type="text" placeholder="Enter coupon code" />
-          <div class="small">Don't have a code? <a id="getCodeLink" href="#">Get Code</a></div>
-        </div>
-
+        
         <div class="row" style="justify-content:flex-end">
           <button class="close-btn" id="cancelBtn">Cancel</button>
           <button class="btn" id="modalSubmit">Submit</button>
@@ -230,9 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const cancelBtn = document.getElementById('cancelBtn');    
   const modalSubmit = document.getElementById('modalSubmit');    
   const getCodeLink = document.getElementById('getCodeLink');    
-
-  const validCoupon = "panda_XclSiVemEDiA";    
-  const whatsappLink = "https://wa.me/message/54DK3SWKHWVBB1";    
+      
   const selarLink = "https://selar.com/m/MiAmor-net";    
 
   // --- TOOLTIP ALERT ---  
@@ -331,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   getCodeLink.addEventListener('click', e => {    
       e.preventDefault();    
-      window.open(selarLink, '_blank');    
+      window.open(selarLink, '_self');    
   });    
 
   // --- SUBMIT HANDLER ---  
@@ -341,8 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
           { id: 'email', name: 'Email' },  
           { id: 'phone', name: 'Phone' },  
           { id: 'username', name: 'Username' },  
-          { id: 'plan', name: 'Plan' },  
-          { id: 'coupon', name: 'Activation Code' }  
+          { id: 'plan', name: 'Plan' }  
       ];  
 
       const firstEmpty = fields.find(f => !document.getElementById(f.id).value.trim());  
@@ -352,21 +344,14 @@ document.addEventListener('DOMContentLoaded', () => {
           return;  
       }  
 
-      const couponValue = document.getElementById('coupon').value.trim();  
-      if(couponValue !== validCoupon){    
-          showTooltip(document.getElementById('coupon'), "❌ Invalid activation code.");  
-          document.getElementById('coupon').focus();  
-          return;    
-      }    
-
       modalSubmit.textContent = "Please wait...";    
       modalSubmit.style.opacity = "0.6";    
       modalSubmit.disabled = true;    
 
       setTimeout(() => {    
-          window.location.href = whatsappLink;    
+          window.location.href = selarLink;    
           closeModal();    
-      }, 3000);    
+      }, 4000);    
   });    
 
 });
