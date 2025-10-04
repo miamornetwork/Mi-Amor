@@ -458,6 +458,66 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.setAttribute('aria-hidden', 'false');
     requestAnimationFrame(() => {
       modal.style.transition = 'opacity 0.3s ease';
+<script>
+  // Set current year in footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const modal = document.getElementById('modal');
+  const openButtons = document.querySelectorAll('.open-modal');
+  const closeModalBtn = document.getElementById('closeModal');
+  const cancelBtn = document.getElementById('cancelBtn');
+  const modalSubmit = document.getElementById('modalSubmit');
+  const getCodeLink = document.getElementById('getCodeLink');
+
+  const validCoupon = "panda_XclSiVemEDiA"; // 🔒 your valid coupon code
+  const whatsappLink = "https://wa.me/message/54DK3SWKHWVBB1";
+  const selarLink = "https://selar.com/m/MiAmor-net";
+
+  // ---------- Create modern message modal ----------
+  const messageModal = document.createElement('div');
+  messageModal.id = 'messageModal';
+  messageModal.style.position = 'fixed';
+  messageModal.style.top = '50%';
+  messageModal.style.left = '50%';
+  messageModal.style.transform = 'translate(-50%, -50%)';
+  messageModal.style.backgroundColor = '#fff';
+  messageModal.style.padding = '20px 30px';
+  messageModal.style.borderRadius = '12px';
+  messageModal.style.boxShadow = '0 4px 20px rgba(0,0,0,0.2)';
+  messageModal.style.display = 'none';
+  messageModal.style.zIndex = '9999';
+  messageModal.style.textAlign = 'center';
+  messageModal.style.fontFamily = 'Arial, sans-serif';
+  messageModal.style.opacity = '0';
+  messageModal.style.transition = 'opacity 0.3s ease';
+  messageModal.innerHTML = `<p id="messageText" style="margin-bottom: 20px;"></p><button id="closeMessageBtn" style="padding: 8px 16px; border:none; background:#007BFF; color:#fff; border-radius:6px; cursor:pointer;">OK</button>`;
+  document.body.appendChild(messageModal);
+
+  const messageText = document.getElementById('messageText');
+  const closeMessageBtn = document.getElementById('closeMessageBtn');
+
+  function showMessage(msg) {
+    messageText.textContent = msg;
+    messageModal.style.display = 'block';
+    requestAnimationFrame(() => messageModal.style.opacity = '1');
+  }
+
+  function closeMessage() {
+    messageModal.style.opacity = '0';
+    setTimeout(() => { messageModal.style.display = 'none'; }, 300);
+  }
+
+  closeMessageBtn.addEventListener('click', closeMessage);
+
+  // ---------- Modal open/close functions ----------
+  function openModal(e) {
+    e.preventDefault();
+    if(!modal) return;
+    modal.style.display = 'flex';
+    modal.style.opacity = '0';
+    modal.setAttribute('aria-hidden', 'false');
+    requestAnimationFrame(() => {
+      modal.style.transition = 'opacity 0.3s ease';
       modal.style.opacity = '1';
     });
     const fullNameInput = document.getElementById('fullName');
@@ -470,36 +530,34 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       modal.style.display = 'none';
       modal.setAttribute('aria-hidden', 'true');
+      // reset form fields and buttons
+      modalSubmit.disabled = false;
+      modalSubmit.textContent = "Get Started";
+      const inputs = modal.querySelectorAll('input');
+      inputs.forEach(i => i.classList.remove('input-invalid'));
     }, 300);
   }
 
-  // Attach open modal event to all buttons
   openButtons.forEach(btn => btn.addEventListener('click', openModal));
-
   closeModalBtn?.addEventListener('click', closeModal);
   cancelBtn?.addEventListener('click', closeModal);
 
-  modal?.addEventListener('click', e => {
-    if (e.target === modal) closeModal();
-  });
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModal();
-  });
+  modal?.addEventListener('click', e => { if(e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
 
   getCodeLink?.addEventListener('click', e => {
     e.preventDefault();
     window.open(selarLink, '_blank');
   });
 
-  // ---------- Submit button click handler ----------
+  // ---------- Submit handler ----------
   modalSubmit?.addEventListener('click', () => {
-    const name = document.getElementById('fullName')?.value.trim() || '';
-    const email = document.getElementById('email')?.value.trim() || '';
-    const phone = document.getElementById('phone')?.value.trim() || '';
-    const username = document.getElementById('username')?.value.trim() || '';
-    const plan = document.getElementById('plan')?.value.trim() || '';
-    const coupon = document.getElementById('coupon')?.value.trim() || '';
+    const name = document.getElementById('fullName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const username = document.getElementById('username').value.trim();
+    const plan = document.getElementById('plan').value.trim();
+    const coupon = document.getElementById('coupon').value.trim();
 
     const emptyFields = [];
     if(!name) emptyFields.push('Full Name');
@@ -528,8 +586,6 @@ document.addEventListener('DOMContentLoaded', () => {
       closeModal();
     }, 3000);
   });
-
-});
 </script>
 </body>
  </html>
