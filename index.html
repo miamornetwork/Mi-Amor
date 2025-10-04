@@ -219,69 +219,6 @@
   </div>
 
   <script>  
-  // Set current year in footer  
-  document.getElementById('year').textContent = new Date().getFullYear();  
-  
-  const modal = document.getElementById('modal');  
-  const openButtons = document.querySelectorAll('.open-modal');  
-  const closeModalBtn = document.getElementById('closeModal');  
-  const cancelBtn = document.getElementById('cancelBtn');  
-  const modalSubmit = document.getElementById('modalSubmit');  
-  const getCodeLink = document.getElementById('getCodeLink');  
-
-  // New message modal for alerts
-  const messageModal = document.createElement('div');
-  messageModal.id = 'messageModal';
-  messageModal.style.position = 'fixed';
-  messageModal.style.top = '50%';
-  messageModal.style.left = '50%';
-  messageModal.style.transform = 'translate(-50%, -50%)';
-  messageModal.style.backgroundColor = '#fff';
-  messageModal.style.padding = '20px 30px';
-  messageModal.style.borderRadius = '12px';
-  messageModal.style.boxShadow = '0 4px 20px rgba(0,0,0,0.2)';
-  messageModal.style.display = 'none';
-  messageModal.style.zIndex = '9999';
-  messageModal.style.textAlign = 'center';
-  messageModal.style.fontFamily = 'Arial, sans-serif';
-  messageModal.innerHTML = `<p id="messageText" style="margin-bottom: 20px;"></p><button id="closeMessageBtn" style="padding: 8px 16px; border:none; background:#007BFF; color:#fff; border-radius:6px; cursor:pointer;">OK</button>`;
-  document.body.appendChild(messageModal);
-
-  const messageText = document.getElementById('messageText');
-  const closeMessageBtn = document.getElementById('closeMessageBtn');
-
-  function showMessage(msg) {
-    messageText.textContent = msg;
-    messageModal.style.display = 'block';
-  }
-
-  function closeMessage() {
-    messageModal.style.display = 'none';
-  }
-
-  closeMessageBtn.addEventListener('click', closeMessage);
-
-  const validCoupon = "panda_XclSiVemEDiA"; // 🔒 your valid coupon code  
-  const whatsappLink = "https://wa.me/message/54DK3SWKHWVBB1";  
-  const selarLink = "https://selar.com/m/MiAmor-net";  
-  
-  // Function to open modal  
-  function openModal(e){  
-    e.preventDefault();  
-    modal.style.display = 'flex';  
-    modal.setAttribute('aria-hidden','false');  
-    document.getElementById('fullName').focus();  
-  }  
-  
-  function closeModal(){  
-    modal.style.display = 'none';  
-    modal.setAttribute('aria-hidden','true');  
-  }  
-  
-  openButtons.forEach(btn=>{  
-    btn.addEventListener('click', openModal);  
-  });  
-<script>  
 // Set current year in footer  
 document.getElementById('year').textContent = new Date().getFullYear();  
 
@@ -402,6 +339,6 @@ modalSubmit.addEventListener('click', () => {
         closeModal();  
     }, 3000);  
 });  
-</script>
+  </script>
 </body>
  </html>
