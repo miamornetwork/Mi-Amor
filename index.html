@@ -224,8 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeModalBtn = document.getElementById('closeModal');    
   const cancelBtn = document.getElementById('cancelBtn');    
   const modalSubmit = document.getElementById('modalSubmit');    
-  const getCodeLink = document.getElementById('getCodeLink');    
-      
+
   const selarLink = "https://selar.com/m/MiAmor-net";    
 
   // --- TOOLTIP ALERT ---  
@@ -253,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
   tooltipArrow.style.borderRight = '6px solid transparent';  
   tooltipArrow.style.borderBottom = '6px solid #222'; // arrow pointing up  
   tooltipArrow.style.top = '-6px';  
-  tooltipArrow.style.left = '11px';  
+  tooltipArrow.style.left = '12px';  
   tooltipArrow.style.transform = 'none';  
   tooltip.appendChild(tooltipArrow);  
 
@@ -278,19 +277,19 @@ document.addEventListener('DOMContentLoaded', () => {
           const tooltipHeight = tooltip.offsetHeight;  
           const tooltipWidth = tooltip.offsetWidth;  
 
-          // Tooltip **below the field**
+          // Tooltip below the field
           const top = rect.bottom + scrollY + 8; // 8px margin  
-          const left = rect.left + scrollX + rect.width / 2 - tooltipWidth / 2;  
+          const left = rect.left + scrollX + rect.width / 2 - tooltipWidth / 2 - 4; // slight left shift
 
           tooltip.style.top = `${top}px`;  
           tooltip.style.left = `${left}px`;  
 
           // Arrow on top of rectangle pointing up
           tooltipArrow.style.top = '-6px';  
-          tooltipArrow.style.left = '50%';  
-          tooltipArrow.style.transform = 'translateX(-50%)';  
+          tooltipArrow.style.left = '12px';  
+          tooltipArrow.style.transform = 'none';  
 
-          // Automatically hide tooltip after 5 seconds
+          // Auto-hide tooltip after 5 seconds
           setTimeout(() => {
               tooltip.style.display = 'none';
           }, 5000);
@@ -322,11 +321,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if(e.key === 'Escape') closeModal();    
   });    
 
-  getCodeLink.addEventListener('click', e => {    
-      e.preventDefault();    
-      window.open(selarLink, '_self');    
-  });    
-
   // --- SUBMIT HANDLER ---  
   modalSubmit.addEventListener('click', () => {    
       const fields = [  
@@ -348,6 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
       modalSubmit.style.opacity = "0.6";    
       modalSubmit.disabled = true;    
 
+      // Redirect to Selar in the same tab
       setTimeout(() => {    
           window.location.href = selarLink;    
           closeModal();    
