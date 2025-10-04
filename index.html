@@ -218,7 +218,7 @@
     </div>
   </div>
 
-  <script>
+<script>
 document.addEventListener('DOMContentLoaded', () => {
 
   // Set current year in footer
@@ -256,61 +256,65 @@ document.addEventListener('DOMContentLoaded', () => {
   tooltipArrow.style.height = '0';
   tooltipArrow.style.borderLeft = '6px solid transparent';
   tooltipArrow.style.borderRight = '6px solid transparent';
-  // Remove borderTop here; we will dynamically set it
+  tooltipArrow.style.borderTop = '6px solid #222';
+  tooltipArrow.style.transformOrigin = 'center';
+  tooltip.appendChild(tooltipArrow);
+
   document.body.appendChild(tooltip);
-  document.body.appendChild(tooltipArrow);
 
   function showTooltip(field, message) {
-      tooltip.textContent = message;
+      tooltip.innerHTML = '';
+      const textSpan = document.createElement('span');
+      textSpan.textContent = message;
+      tooltip.appendChild(textSpan);
+      tooltip.appendChild(tooltipArrow);
+
       tooltip.style.display = 'block';
       tooltip.style.top = '0';
       tooltip.style.left = '0';
-
-      tooltipArrow.style.display = 'block';
 
       requestAnimationFrame(() => {
           const rect = field.getBoundingClientRect();
           const scrollY = window.scrollY || window.pageYOffset;
           const scrollX = window.scrollX || window.pageXOffset;
           const tooltipHeight = tooltip.offsetHeight;
-          const tooltipWidth = tooltip.offsetWidth;
           const arrowHeight = 6;
 
-          // Default: tooltip below field
-          let top = rect.bottom + scrollY + arrowHeight;
+          let top = rect.bottom + scrollY + 8 + arrowHeight; // default below
           let placeAbove = false;
 
+          // Flip above if too close to bottom
           if (rect.bottom + scrollY + tooltipHeight + arrowHeight + 8 > window.innerHeight + scrollY) {
-              // place above
-              top = rect.top + scrollY - tooltipHeight - arrowHeight;
+              top = rect.top + scrollY - tooltipHeight - arrowHeight - 8;
               placeAbove = true;
           }
 
-          let left = rect.left + scrollX;
-
           tooltip.style.top = `${top}px`;
-          tooltip.style.left = `${left}px`;
+          tooltip.style.left = `${rect.left + scrollX}px`;
 
-          // Arrow positioning
-          let arrowLeft = rect.left + scrollX + rect.width / 2 - 6; // center arrow on field
+          // Position arrow
+          tooltipArrow.style.left = '50%';
+          tooltipArrow.style.transform = 'translateX(-50%)';
+
           if (placeAbove) {
               tooltipArrow.style.borderTop = '6px solid #222';
               tooltipArrow.style.borderBottom = 'none';
-              tooltipArrow.style.top = `${top + tooltipHeight}px`;
+              tooltipArrow.style.top = '100%';
+              tooltipArrow.style.bottom = 'auto';
           } else {
               tooltipArrow.style.borderBottom = '6px solid #222';
               tooltipArrow.style.borderTop = 'none';
-              tooltipArrow.style.top = `${top - arrowHeight}px`;
+              tooltipArrow.style.bottom = '-6px';
+              tooltipArrow.style.top = 'auto';
           }
-          tooltipArrow.style.left = `${arrowLeft}px`;
-      });
 
-      const hideTooltip = () => {
-          tooltip.style.display = 'none';
-          tooltipArrow.style.display = 'none';
-          field.removeEventListener('focus', hideTooltip);
-      };
-      field.addEventListener('focus', hideTooltip);
+          // Hide tooltip when field is focused
+          const hideTooltip = () => {
+              tooltip.style.display = 'none';
+              field.removeEventListener('focus', hideTooltip);
+          };
+          field.addEventListener('focus', hideTooltip);
+      });
   }
 
   // --- MODAL OPEN/CLOSE ---
@@ -379,6 +383,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });  
 
 });
-  </script>
+</script>
 </body>
  </html>
