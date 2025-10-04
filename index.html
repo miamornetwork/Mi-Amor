@@ -257,21 +257,22 @@ document.addEventListener('DOMContentLoaded', () => {
   tooltipArrow.style.borderLeft = '6px solid transparent';
   tooltipArrow.style.borderRight = '6px solid transparent';
   tooltipArrow.style.borderTop = '6px solid #222';
+  tooltipArrow.style.transformOrigin = 'center';
+  tooltip.appendChild(tooltipArrow);
 
   document.body.appendChild(tooltip);
 
   function showTooltip(field, message) {
-      tooltip.innerHTML = ''; // clear previous message
+      tooltip.innerHTML = '';
       const textSpan = document.createElement('span');
       textSpan.textContent = message;
       tooltip.appendChild(textSpan);
-      tooltip.appendChild(tooltipArrow); // append arrow after text
+      tooltip.appendChild(tooltipArrow);
 
       tooltip.style.display = 'block';
       tooltip.style.top = '0';
       tooltip.style.left = '0';
 
-      // Wait for browser to render tooltip before measuring
       requestAnimationFrame(() => {
           const rect = field.getBoundingClientRect();
           const scrollY = window.scrollY || window.pageYOffset;
@@ -279,9 +280,10 @@ document.addEventListener('DOMContentLoaded', () => {
           const tooltipHeight = tooltip.offsetHeight;
           const arrowHeight = 6;
 
-          let top = rect.bottom + scrollY + 8 + arrowHeight;
+          let top = rect.bottom + scrollY + 8 + arrowHeight; // default below
           let placeAbove = false;
 
+          // Flip above if too close to bottom
           if (rect.bottom + scrollY + tooltipHeight + arrowHeight + 8 > window.innerHeight + scrollY) {
               top = rect.top + scrollY - tooltipHeight - arrowHeight - 8;
               placeAbove = true;
@@ -290,20 +292,23 @@ document.addEventListener('DOMContentLoaded', () => {
           tooltip.style.top = `${top}px`;
           tooltip.style.left = `${rect.left + scrollX}px`;
 
-          if (placeAbove) {
-              tooltipArrow.style.borderTop = 'none';
-              tooltipArrow.style.borderBottom = '6px solid #222';
-              tooltipArrow.style.top = '100%';
-              tooltipArrow.style.bottom = 'auto';
-          } else {
-              tooltipArrow.style.borderBottom = 'none';
-              tooltipArrow.style.borderTop = '6px solid #222';
-              tooltipArrow.style.bottom = '-6px';
-              tooltipArrow.style.top = 'auto';
-          }
+          // Position arrow
           tooltipArrow.style.left = '50%';
           tooltipArrow.style.transform = 'translateX(-50%)';
 
+          if (placeAbove) {
+              tooltipArrow.style.borderTop = '6px solid #222';
+              tooltipArrow.style.borderBottom = 'none';
+              tooltipArrow.style.top = '100%';
+              tooltipArrow.style.bottom = 'auto';
+          } else {
+              tooltipArrow.style.borderBottom = '6px solid #222';
+              tooltipArrow.style.borderTop = 'none';
+              tooltipArrow.style.bottom = '-6px';
+              tooltipArrow.style.top = 'auto';
+          }
+
+          // Hide tooltip when field is focused
           const hideTooltip = () => {
               tooltip.style.display = 'none';
               field.removeEventListener('focus', hideTooltip);
