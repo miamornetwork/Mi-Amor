@@ -219,52 +219,74 @@
   </div>
 
   <script>
-    // Set current year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
+  // Set current year in footer
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    const modal = document.getElementById('modal');
-    const openButtons = document.querySelectorAll('.open-modal');
-    const closeModalBtn = document.getElementById('closeModal');
-    const cancelBtn = document.getElementById('cancelBtn');
-    const modalSubmit = document.getElementById('modalSubmit');
-    const getCodeLink = document.getElementById('getCodeLink');
+  const modal = document.getElementById('modal');
+  const openButtons = document.querySelectorAll('.open-modal');
+  const closeModalBtn = document.getElementById('closeModal');
+  const cancelBtn = document.getElementById('cancelBtn');
+  const modalSubmit = document.getElementById('modalSubmit');
+  const getCodeLink = document.getElementById('getCodeLink');
 
-    function openModal(e){
-      e.preventDefault();
-      modal.style.display = 'flex';
-      modal.setAttribute('aria-hidden','false');
-      document.getElementById('fullName').focus();
+  const validCoupon = "panda_XclSiVemEDiA"; // 🔒 your valid coupon code
+  const whatsappLink = "https://wa.me/message/54DK3SWKHWVBB1";
+  const selarLink = "https://selar.com/m/MiAmor-net";
+
+  function openModal(e){
+    e.preventDefault();
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden','false');
+    document.getElementById('fullName').focus();
+  }
+
+  function closeModal(){
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden','true');
+  }
+
+  openButtons.forEach(btn=>{
+    btn.addEventListener('click', openModal);
+  });
+
+  closeModalBtn.addEventListener('click', closeModal);
+  cancelBtn.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', e=>{
+    if(e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', e=>{
+    if(e.key === 'Escape') closeModal();
+  });
+
+  getCodeLink.addEventListener('click', e=>{
+    e.preventDefault();
+    window.open(selarLink, '_blank');
+  });
+
+  modalSubmit.addEventListener('click', ()=>{
+    const name = document.getElementById('fullName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const username = document.getElementById('username').value.trim();
+    const plan = document.getElementById('plan').value.trim();
+    const coupon = document.getElementById('coupon').value.trim();
+
+    if(!name || !email || !phone || !username || !plan || !coupon){
+      alert("⚠️ Please fill in all fields before submitting.");
+      return;
     }
 
-    function closeModal(){
-      modal.style.display = 'none';
-      modal.setAttribute('aria-hidden','true');
+    if(coupon !== validCoupon){
+      alert("❌ Invalid coupon code. Please enter the correct one.");
+      return;
     }
 
-    openButtons.forEach(btn=>{
-      btn.addEventListener('click', openModal);
-    });
-
-    closeModalBtn.addEventListener('click', closeModal);
-    cancelBtn.addEventListener('click', closeModal);
-
-    modal.addEventListener('click', e=>{
-      if(e.target === modal) closeModal();
-    });
-
-    document.addEventListener('keydown', e=>{
-      if(e.key === 'Escape') closeModal();
-    });
-
-    getCodeLink.addEventListener('click', e=>{
-      e.preventDefault();
-      window.open('https://selar.com/m/MiAmor-net', '_self');
-    });
-
-    modalSubmit.addEventListener('click', ()=>{
-      window.open('https://selar.com/m/MiAmor-net', '_self');
-      closeModal();
-    });
+    alert("⏳ Please wait... redirecting to WhatsApp.");
+    window.location.href = whatsappLink;
+    closeModal();
+  });
   </script>
 </body>
  </html>
