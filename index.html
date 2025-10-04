@@ -242,75 +242,76 @@ document.addEventListener('DOMContentLoaded', () => {
   tooltip.style.backgroundColor = '#222';
   tooltip.style.color = '#fff';
   tooltip.style.padding = '8px 12px';
-  tooltip.style.borderRadius = '6px';
+  tooltip.style.borderRadius = '8px';
   tooltip.style.fontSize = '13px';
   tooltip.style.fontFamily = 'Arial, sans-serif';
-  tooltip.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+  tooltip.style.boxShadow = '0 4px 15px rgba(0,0,0,0.3)';
   tooltip.style.display = 'none';
   tooltip.style.zIndex = '99999';
   tooltip.style.whiteSpace = 'nowrap';
+  tooltip.style.transition = 'opacity 0.3s ease';
+  tooltip.style.opacity = '0';
 
-  const tooltipArrow = document.createElement('div');
-  tooltipArrow.style.position = 'absolute';
-  tooltipArrow.style.width = '0';
-  tooltipArrow.style.height = '0';
-  tooltipArrow.style.borderLeft = '6px solid transparent';
-  tooltipArrow.style.borderRight = '6px solid transparent';
-  tooltipArrow.style.borderTop = '6px solid #222';
-  tooltipArrow.style.transformOrigin = 'center';
-  tooltip.appendChild(tooltipArrow);
+  // Arrow as a pseudo-element using a nested div
+  const arrow = document.createElement('div');
+  arrow.style.position = 'absolute';
+  arrow.style.width = '12px';
+  arrow.style.height = '12px';
+  arrow.style.backgroundColor = '#222';
+  arrow.style.transform = 'rotate(45deg)'; // diamond shape for rounded arrow
+  arrow.style.boxShadow = '-2px 2px 4px rgba(0,0,0,0.2)';
+  tooltip.appendChild(arrow);
 
   document.body.appendChild(tooltip);
 
   function showTooltip(field, message) {
-      tooltip.innerHTML = '';
-      const textSpan = document.createElement('span');
-      textSpan.textContent = message;
-      tooltip.appendChild(textSpan);
-      tooltip.appendChild(tooltipArrow);
+      // Set text (without removing arrow)
+      tooltip.childNodes[0]?.remove(); // remove old text
+      const textNode = document.createElement('span');
+      textNode.textContent = message;
+      tooltip.insertBefore(textNode, arrow);
 
       tooltip.style.display = 'block';
-      tooltip.style.top = '0';
-      tooltip.style.left = '0';
+      tooltip.style.opacity = '0'; // reset for fade-in
 
       requestAnimationFrame(() => {
           const rect = field.getBoundingClientRect();
           const scrollY = window.scrollY || window.pageYOffset;
           const scrollX = window.scrollX || window.pageXOffset;
           const tooltipHeight = tooltip.offsetHeight;
-          const arrowHeight = 6;
+          const tooltipWidth = tooltip.offsetWidth;
+          const arrowSize = 12;
 
-          let top = rect.bottom + scrollY + 8 + arrowHeight; // default below
+          // Default below field
+          let top = rect.bottom + scrollY + arrowSize / 2;
           let placeAbove = false;
 
-          // Flip above if too close to bottom
-          if (rect.bottom + scrollY + tooltipHeight + arrowHeight + 8 > window.innerHeight + scrollY) {
-              top = rect.top + scrollY - tooltipHeight - arrowHeight - 8;
+          // Flip if not enough space
+          if (rect.bottom + scrollY + tooltipHeight + arrowSize > window.innerHeight + scrollY) {
+              top = rect.top + scrollY - tooltipHeight - arrowSize / 2;
               placeAbove = true;
           }
 
+          const left = rect.left + scrollX + rect.width / 2 - tooltipWidth / 2;
           tooltip.style.top = `${top}px`;
-          tooltip.style.left = `${rect.left + scrollX}px`;
+          tooltip.style.left = `${left}px`;
 
           // Position arrow
-          tooltipArrow.style.left = '50%';
-          tooltipArrow.style.transform = 'translateX(-50%)';
-
+          arrow.style.left = `${tooltipWidth / 2 - arrowSize / 2}px`;
           if (placeAbove) {
-              tooltipArrow.style.borderTop = '6px solid #222';
-              tooltipArrow.style.borderBottom = 'none';
-              tooltipArrow.style.top = '100%';
-              tooltipArrow.style.bottom = 'auto';
+              arrow.style.top = `${tooltipHeight - arrowSize / 2}px`;
           } else {
-              tooltipArrow.style.borderBottom = '6px solid #222';
-              tooltipArrow.style.borderTop = 'none';
-              tooltipArrow.style.bottom = '-6px';
-              tooltipArrow.style.top = 'auto';
+              arrow.style.top = `${-arrowSize / 2}px`;
           }
 
-          // Hide tooltip when field is focused
+          // Fade-in
+          requestAnimationFrame(() => {
+              tooltip.style.opacity = '1';
+          });
+
           const hideTooltip = () => {
-              tooltip.style.display = 'none';
+              tooltip.style.opacity = '0';
+              setTimeout(() => { tooltip.style.display = 'none'; }, 300);
               field.removeEventListener('focus', hideTooltip);
           };
           field.addEventListener('focus', hideTooltip);
