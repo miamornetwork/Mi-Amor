@@ -221,7 +221,6 @@
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Set current year in footer
   document.getElementById('year').textContent = new Date().getFullYear();
 
   const modal = document.getElementById('modal');  
@@ -250,64 +249,49 @@ document.addEventListener('DOMContentLoaded', () => {
   tooltip.style.zIndex = '99999';
   tooltip.style.whiteSpace = 'nowrap';
   tooltip.style.pointerEvents = 'none';
-  tooltip.style.transition = 'opacity 0.3s ease';
 
-  // Arrow inside tooltip
   const arrow = document.createElement('div');
   arrow.style.position = 'absolute';
   arrow.style.width = '12px';
   arrow.style.height = '12px';
   arrow.style.backgroundColor = '#222';
-  arrow.style.transform = 'rotate(45deg)'; // diamond shape arrow
+  arrow.style.transform = 'rotate(45deg)';
   tooltip.appendChild(arrow);
 
   document.body.appendChild(tooltip);
 
   function showTooltip(field, message) {
-      // Set message
       tooltip.childNodes[0].textContent = message || '';
-      
       tooltip.style.display = 'block';
-      tooltip.style.opacity = '0';
 
-      requestAnimationFrame(() => {
-          const rect = field.getBoundingClientRect();
-          const scrollY = window.scrollY || window.pageYOffset;
-          const scrollX = window.scrollX || window.pageXOffset;
-          const tooltipHeight = tooltip.offsetHeight;
-          const tooltipWidth = tooltip.offsetWidth;
-          const arrowSize = 12;
+      const rect = field.getBoundingClientRect();
+      const scrollY = window.scrollY || window.pageYOffset;
+      const scrollX = window.scrollX || window.pageXOffset;
 
-          let top = rect.bottom + scrollY + arrowSize / 2;
-          let placeAbove = false;
+      const tooltipHeight = tooltip.offsetHeight;
+      const tooltipWidth = tooltip.offsetWidth;
+      const arrowSize = 12;
 
-          if (rect.bottom + scrollY + tooltipHeight + arrowSize > window.innerHeight + scrollY) {
-              top = rect.top + scrollY - tooltipHeight - arrowSize / 2;
-              placeAbove = true;
-          }
+      let top = rect.bottom + scrollY + arrowSize / 2;
+      let placeAbove = false;
 
-          let left = rect.left + scrollX + rect.width / 2 - tooltipWidth / 2;
-          tooltip.style.top = `${top}px`;
-          tooltip.style.left = `${left}px`;
+      if (rect.bottom + scrollY + tooltipHeight + arrowSize > window.innerHeight + scrollY) {
+          top = rect.top + scrollY - tooltipHeight - arrowSize / 2;
+          placeAbove = true;
+      }
 
-          // Position arrow
-          arrow.style.left = `${tooltipWidth / 2 - arrowSize / 2}px`;
-          if (placeAbove) {
-              arrow.style.top = `${tooltipHeight - arrowSize / 2}px`;
-          } else {
-              arrow.style.top = `-${arrowSize / 2}px`;
-          }
+      const left = rect.left + scrollX + rect.width / 2 - tooltipWidth / 2;
+      tooltip.style.top = `${top}px`;
+      tooltip.style.left = `${left}px`;
 
-          tooltip.style.opacity = '1';
+      arrow.style.left = `${tooltipWidth / 2 - arrowSize / 2}px`;
+      arrow.style.top = placeAbove ? `${tooltipHeight - arrowSize / 2}px` : `-${arrowSize / 2}px`;
 
-          // Hide tooltip on focus
-          const hideTooltip = () => {
-              tooltip.style.opacity = '0';
-              setTimeout(() => { tooltip.style.display = 'none'; }, 300);
-              field.removeEventListener('focus', hideTooltip);
-          };
-          field.addEventListener('focus', hideTooltip);
-      });
+      const hideTooltip = () => {
+          tooltip.style.display = 'none';
+          field.removeEventListener('focus', hideTooltip);
+      };
+      field.addEventListener('focus', hideTooltip);
   }
 
   // --- MODAL OPEN/CLOSE ---
