@@ -218,9 +218,10 @@
     </div>
   </div>
 
-<script>
+  <script>
 document.addEventListener('DOMContentLoaded', () => {
 
+  // Set current year in footer
   document.getElementById('year').textContent = new Date().getFullYear();
 
   const modal = document.getElementById('modal');  
@@ -234,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const whatsappLink = "https://wa.me/message/54DK3SWKHWVBB1";  
   const selarLink = "https://selar.com/m/MiAmor-net";  
 
-  // --- TOOLTIP ALERT (single rectangle with top arrow) ---
+  // --- TOOLTIP ALERT ---
   const tooltip = document.createElement('div');
   tooltip.id = 'tooltipAlert';
   tooltip.style.position = 'absolute';
@@ -244,39 +245,69 @@ document.addEventListener('DOMContentLoaded', () => {
   tooltip.style.borderRadius = '6px';
   tooltip.style.fontSize = '13px';
   tooltip.style.fontFamily = 'Arial, sans-serif';
-  tooltip.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
+  tooltip.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
   tooltip.style.display = 'none';
   tooltip.style.zIndex = '99999';
   tooltip.style.whiteSpace = 'nowrap';
-  tooltip.style.pointerEvents = 'none';
-  tooltip.style.textAlign = 'center';
-  tooltip.style.position = 'absolute';
-  // Create a pseudo-arrow using CSS clip-path
-  tooltip.style.clipPath = 'polygon(50% 0%, 100% 12px, 100% 100%, 0% 100%, 0% 12px)';
 
+  const tooltipArrow = document.createElement('div');
+  tooltipArrow.style.position = 'absolute';
+  tooltipArrow.style.width = '0';
+  tooltipArrow.style.height = '0';
+  tooltipArrow.style.borderLeft = '6px solid transparent';
+  tooltipArrow.style.borderRight = '6px solid transparent';
+  // Remove borderTop here; we will dynamically set it
   document.body.appendChild(tooltip);
+  document.body.appendChild(tooltipArrow);
 
   function showTooltip(field, message) {
       tooltip.textContent = message;
       tooltip.style.display = 'block';
+      tooltip.style.top = '0';
+      tooltip.style.left = '0';
 
-      const rect = field.getBoundingClientRect();
-      const scrollY = window.scrollY || window.pageYOffset;
-      const scrollX = window.scrollX || window.pageXOffset;
+      tooltipArrow.style.display = 'block';
 
-      const tooltipHeight = tooltip.offsetHeight;
-      const tooltipWidth = tooltip.offsetWidth;
+      requestAnimationFrame(() => {
+          const rect = field.getBoundingClientRect();
+          const scrollY = window.scrollY || window.pageYOffset;
+          const scrollX = window.scrollX || window.pageXOffset;
+          const tooltipHeight = tooltip.offsetHeight;
+          const tooltipWidth = tooltip.offsetWidth;
+          const arrowHeight = 6;
 
-      // Always place above the field
-      const top = rect.top + scrollY - tooltipHeight - 8; // 8px margin
-      const left = rect.left + scrollX + rect.width / 2 - tooltipWidth / 2;
+          // Default: tooltip below field
+          let top = rect.bottom + scrollY + arrowHeight;
+          let placeAbove = false;
 
-      tooltip.style.top = `${top}px`;
-      tooltip.style.left = `${left}px`;
+          if (rect.bottom + scrollY + tooltipHeight + arrowHeight + 8 > window.innerHeight + scrollY) {
+              // place above
+              top = rect.top + scrollY - tooltipHeight - arrowHeight;
+              placeAbove = true;
+          }
 
-      // Hide tooltip when user focuses the field
+          let left = rect.left + scrollX;
+
+          tooltip.style.top = `${top}px`;
+          tooltip.style.left = `${left}px`;
+
+          // Arrow positioning
+          let arrowLeft = rect.left + scrollX + rect.width / 2 - 6; // center arrow on field
+          if (placeAbove) {
+              tooltipArrow.style.borderTop = '6px solid #222';
+              tooltipArrow.style.borderBottom = 'none';
+              tooltipArrow.style.top = `${top + tooltipHeight}px`;
+          } else {
+              tooltipArrow.style.borderBottom = '6px solid #222';
+              tooltipArrow.style.borderTop = 'none';
+              tooltipArrow.style.top = `${top - arrowHeight}px`;
+          }
+          tooltipArrow.style.left = `${arrowLeft}px`;
+      });
+
       const hideTooltip = () => {
           tooltip.style.display = 'none';
+          tooltipArrow.style.display = 'none';
           field.removeEventListener('focus', hideTooltip);
       };
       field.addEventListener('focus', hideTooltip);
@@ -348,6 +379,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });  
 
 });
-</script>
+  </script>
 </body>
  </html>
