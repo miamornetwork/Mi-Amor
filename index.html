@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MiaMor | Join The Group</title>
+  <title>MiaMor | Join Training Group</title>
 
   <style>
-    /* === Local Font Setup === */
+    /* === Local Fonts === */
     @font-face {
       font-family: "TimesLocal";
       src: url("fonts/TimesNewRoman.ttf") format("truetype");
@@ -22,17 +22,21 @@
       --accent: #2fa0ff;
       --accent-dark: #0f7ad6;
       --text-light: #fff;
-      --rounded: 24px;
-      --max-width: 760px;
+      --max-width: 780px;
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
       font-family: "RobotoLocal", Arial, sans-serif;
-      color: var(--text-light);
       background: linear-gradient(180deg, var(--blue-top), var(--blue-bottom));
+      color: var(--text-light);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
@@ -40,19 +44,19 @@
     .container {
       max-width: var(--max-width);
       margin: auto;
-      padding: 20px;
+      padding: 24px;
     }
 
-    /* ===== HERO SECTION ===== */
+    /* ===== CARD SECTIONS ===== */
     .card {
-      background: rgba(9, 23, 43, 0.88);
-      border-radius: var(--rounded);
-      padding: 36px 24px;
+      background: rgba(10, 25, 45, 0.88);
+      border-radius: var(--radius);
+      padding: 40px 28px;
       box-shadow: 0 10px 28px rgba(3, 9, 20, 0.45);
-      margin-bottom: 30px;
-      animation: fadeUp 1.2s ease forwards;
+      margin-bottom: 40px;
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(40px);
+      transition: all 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
     .card.visible {
@@ -60,22 +64,30 @@
       transform: translateY(0);
     }
 
-    h1 {
+    h1, h2 {
       font-family: "TimesLocal", serif;
-      text-transform: uppercase;
       text-align: center;
-      font-size: 30px;
-      line-height: 1.2;
-      letter-spacing: 3px;
-      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    h1 { font-size: 32px; }
+    h2 { font-size: 26px; color: var(--accent); }
+
+    .wave {
+      display: block;
+      margin: 0 auto 24px;
+      width: 140px;
+      height: 22px;
     }
 
     p {
-      font-family: "RobotoLocal", sans-serif;
-      font-size: 18px;
-      line-height: 1.6;
+      font-size: 19px;
+      line-height: 1.7;
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 26px;
     }
 
     .highlight {
@@ -83,21 +95,53 @@
       font-weight: bold;
     }
 
+    /* ===== IMAGE SECTION ===== */
+    .image-box {
+      margin-top: 26px;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .image-box img {
+      width: 100%;
+      border-radius: 18px;
+      transition: transform 0.5s ease;
+      cursor: pointer;
+    }
+
+    .image-box img.zoomed {
+      transform: scale(1.1);
+    }
+
+    /* ===== BUTTON ===== */
     .join-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px;
       background: linear-gradient(90deg, var(--accent), var(--accent-dark));
-      color: #000;
       border: none;
-      border-radius: 30px;
+      border-radius: 40px;
+      font-family: "TimesLocal", serif;
       font-weight: bold;
-      font-size: 18px;
-      padding: 14px 24px;
-      cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      color: #000;
+      font-size: 20px;
+      padding: 16px 30px;
       text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    .join-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+
+    .join-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     }
 
     .join-btn:active {
@@ -107,54 +151,23 @@
 
     .note {
       text-align: center;
-      font-size: 15px;
+      font-size: 16px;
       margin-top: 12px;
       opacity: 0.9;
-    }
-
-    .image-box {
-      margin-top: 24px;
-      border-radius: 16px;
-      overflow: hidden;
-      background: #fff;
-      padding: 10px;
-    }
-
-    .image-box img {
-      width: 100%;
-      border-radius: 12px;
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-
-    .image-box img.zoomed {
-      transform: scale(1.08);
-    }
-
-    /* ===== SECOND SECTION ===== */
-    h2 {
-      font-family: "TimesLocal", serif;
-      font-size: 24px;
-      text-align: center;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent);
     }
 
     ul {
       list-style: none;
       padding: 0;
-      margin: 20px 0;
+      margin: 24px 0;
     }
 
     li {
-      font-family: "RobotoLocal", sans-serif;
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      margin: 16px 0;
-      font-size: 18px;
-      line-height: 1.4;
+      font-size: 19px;
+      margin: 14px 0;
     }
 
     li span.icon {
@@ -162,63 +175,49 @@
     }
 
     .big-callout {
-      font-family: "TimesLocal", serif;
-      font-weight: bold;
       text-align: center;
-      font-size: 20px;
-      margin-top: 18px;
+      font-family: "TimesLocal", serif;
+      font-size: 21px;
+      font-weight: bold;
+      margin-top: 24px;
       letter-spacing: 1px;
     }
 
     /* ===== FOOTER ===== */
     .footer {
       text-align: center;
-      margin-top: 24px;
+      margin-top: 32px;
     }
 
     .footer-icons {
       display: flex;
       justify-content: center;
-      gap: 26px;
+      gap: 28px;
       margin-top: 14px;
     }
 
-    .footer-icons a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 52px;
-      height: 52px;
-      border: 2px solid rgba(255, 255, 255, 0.2);
+    .footer-icons img {
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      color: white;
-      text-decoration: none;
-      font-size: 24px;
-      transition: transform 0.2s ease;
+      transition: transform 0.25s ease;
     }
 
-    .footer-icons a:hover {
-      transform: scale(1.1);
-      color: var(--accent);
+    .footer-icons img:hover {
+      transform: scale(1.15);
     }
 
     .copyright {
-      font-size: 14px;
-      opacity: 0.8;
+      font-size: 15px;
+      opacity: 0.85;
       margin-top: 10px;
     }
 
-    /* ===== ANIMATIONS ===== */
-    @keyframes fadeUp {
-      from {opacity: 0; transform: translateY(30px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
     @media (max-width: 480px) {
-      h1 { font-size: 22px; }
-      p { font-size: 16px; }
-      li { font-size: 16px; }
-      .join-btn { font-size: 17px; padding: 12px 20px; }
+      h1 { font-size: 24px; }
+      h2 { font-size: 22px; }
+      p, li { font-size: 17px; }
+      .join-btn { font-size: 18px; padding: 14px 26px; }
     }
   </style>
 </head>
@@ -229,6 +228,8 @@
     <!-- ===== FIRST SECTION ===== -->
     <div class="card" id="section1">
       <h1>TURN YOUR NORMAL DAILY ONLINE ACTIVITIES INTO STEADY CASH OUTS</h1>
+      <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 20"><path fill="white" d="M0 10 Q30 0 60 10 T120 10 V20 H0 Z" opacity="0.4"/></svg>
+
       <p>
         Make <span class="highlight">₦100,000 - ₦200,000</span> weekly by chatting & doing tasks on social media.<br>
         No experience needed.<br>
@@ -238,12 +239,14 @@
 
       <div style="text-align:center;">
         <a href="https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls?mode=wwt" class="join-btn">
-          <span>Join The Group Here</span>
+          <span>JOIN TRAINING GROUP NOW</span>
+          <!-- modern click icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.172 12l-4.95-4.95 1.414-1.414L17 12l-7.364 7.364-1.414-1.414z"/></svg>
         </a>
       </div>
       <div class="note">Only the first 50 people to join the group will have access.</div>
 
-      <!-- EDIT IMAGE NAME HERE -->
+      <!-- EDIT IMAGE NAME BELOW -->
       <div class="image-box">
         <img src="hero6.jpg" alt="Promo Image" id="promoImg">
       </div>
@@ -252,6 +255,8 @@
     <!-- ===== SECOND SECTION ===== -->
     <div class="card" id="section2">
       <h2>DO NOT JOIN THIS CLASS IF:</h2>
+      <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 20"><path fill="white" d="M0 10 Q30 0 60 10 T120 10 V20 H0 Z" opacity="0.4"/></svg>
+
       <ul>
         <li><span class="icon">📵</span> You are someone who does not like taking action</li>
         <li><span class="icon">📵</span> You are not ready to invest in yourself financially</li>
@@ -264,29 +269,21 @@
         THEN DON'T MISS THIS OPPORTUNITY.
       </div>
 
-      <div style="text-align:center; margin-top:20px;">
+      <div style="text-align:center; margin-top:26px;">
         <a href="https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls?mode=wwt" class="join-btn">
-          <span>Join The Group Here</span>
+          <span>JOIN TRAINING GROUP NOW</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.172 12l-4.95-4.95 1.414-1.414L17 12l-7.364 7.364-1.414-1.414z"/></svg>
         </a>
       </div>
-
       <div class="note">Only the first 50 people to join the group will have access.</div>
 
       <!-- ===== FOOTER ===== -->
       <div class="footer">
         <div class="footer-icons">
-          <a href="https://www.tiktok.com/@pandafxmedia001?_r=1&_t=ZS-910ti1iu4NI" title="TikTok">
-            <!-- TikTok vector -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="22" fill="currentColor"><path d="M448,209.9a210.1,210.1,0,0,1-122.77-39.27v139.3A202.38,202.38,0,1,1,136.48,112a205.38,205.38,0,0,1,23.71,1.38v94.43A108.22,108.22,0,1,0,243.54,308V12h81.84a122.64,122.64,0,0,0,122.62,122.62Z"/></svg>
-          </a>
-          <a href="https://wa.me/+2347035172111" title="WhatsApp">
-            <!-- WhatsApp vector -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="22" fill="currentColor"><path d="M380.9 97.1C339-10.7 197.9-29.2 112 56.8A199.8 199.8 0 0020 256l-19 92.3 94.8-24.8A199.6 199.6 0 00256 456a200 200 0 00124.9-358.9zm-124.8 334a166.1 166.1 0 01-84.5-23.1l-5.9-3.5-56.2 14.7 15-54.8-3.8-6A167.3 167.3 0 01256 88c93.1 0 168.8 75.7 168.8 168.8S349.1 431 256.1 431zm90.6-122.6c-4.9-2.4-29.2-14.4-33.7-16-4.5-1.7-7.8-2.4-11 2.4s-12.6 16-15.5 19.3c-2.9 3.1-5.7 3.6-10.6 1.2s-20.6-7.6-39.2-24.3c-14.5-12.9-24.3-28.8-27.2-33.7s-.3-7.5 2.1-9.9c2.1-2.1 4.9-5.7 7.3-8.5s3.1-4.9 4.7-8.2c1.6-3.3.8-6.2-.4-8.6s-11-26.4-15.1-36.2c-4-9.6-8.1-8.3-11-8.4h-9.4c-2.8 0-8.3 1.2-12.6 6.2s-16.5 16.1-16.5 39.2 16.9 45.4 19.3 48.5 33.2 50.7 80.4 71.2c11.2 4.8 19.9 7.7 26.7 9.9 11.2 3.6 21.3 3.1 29.3 1.9 8.9-1.3 27.4-11.2 31.3-22 3.9-10.8 3.9-20.1 2.7-22.1-1.3-2-4.9-3.3-9.8-5.7z"/></svg>
-          </a>
-          <a href="mailto:favourmedia01@gmail.com" title="Gmail">
-            <!-- Email vector -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" fill="currentColor"><path d="M502.3 190.8L352 294.1l-136-98.1L16.1 192C7.2 195.2 0 203.9 0 214v84c0 10.1 7.2 18.8 16.1 22l199.9 96.2c8.4 4 18.4 3.9 26.7-.1L496 316c8.9-3.3 16-12 16-22.1v-84c0-10.1-7.1-18.8-9.7-19.1z"/></svg>
-          </a>
+          <!-- Replace these image names with your actual PNGs -->
+          <a href="https://www.tiktok.com/@pandafxmedia001?_r=1&_t=ZS-910ti1iu4NI"><img src="tiktok.png" alt="TikTok"></a>
+          <a href="https://wa.me/+2347035172111"><img src="whatsapp.png" alt="WhatsApp"></a>
+          <a href="mailto:favourmedia01@gmail.com"><img src="gmail.png" alt="Gmail"></a>
         </div>
         <div class="copyright">© MiaMor 2025. All rights reserved.</div>
       </div>
@@ -294,7 +291,7 @@
   </div>
 
   <script>
-    // Fade-in on scroll
+    // Smooth fade-up animation
     const cards = document.querySelectorAll(".card");
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -306,12 +303,12 @@
     }, { threshold: 0.2 });
     cards.forEach(card => observer.observe(card));
 
-    // Zoom image on click
+    // Image zoom on click
     const promoImg = document.getElementById("promoImg");
     promoImg.addEventListener("click", () => {
       promoImg.classList.add("zoomed");
-      setTimeout(() => promoImg.classList.remove("zoomed"), 2200);
+      setTimeout(() => promoImg.classList.remove("zoomed"), 1800);
     });
   </script>
 </body>
-          </html>
+ </html>
