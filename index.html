@@ -3,353 +3,346 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MIAMOR — CONNECT, CHAT & EARN</title>
-  <meta name="description" content="MiAmor — Earn ₦10,000 daily for connecting and chatting with people on mi amor. No experience needed, No hidden secrets, just chat and earn massively" />
+  <title>Mi Amor Network — Join The Group</title>
+  <meta name="description" content="Turn your normal daily online activities into steady cashouts. Join the group." />
+
+  <!-- Open Graph / Preview (update og:image and og:url after upload) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mi Amor Network — Join The Group" />
+  <meta property="og:description" content="Turn your normal daily online activities into steady cashouts. Join the group." />
+  <meta property="og:image" content="images/preview.jpg" />
+  <meta property="og:url" content="https://your-github-pages-url/" />
+
+  <link rel="icon" href="images/favicon.png" />
+
   <style>
+    /* ---------- Base / Reset ---------- */
     :root{
-      --accent:#2563eb; /* sharp blue */
-      --accent-light:#d0e2ff; /* light blue accents */
-      --muted:#374151;
-      --bg:#f9fbff;
-      --card:#ffffff;
-      --radius:12px;
-      --maxw:1100px;
-      font-family: Inter, "Times New Roman", tahoma;
+      --deep-1:#0b2340;
+      --deep-2:#082041;
+      --gloss-1: rgba(255,255,255,0.04);
+      --card-glass: rgba(255,255,255,0.02);
+      --accent-left: #2fbdf7;
+      --accent-right:#1e68ff;
+      --white: #ffffff;
+      --muted: rgba(255,255,255,0.72);
     }
     *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:#0f172a}
-    .container{max-width:var(--maxw);margin:0 auto;padding:18px}
-    header{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:52px;height:52px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800}
-    nav{display:none}
-    .cta {background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700}
-    .hero{padding:48px 18px;text-align:center;background:linear-gradient(180deg,#d0e2ff,#f9fbff);border-radius:14px}
-    .hero h1{color:var(--accent);font-size:28px;margin:8px 0;font-weight:900}
-    .hero p{color:var(--muted);max-width:840px;margin:0 auto}
-    .actions{margin-top:16px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-    section{padding:44px 0;border-bottom:1px solid #e0e7ff}
-    h2{color:var(--accent);margin:0 0 8px;font-size:20px}
-    .lead{color:var(--muted);max-width:900px;margin:0 auto 12px;text-align:center}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:16px}
-    .card{background:var(--card);padding:16px;border-radius:var(--radius);box-shadow:0 8px 30px rgba(15,23,42,0.04);border:1px solid #e0e7ff}
-    .price{font-weight:900;color:var(--accent);margin-top:6px}
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:12px}
-    .gallery img{width:100%;height:140px;object-fit:cover;border-radius:10px;background:var(--accent-light)}
+    html,body{height:100%; margin:0; font-family: "Montserrat", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+    body{
+      background:
+        radial-gradient(600px 300px at 10% 10%, rgba(30,104,255,0.06), transparent 6%),
+        radial-gradient(500px 260px at 90% 90%, rgba(47,189,247,0.03), transparent 6%),
+        linear-gradient(180deg,var(--deep-1),var(--deep-2));
+      color:var(--white); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      display:flex;align-items:center;justify-content:center;padding:28px;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-    footer{padding:26px 0;text-align:center;color:var(--muted)}
+    /* ---------- Page container ---------- */
+    .page {
+      width:100%; max-width:760px; border-radius:20px;
+      padding:18px 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.004));
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 28px 60px rgba(2,6,23,0.65), inset 0 1px 0 rgba(255,255,255,0.02);
+      overflow:hidden;
+    }
 
-    /* Modal */
-    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:9999}
-    .modal{background:#fff;width:100%;max-width:520px;border-radius:12px;padding:18px;box-shadow:0 20px 50px rgba(2,6,23,0.3)}
-    .modal h3{margin:0 0 6px;color:var(--accent)}
-    .field{margin-top:10px}
-    .field label{display:block;font-weight:700;margin-bottom:6px;font-size:14px}
-    .field input,.field select{width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;font-size:14px}
-    .modal .small{font-size:13px;color:var(--muted);margin-top:8px}
-    .modal .row{display:flex;gap:8px;margin-top:12px}
-    .btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:800;border:0;cursor:pointer}
-    .btn.ghost{background:transparent;color:var(--accent);border:2px solid var(--accent)}
-    .close-btn{background:#f3f4f6;border-radius:8px;padding:8px 10px;border:0;cursor:pointer}
-    @media(min-width:760px){ nav{display:flex;gap:14px;align-items:center} .hero h1{font-size:34px} }
+    /* ---------- decorative rounded top area to mimic screenshot ---------- */
+    .top-hero {
+      border-radius:14px; padding:14px; margin-bottom:10px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));
+      display:block;
+    }
+
+    /* ---------- big headings / paragraphs ---------- */
+    .big-title {
+      font-weight:800; font-size:20px; letter-spacing:2px;
+      text-align:center; color:#bfe6ff; margin:8px 0 10px;
+    }
+    .big-block {
+      font-size:20px; font-weight:800; text-transform:uppercase;
+      text-align:center; color:#e6f5ff; line-height:1.05; letter-spacing:2px;
+      margin:14px 0;
+    }
+
+    .wavy {
+      width:100%; height:14px; margin:10px 0;
+      background-image: radial-gradient(circle at 10% 50%, rgba(255,255,255,0.02), transparent 10%);
+      position:relative;
+    }
+    /* decorative squiggly line using svg background */
+    .squiggle {
+      width:100%; height:12px; display:block; margin:14px 0 8px;
+      mask-image: none;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100% 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="24" viewBox="0 0 600 24"><path fill="none" stroke="%23cfe9ff" stroke-opacity="0.18" stroke-width="2" d="M0 12c50 0 50-10 100-10s50 10 100 10 50-10 100-10 50 10 100 10 50-10 100-10 50 10 100 10" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+      opacity:0.9;
+    }
+
+    .text-normal { font-size:16px; color:var(--white); line-height:1.55; text-align:center; margin:6px 0; }
+    .text-muted { font-size:15px; color:var(--muted); text-align:center; margin:6px 0 14px; }
+
+    /* ---------- CTA button style (rounded pill) ---------- */
+    .cta {
+      display:inline-flex; align-items:center; gap:12px;
+      padding:16px 26px; border-radius:40px;
+      background: linear-gradient(90deg, var(--accent-left), var(--accent-right));
+      color:#041229; font-weight:800; font-size:20px;
+      text-decoration:none; border: none; cursor:pointer;
+      box-shadow: 0 12px 30px rgba(30,104,255,0.18);
+      transition: transform .12s ease, box-shadow .12s ease, opacity .12s;
+      margin: 14px auto 8px; display:block; width:85%;
+      text-align:left;
+    }
+    .cta .icon { font-size:20px; display:inline-block; width:28px; height:28px; text-align:center; }
+    .cta:active { transform: scale(.96); } /* fallback */
+    .cta.shrink { animation: ctaShrink .18s forwards; }
+    @keyframes ctaShrink {
+      0% { transform: scale(1); }
+      40% { transform: scale(.92); }
+      100% { transform: scale(1); }
+    }
+
+    /* smaller note under button */
+    .small-note { font-size:15px; color:var(--white); text-align:center; margin-top:10px; }
+
+    /* ---------- image area ---------- */
+    .image-wrap {
+      width:100%; max-width:100%; margin:14px auto 8px; border-radius:14px; overflow:hidden; cursor:zoom-in;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.008));
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 20px 40px rgba(2,6,23,0.5);
+    }
+    .image-wrap img { width:100%; height:auto; display:block; object-fit:cover; }
+
+    /* ---------- small section with bullets matching screenshot ---------- */
+    .bullets { padding:12px 6px; margin-top:6px; }
+    .bullet-item { display:flex; gap:12px; align-items:flex-start; margin:14px 10px; }
+    .bullet-icon {
+      width:36px; height:36px; border-radius:50%; background:#ff4545; flex:0 0 36px; display:grid; place-items:center; border:3px solid #fff;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+    }
+    .bullet-text { font-weight:700; font-size:18px; line-height:1.35; color:#fff; }
+
+    /* ---------- bottom icons ---------- */
+    .icons-row { display:flex; gap:18px; align-items:center; justify-content:center; margin:18px 0 6px; }
+    .round-icon {
+      width:64px; height:64px; border-radius:999px; border:2px solid rgba(255,255,255,0.18);
+      display:grid; place-items:center; cursor:pointer; background: rgba(255,255,255,0.02);
+      transition: transform .12s ease;
+    }
+    .round-icon:active { transform: scale(.96) }
+
+    /* copyright */
+    .copyright { font-size:12px; color:var(--muted); text-align:center; margin-top:6px; }
+
+    /* ---------- reveal animation ---------- */
+    .reveal { opacity:0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); will-change:opacity,transform; }
+    .reveal.visible { opacity:1; transform: translateY(0); }
+
+    /* ---------- tap-to-zoom ---------- */
+    .zoomed { transform: scale(1.08); transition: transform .32s cubic-bezier(.2,.9,.3,1); box-shadow: 0 40px 120px rgba(2,6,23,0.7); z-index:10; }
+
+    /* ---------- responsive ---------- */
+    @media (max-width:520px){
+      .page { padding:14px; border-radius:12px; }
+      .big-block { font-size:18px; }
+      .bullet-text { font-size:16px; }
+      .cta { font-size:18px; width:92%; }
+      .round-icon { width:56px; height:56px; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">
-  <img src="logo.png" alt="Logo Image" style="width: 100%; height: 50px; display: block; margin: 0 auto;">
-        </div>
-        <div>
-          <div style="font-weight:800;color:var(--accent)">MiAmor</div>
-          <div style="font-size:13px;color:var(--muted)">Chat • Earn • Connect</div>
-        </div>
-      </div>
-      <nav>
-        <a href="#how" style="color:#374151;text-decoration:none">How it works</a>
-        <a href="#pricing" style="color:#374151;text-decoration:none">Pricing</a>
-        <a href="#gallery" style="color:#374151;text-decoration:none">Gallery</a>
-        <a class="cta open-modal" href="#" data-source="header">Register</a>
-      </nav>
-    </header>
-
-    <!-- HERO -->
-    <section class="hero" id="home">
-      <p style="text-align:center;"><h1>MIAMOR - The Future of Chatting & Earning</h1>
-      <p><strong>Earn ₦5,000 - ₦10,000 daily for chatting and connecting on mi amor.</strong> Stop connecting and chatting for free, connect your social media to miamor and get rewarded daily.</p>
-      <div class="actions">
-        <a class="btn open-modal" href="#" data-source="hero-getstarted">GET STARTED</a>
-      </div>
-  </div>
-      <img src="hero.jpg" alt="Hero image" style="width: 100%; height: auto; display: block; margin: 0 auto;">
-    </section>
-
-    <!-- HOW -->
-    <section id="how">
-      <h2 style="text-align:center;">HOW IT WORKS</h2>
-      <p class="lead"> 🎯 MiAmor is a dynamic platform operating across multiple African and foreign countries, designed to help users find love, earn income through chatting and connecting with people, and gain valuable skills
-      </p>🎯It fosters meaningful connections, financial opportunities, and personal growth. 
-     <p></p>🎯MiAmor combines relationship-building with side hustel and skill development, with a strong focus on community and empowerment.
+  <main class="page" id="root">
+    <!-- Top area (keeps spacing similar to screenshot) -->
+    <div class="top-hero reveal" id="topHero">
+      <div style="height:6px;"></div>
+      <!-- (You said no logo) -->
     </div>
 
-    </section>     
-<h2 style="text-align:center;">HOW TO GET STARTED</h2>
-      <div class="grid">
-        <div class="card"><h3 style="text-align:center;">REGISTER & ACTIVATE</h3><p>Get started with the one time Enrollment fee — ₦10,000 or ₦14,000 and receive activation details.</p></div>
-        <div class="card"><h3 style="text-align:center;">CHAT & EARN</h3><p>Get paid $1 for each person you chat daily on miamor.
-        </p>1 chat = 1 dollar daily.
-        </p>5 chats = 5 dollars daily.
-        </p>10 chats = 10 dollars daily.
-        </p>The more people you chat the more you earn</p></div>
-        <img src="hero6.jpg" alt="Hero Image" style="width: 100%; height: auto; display: block; margin: 0 auto;">
-        <div class="card"><h3 style="text-align:center;">INSTANT CASHBACK</h3><p>From the moment you sign up you receive a welcome cashback of ₦12,500 or ₦8,000 which you can withdraw immediately.</p></div>
-        <img src="hero5.jpg" alt="Hero Image" style="width: 100%; height: auto; display: block; margin: 0 auto;">
-        <div class="card">
-  <h3 style="text-align:center;">CONNECT & EARN</h3><p>Each person you connect and match with rewards you ₦5,000-10,000 daily.Withdraw to your Bank account instantly.</p></div>
+    <!-- DO NOT JOIN THIS CLASS IF: -->
+    <div class="reveal" id="dontJoinTitle">
+      <div class="big-block" style="font-size:22px; text-align:center; color:#a9defb;">
+        DO NOT JOIN THIS CLASS<br>IF:
       </div>
-      <img src="hero4.jpg" alt="Hero Image" style="width: 100%; height: auto; display: block; margin: 0 auto;">
-    </section>
+      <div class="squiggle" aria-hidden="true"></div>
+    </div>
 
-    <!-- PRICING -->
-    <section id="pricing">
-      <h2 style="text-align:center;">ENROLLMENT DETAILS</h2>
-      <p class="lead">One time activation fee with bonuses and VIP benefits.</p>
-      <div class="grid">
-        <div class="card">
-          <h3 style="text-align:center;">MIAMOR PLUS</h3>
-          <div class="price">₦10,000 (one-time)</div>
-          <ul style="color:var(--muted);margin-top:10px">
-            <li>Activation bonus: ₦8,000</li>
-            <li>Access to VIP mentorship community</li>
-            <li>Weekly online rewards</li>
-            <li>Onboarding & support</li>
-          </ul>
-          <div style="text-align:center;margin-top:12px">
-            <a class="btn open-modal" href="#" data-source="pricing-10k">REGISTER ₦10,000</a>
-          </div>
-        </div>
-        <div>
-        <img src="hero2.jpg" alt="Hero Image" style="width: 100%; height: auto; display: block; margin: 0 auto;">
-        </div>
-        <div class="card">
-          <h3 style="text-align:center;">MIAMOR ULTRA</h3>
-          <div class="price">₦14,000 (one-time)</div>
-          <ul style="color:var(--muted);margin-top:10px">
-            <li>Activation bonus: ₦12,500</li>
-            <li>Priority in VIP mentorship</li>
-            <li>Higher weekly online rewards</li>
-            <li>Priority payouts</li>
-          </ul>
-          <div style="text-align:center;margin-top:12px">
-            <a class="btn open-modal" href="#" data-source="pricing-14k">REGISTER ₦14,000</a>
-          </div>
-        </div>
-      <img src="hero3.jpg" alt="Hero Image" style="width: 100%; height: auto; display: block; margin: 0 auto;">
-    </section>
-
-  <!-- GALLERY -->
-    <section id="gallery">
-      <h2 style="text-align:center;">GOVERNMENT APPROVED</h2>
-      <p class="lead">MiAmor is fully verified by the government because of it's legitimacy</p>
-      <div class="gallery">
-         <img src="hero1.jpg" alt="Hero Image" style="width: 100%; height: auto; display: block; margin: 0 auto;">
-    </section>
-  
-    <section id="register-cta">
-      <h2 style="text-align:center;">READY TO JOIN?</h2>
-      <p class="lead">Click the button below to get started✅.</p>
-      <div style="text-align:center;margin-top:12px">
-        <a class="btn open-modal" href="#" data-source="cta">REGISTER NOW</a>
-      </div>
-    </section>
-
-    <footer>
-      <div>&copy; <span id="year"></span> MiAmor. All rights reserved.</div>
-      <div style="color:var(--muted);margin-top:6px">WhatsApp: +2347035172111</div>
-    </footer>
-  </div>
-
-  <!-- MODAL -->
-  <div class="modal-backdrop" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal" role="document" aria-labelledby="modal-title">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-        <h3 id="modal-title">Register — MiAmor</h3>
-        <button class="close-btn" id="closeModal" title="Close">✕</button>
+    <!-- bullets (copy exact text from screenshot) -->
+    <div class="bullets" id="bulletsWrap">
+      <div class="bullet-item reveal">
+        <div class="bullet-icon" aria-hidden>🚫</div>
+        <div class="bullet-text">You are someone who does not like taking action</div>
       </div>
 
-      <div style="margin-top:8px;color:var(--muted)">Fill the form below & click "Submit". You will be redirected to a secure checkout to complete your registration.</div>
+      <div class="bullet-item reveal">
+        <div class="bullet-icon" aria-hidden>🚫</div>
+        <div class="bullet-text">You are not ready to invest in yourself financially</div>
+      </div>
 
-      <div style="margin-top:12px">
-        <div class="field">
-          <label>Full Name</label>
-          <input id="fullName" type="text" placeholder="Your full name" />
-        </div>
-        <div class="field">
-          <label>Email</label>
-          <input id="email" type="email" placeholder="example@gmail.com" />
-        </div>
-        <div class="field">
-          <label>Phone Number</label>
-          <input id="phone" type="tel" placeholder="08024456314" />
-        </div>
-        <div class="field">
-          <label>Preferred Username</label>
-          <input id="username" type="text" placeholder="Example12" />
-        </div>
-        <div class="field">
-          <label>Select a package</label>
-          <select id="plan">
-            <option value="10000">₦10,000 (PLUS PACKAGE)</option>
-            <option value="14000">₦14,000 (ULTRA PACKAGE)</option>
-          </select>
-        </div>
-        
-        <div class="row" style="justify-content:flex-end">
-          <button class="close-btn" id="cancelBtn">Cancel</button>
-          <button class="btn" id="modalSubmit">Submit</button>
-        </div>
+      <div class="bullet-item reveal">
+        <div class="bullet-icon" aria-hidden>🚫</div>
+        <div class="bullet-text">You are someone who thinks every opportunity is a scam</div>
+      </div>
+
+      <div class="bullet-item reveal">
+        <div class="bullet-icon" aria-hidden>🚫</div>
+        <div class="bullet-text">You will not attend the class</div>
       </div>
     </div>
-  </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
+    <div class="squiggle reveal" style="margin-top:6px;"></div>
 
-  // Set current year in footer
-  document.getElementById('year').textContent = new Date().getFullYear();
+    <!-- IF YOU ARE DIFFERENT FROM THE PERSONS ABOVE... -->
+    <div class="reveal" id="differentMsg" style="margin-top:8px;">
+      <div class="big-block" style="font-size:20px; text-align:center;">
+        IF YOU ARE DIFFERENT<br>FROM THE PERSONS<br>ABOVE,<br><br>THEN DON'T MISS THIS<br>OPPORTUNITY.
+      </div>
+    </div>
 
-  const modal = document.getElementById('modal');    
-  const openButtons = document.querySelectorAll('.open-modal');    
-  const closeModalBtn = document.getElementById('closeModal');    
-  const cancelBtn = document.getElementById('cancelBtn');    
-  const modalSubmit = document.getElementById('modalSubmit');    
+    <!-- CTA button (exact label) -->
+    <div class="reveal" style="display:flex; justify-content:center; margin-top:14px;">
+      <!-- Button opens in same tab per your request -->
+      <a id="joinGroupBtn" href="https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls?mode=wwt" class="cta" role="button" aria-label="Join The Group Here">
+        <span class="icon" style="font-size:22px; color:#021428;">🔗</span>
+        <span style="flex:1; font-weight:900; text-align:center;">Join The Group Here</span>
+      </a>
+    </div>
 
-  const selarLink = "https://selar.com/m/MiAmor-net";    
+    <div class="reveal">
+      <div class="small-note">Only the first 50 people to join the group will have access.</div>
+    </div>
 
-  // --- TOOLTIP ALERT ---  
-  const tooltip = document.createElement('div');  
-  tooltip.id = 'tooltipAlert';  
-  tooltip.style.position = 'absolute';  
-  tooltip.style.backgroundColor = '#222';  
-  tooltip.style.color = '#fff';  
-  tooltip.style.padding = '8px 12px';  
-  tooltip.style.borderRadius = '6px';  
-  tooltip.style.fontSize = '13px';  
-  tooltip.style.fontFamily = 'Arial, sans-serif';  
-  tooltip.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';  
-  tooltip.style.display = 'none';  
-  tooltip.style.zIndex = '99999';  
-  tooltip.style.whiteSpace = 'nowrap';  
-  tooltip.style.textAlign = 'center';
+    <div class="squiggle reveal" style="margin-top:12px;"></div>
 
-  // Arrow attached at top of rectangle, pointing up
-  const tooltipArrow = document.createElement('div');  
-  tooltipArrow.style.position = 'absolute';  
-  tooltipArrow.style.width = '0';  
-  tooltipArrow.style.height = '0';  
-  tooltipArrow.style.borderLeft = '6px solid transparent';  
-  tooltipArrow.style.borderRight = '6px solid transparent';  
-  tooltipArrow.style.borderBottom = '6px solid #222'; // arrow pointing up  
-  tooltipArrow.style.top = '-6px';  
-  tooltipArrow.style.left = '12px';  
-  tooltipArrow.style.transform = 'none';  
-  tooltip.appendChild(tooltipArrow);  
+    <!-- Banner image (the only image you said is on page) -->
+    <div class="image-wrap reveal" id="imageWrap" title="Tap to zoom">
+      <!-- Replace the src below with the path to the image you upload to GitHub.
+           Suggested path: images/main.jpg
+           Example: https://raw.githubusercontent.com/<username>/<repo>/main/images/main.jpg
+      -->
+      <img id="mainImage" src="images/main.jpg" alt="Mi Amor promotion image">
+    </div>
 
-  document.body.appendChild(tooltip);  
+    <div class="squiggle reveal" style="margin-top:6px;"></div>
 
-  function showTooltip(field, message) {  
-      tooltip.innerHTML = '';  
-      const textSpan = document.createElement('span');  
-      textSpan.textContent = message;  
-      tooltip.appendChild(textSpan);  
-      tooltip.appendChild(tooltipArrow);  
+    <!-- bottom icons row: TikTok / WhatsApp / Email (plugs & placeholders) -->
+    <div class="icons-row">
+      <!-- TikTok -->
+      <a class="round-icon reveal" href="REPLACE_WITH_TIKTOK_LINK" id="tiktokIcon" aria-label="TikTok" title="TikTok">
+        <!-- simple TikTok glyph -->
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+          <path d="M12 2v9.5A4.5 4.5 0 1 1 9.5 7V9a3 3 0 1 0 2.5 2.98V2z"/>
+        </svg>
+      </a>
 
-      tooltip.style.display = 'block';  
-      tooltip.style.top = '0';  
-      tooltip.style.left = '0';  
+      <!-- WhatsApp (we'll link this to the same group) -->
+      <a class="round-icon reveal" href="https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls?mode=wwt" id="whatsappIcon" aria-label="WhatsApp" title="WhatsApp">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+          <path d="M20 4.9A11.9 11.9 0 1 0 4.9 20L3 21l1-3A11.9 11.9 0 0 0 20 4.9zM16.6 14.3c-.3-.1-1.7-.8-1.9-.9s-.5-.2-.7.2-.8.9-1 1.1-.4.2-.7.1c-.3-.1-1.1-.4-2-.9-.7-.6-1.2-1.4-1.3-1.7-.1-.3 0-.6.1-.8.1-.2.1-.3.2-.5.1-.2.0-.3 0-.5 0-.1-.7-1.7-1-2.3-.3-.6-.6-.5-.7-.5-.2 0-.4 0-.6 0s-.5.1-.7.3c-.2.1-.9.9-0.9 2.1s1 2.4 1.1 2.6c.1.2 1.9 3.1 4.5 4.2 2.9 1.1 3.2.9 3.8 0 .6-.9.6-1.7.4-1.8-.1-.2-.5-.3-.9-.5z"/>
+        </svg>
+      </a>
 
-      requestAnimationFrame(() => {  
-          const rect = field.getBoundingClientRect();  
-          const scrollY = window.scrollY || window.pageYOffset;  
-          const scrollX = window.scrollX || window.pageXOffset;  
+      <!-- Email -->
+      <a class="round-icon reveal" href="mailto:REPLACE_WITH_EMAIL" id="emailIcon" aria-label="Email" title="Email">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+      </a>
+    </div>
 
-          const tooltipHeight = tooltip.offsetHeight;  
-          const tooltipWidth = tooltip.offsetWidth;  
+    <div class="copyright">© miamor2025 All rights reserved</div>
+  </main>
 
-          // Tooltip below the field
-          const top = rect.bottom + scrollY + 8; // 8px margin  
-          const left = rect.left + scrollX + rect.width / 2 - tooltipWidth / 2 - 4; // slight left shift
+  <script>
+    // ---------- set up reveal on scroll ----------
+    (function() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
 
-          tooltip.style.top = `${top}px`;  
-          tooltip.style.left = `${left}px`;  
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    })();
 
-          // Arrow on top of rectangle pointing up
-          tooltipArrow.style.top = '-6px';  
-          tooltipArrow.style.left = '12px';  
-          tooltipArrow.style.transform = 'none';  
+    // ---------- tap-to-zoom for the main image ----------
+    (function(){
+      const imageWrap = document.getElementById('imageWrap');
+      const mainImg = document.getElementById('mainImage');
+      if (imageWrap && mainImg) {
+        let zoomTimeout = null;
+        imageWrap.addEventListener('click', () => {
+          imageWrap.classList.add('zoomed');
+          clearTimeout(zoomTimeout);
+          zoomTimeout = setTimeout(() => imageWrap.classList.remove('zoomed'), 900);
+        });
+        // support double-tap touch: extend zoom on double-tap
+        let lastTap = 0;
+        imageWrap.addEventListener('touchend', (ev) => {
+          const now = Date.now();
+          if (now - lastTap < 350) {
+            imageWrap.classList.add('zoomed');
+            clearTimeout(zoomTimeout);
+            zoomTimeout = setTimeout(() => imageWrap.classList.remove('zoomed'), 1400);
+          }
+          lastTap = now;
+        });
+      }
+    })();
 
-          // Auto-hide tooltip after 5 seconds
-          setTimeout(() => {
-              tooltip.style.display = 'none';
-          }, 5000);
-      });  
-  }  
+    // ---------- shrink animation when clicking CTA (keeps link same-tab) ----------
+    (function(){
+      const btn = document.getElementById('joinGroupBtn');
+      if (!btn) return;
+      btn.addEventListener('click', (e) => {
+        // visually animate; do NOT prevent default: open in same tab immediately
+        btn.classList.remove('shrink');
+        // force reflow then add class so it restarts
+        // eslint-disable-next-line no-unused-expressions
+        btn.offsetWidth;
+        btn.classList.add('shrink');
+      });
+    })();
 
-  // --- MODAL OPEN/CLOSE ---  
-  function openModal(e){    
-      e.preventDefault();    
-      modal.style.display = 'flex';    
-      modal.setAttribute('aria-hidden','false');    
-      document.getElementById('fullName').focus();    
-  }    
+    // ---------- small helper: if your image missing, show placeholder SVG ----------
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('error', () => {
+        img.src = "data:image/svg+xml;utf8," + encodeURIComponent(
+          '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480"><rect width="100%" height="100%" fill="#0b2340"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="22" fill="#cfe9ff">Upload images/main.jpg to your GitHub repo or change this src</text></svg>'
+        );
+      });
+    });
 
-  function closeModal(){    
-      modal.style.display = 'none';    
-      modal.setAttribute('aria-hidden','true');    
-  }    
+    // ---------- keyboard accessibility for round icons ----------
+    document.querySelectorAll('.round-icon').forEach(btn => {
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') btn.click();
+      });
+    });
+  </script>
 
-  openButtons.forEach(btn => btn.addEventListener('click', openModal));    
-  closeModalBtn.addEventListener('click', closeModal);    
-  cancelBtn.addEventListener('click', closeModal);    
+  <!-- ===================== TikTok Pixel Placeholder =====================
+       When you're ready, paste your TikTok Pixel snippet right here,
+       before the closing </body> tag. Replace this entire comment with
+       the pixel script. Example:
+       ---------------------------------------------------------------
+       <!-- TIKTOK_PIXEL_GOES_HERE -->
+       <script> /* TikTok pixel script */ </script>
+       ---------------------------------------------------------------
+       Once you paste it, the page will track page views. Send me the
+       pixel snippet if you want me to confirm insertion or add a small
+       'Lead' event for clicks.
+  ================================================================ -->
+  <!-- REPLACE_WITH_TIKTOK_PIXEL_SNIPPET -->
 
-  modal.addEventListener('click', e => {    
-      if(e.target === modal) closeModal();    
-  });    
-
-  document.addEventListener('keydown', e => {    
-      if(e.key === 'Escape') closeModal();    
-  });    
-
-  // --- SUBMIT HANDLER ---  
-  modalSubmit.addEventListener('click', () => {    
-      const fields = [  
-          { id: 'fullName', name: 'Full Name' },  
-          { id: 'email', name: 'Email' },  
-          { id: 'phone', name: 'Phone' },  
-          { id: 'username', name: 'Username' },  
-          { id: 'plan', name: 'Plan' }  
-      ];  
-
-      const firstEmpty = fields.find(f => !document.getElementById(f.id).value.trim());  
-      if(firstEmpty) {  
-          showTooltip(document.getElementById(firstEmpty.id), `⚠️ Please fill in this field.`);  
-          document.getElementById(firstEmpty.id).focus();  
-          return;  
-      }  
-
-      modalSubmit.textContent = "Please wait...";    
-      modalSubmit.style.opacity = "0.6";    
-      modalSubmit.disabled = true;    
-
-      // Redirect to Selar in the same tab
-      setTimeout(() => {    
-          window.location.href = selarLink;    
-          closeModal();    
-      }, 4000);    
-  });    
-
-});
-</script>
 </body>
- </html>
+  </html>
