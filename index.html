@@ -21,149 +21,149 @@
       font-display: swap;
     }
 
-    :root{
-      --blue-dark:#0a1628;
-      --accent:#2fa0ff;
-      --accent-dark:#0f7ad6;
-      --card-bg: rgba(5, 15, 30, 0.95);
-      --text:#ffffff;
-      --max-w:820px;
-      --radius:24px;
+    :root {
+      --blue-dark: #111c30; /* slightly lighter background */
+      --accent: #2fa0ff;
+      --accent-dark: #0f7ad6;
+      --card-bg: rgba(10, 25, 45, 0.95);
+      --text: #ffffff;
+      --max-w: 940px; /* increased width */
+      --radius: 24px;
     }
 
-    *{box-sizing:border-box}
-    html,body{
-      height:100%;
-      margin:0;
-      font-family:"RobotoLocal", Arial, sans-serif;
-      background:var(--blue-dark);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      scroll-behavior:smooth;
+    * { box-sizing: border-box }
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: "RobotoLocal", Arial, sans-serif;
+      background: var(--blue-dark);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
     }
 
-    .container{max-width:var(--max-w);margin:0 auto;padding:28px}
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 28px }
 
-    .card{
-      background:var(--card-bg);
-      border-radius:var(--radius);
-      padding:44px 30px;
-      margin-bottom:34px;
-      box-shadow:0 12px 32px rgba(3,9,20,0.55);
-      opacity:0;
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 44px 30px;
+      margin-bottom: 34px;
+      box-shadow: 0 12px 32px rgba(3,9,20,0.55);
+      opacity: 0;
       transform: translateY(36px);
       transition: transform .9s cubic-bezier(.22,.9,.35,1), opacity .9s ease;
     }
-    .card.visible{opacity:1; transform: translateY(0)}
+    .card.visible { opacity: 1; transform: translateY(0) }
 
-    h1,h2{
-      font-family:"TimesLocal", serif;
-      text-transform:uppercase;
-      text-align:center;
-      letter-spacing:2px;
-      margin:0 0 6px 0;
-      line-height:1.2;
+    h1, h2 {
+      font-family: "TimesLocal", serif;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 2px;
+      margin: 0 0 6px 0;
+      line-height: 1.2;
     }
-    h1{font-size:34px}
-    h2{font-size:26px;color:var(--accent)}
+    h1 { font-size: 34px }
+    h2 { font-size: 26px; color: var(--accent) }
 
     .wave {
-      display:block;
-      margin:10px auto 24px;
-      width:360px;
-      height:40px;
+      display: block;
+      margin: 10px auto 24px;
+      width: 540px; /* longer */
+      height: 40px;
     }
-    .wave svg { width:100%; height:100%; }
+    .wave svg { width: 100%; height: 100%; }
     .wave path {
       stroke: rgba(255,255,255,0.75);
-      stroke-width:1.5;
-      fill:none;
-      stroke-linecap:round;
-      stroke-linejoin:round;
+      stroke-width: 1.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     p {
-      font-size:20px;
-      line-height:1.7;
-      text-align:center;
-      margin:6px 0 20px;
-      font-family:"RobotoLocal",sans-serif;
+      font-size: 20px;
+      line-height: 1.7;
+      text-align: center;
+      margin: 6px 0 20px;
+      font-family: "RobotoLocal", sans-serif;
     }
-    .highlight{color:var(--accent);font-weight:800}
+    .highlight { color: var(--accent); font-weight: 800 }
 
-    .cta-wrap{text-align:center;margin-top:10px}
-    .join-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-      background: linear-gradient(90deg,var(--accent), var(--accent-dark));
-      border-radius:38px;
-      padding:18px 38px;
-      text-decoration:none;
-      color:#000;
-      font-family:"TimesLocal", serif;
-      font-weight:900;
-      font-size:24px;
-      letter-spacing:0.8px;
-      white-space:nowrap;
+    .cta-wrap { text-align: center; margin-top: 10px }
+    .join-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      border-radius: 38px;
+      padding: 18px 38px;
+      text-decoration: none;
+      color: #000;
+      font-family: "TimesLocal", serif;
+      font-weight: 900;
+      font-size: 24px;
+      letter-spacing: 0.8px;
+      white-space: nowrap;
       box-shadow: 0 8px 22px rgba(0,0,0,0.28);
       transition: transform .18s cubic-bezier(.2,.9,.2,1), box-shadow .18s ease;
       animation: pulse 1.9s infinite ease-in-out;
     }
 
     @keyframes pulse {
-      0%,100% { transform: scale(1); }
+      0%, 100% { transform: scale(1); }
       50% { transform: scale(1.08); }
     }
 
-    .join-btn:hover{ transform: translateY(-3px); box-shadow:0 12px 28px rgba(0,0,0,0.34) }
-    .join-btn:active{ transform: scale(.94); box-shadow:none }
+    .join-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.34); }
+    .join-btn:active { transform: scale(.94); box-shadow: none; }
 
-    .join-btn .btn-icon{
-      width:28px;
-      height:28px;
-      display:inline-grid;
-      place-items:center;
-      flex-shrink:0;
+    .join-btn .btn-icon {
+      width: 28px;
+      height: 28px;
+      display: inline-grid;
+      place-items: center;
+      flex-shrink: 0;
     }
-    .join-btn .btn-icon svg{ width:28px; height:28px; display:block; fill:currentColor }
+    .join-btn .btn-icon svg { width: 28px; height: 28px; display: block; fill: currentColor }
 
-    .image-box{ margin-top:26px; overflow:hidden; border-radius:18px; }
-    .image-box img{
-      display:block;
-      width:103%;
-      max-width:none;
-      margin-left:-1.5%;
+    .image-box { margin-top: 26px; overflow: hidden; border-radius: 18px; }
+    .image-box img {
+      display: block;
+      width: 103%;
+      max-width: none;
+      margin-left: -1.5%;
       transition: transform .55s cubic-bezier(.2,.9,.2,1);
-      cursor:pointer;
+      cursor: pointer;
     }
-    .image-box img.zoomed{ transform: scale(1.12) }
+    .image-box img.zoomed { transform: scale(1.12); }
 
-    ul{ list-style:none; padding:0; margin:20px 0 6px }
-    li{ display:flex; gap:12px; align-items:flex-start; font-size:19px; margin:12px 0; font-family:"RobotoLocal",sans-serif }
-    li span.icon{ font-size:22px; line-height:1; }
+    ul { list-style: none; padding: 0; margin: 20px 0 6px }
+    li { display: flex; gap: 12px; align-items: flex-start; font-size: 19px; margin: 12px 0; font-family: "RobotoLocal", sans-serif }
+    li span.icon { font-size: 22px; line-height: 1; }
 
-    .big-callout{ text-align:center; font-family:"TimesLocal",serif; font-size:21px; font-weight:800; margin-top:18px }
+    .big-callout { text-align: center; font-family: "TimesLocal", serif; font-size: 21px; font-weight: 800; margin-top: 18px }
 
-    .footer{ text-align:center; margin-top:24px; }
-    .copyright{
-      font-size:13px;
-      opacity:0.85;
-      margin-top:8px;
-      font-family:"RobotoLocal",sans-serif;
-      letter-spacing:0.2px;
-    }
-
-    @media (max-width:520px){
-      .join-btn{ font-size:19px; padding:14px 26px; gap:8px }
-      h1{ font-size:24px }
-      p, li { font-size:16px }
-      .wave{ width:220px; height:28px; }
-      .image-box img{ width:100%; margin-left:0 }
+    .footer { text-align: center; margin-top: 24px; }
+    .copyright {
+      font-size: 13px;
+      opacity: 0.85;
+      margin-top: 8px;
+      font-family: "RobotoLocal", sans-serif;
+      letter-spacing: 0.2px;
     }
 
-    /* smooth zoom animation for second image */
+    @media (max-width: 520px) {
+      .join-btn { font-size: 19px; padding: 14px 26px; gap: 8px }
+      h1 { font-size: 24px }
+      p, li { font-size: 16px }
+      .wave { width: 260px; height: 28px }
+      .image-box img { width: 100%; margin-left: 0 }
+    }
+
+    /* Smooth zoom animation for second image */
     @keyframes zoomIn {
       from { transform: scale(1); }
       to { transform: scale(1.08); }
@@ -180,29 +180,47 @@
     <section class="card" id="section1">
       <h1>TURN YOUR NORMAL DAILY ONLINE ACTIVITIES INTO STEADY CASH OUTS</h1>
       <span class="wave" aria-hidden="true">
-        <svg viewBox="0 0 600 60" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 30 C80 8 160 52 240 28 C320 6 400 54 480 28 C560 10 640 50 720 28" />
+        <svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg">
+          <!-- denser, continuous wave -->
+          <path d="M0 30 
+          C30 10 60 50 90 30 
+          C120 10 150 50 180 30 
+          C210 10 240 50 270 30 
+          C300 10 330 50 360 30 
+          C390 10 420 50 450 30 
+          C480 10 510 50 540 30 
+          C570 10 600 50 630 30 
+          C660 10 690 50 720 30 
+          C750 10 780 50 810 30 
+          C840 10 870 50 900 30 
+          C930 10 960 50 990 30 
+          C1020 10 1050 50 1080 30 
+          C1110 10 1140 50 1170 30 
+          C1200 10 1230 50 1260 30" />
         </svg>
       </span>
+
       <p>
-        Make <span class="highlight">₦100,000 - ₦200,000</span> weekly by chatting, playing fun games &amp; doing simple tasks on social media!<br>
-        No experience needed.<br>
-        No hidden secrets.<br>
-        Just register and start earning massively.
+        Make <span class="highlight">₦100,000 - ₦200,000</span> weekly by chatting,playing fun games, connecting with people &amp; doing simple tasks on social media!<br>
+        — No experience needed.<br>
+        — No hidden secrets.<br>
+        Just register and start earning massively!!
       </p>
 
       <div class="cta-wrap">
         <a id="joinBtn" class="join-btn" href="https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls?mode=wwt">
           <span>JOIN GROUP NOW</span>
           <span class="btn-icon" aria-hidden="true">
-            <!-- arrow-out-of-box icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.3 9.3-1.4-1.42 9.3-9.3H14V3z"/><path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M14 3h7v7h-2V6.41l-9.3 9.3-1.4-1.42 9.3-9.3H14V3z"/>
+              <path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/>
+            </svg>
           </span>
         </a>
       </div>
 
       <div class="note" style="text-align:center; margin-top:12px; font-size:15px">
-        Only the first 50 people to join the group will have access.
+        Only the first 100 people to join the group will have access.
       </div>
 
       <div class="image-box">
@@ -218,8 +236,22 @@
 
       <h2>DO NOT JOIN THIS CLASS IF:</h2>
       <span class="wave" aria-hidden="true">
-        <svg viewBox="0 0 600 60" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 30 C80 8 160 52 240 28 C320 6 400 54 480 28 C560 10 640 50 720 28" />
+        <svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 30 
+          C30 10 60 50 90 30 
+          C120 10 150 50 180 30 
+          C210 10 240 50 270 30 
+          C300 10 330 50 360 30 
+          C390 10 420 50 450 30 
+          C480 10 510 50 540 30 
+          C570 10 600 50 630 30 
+          C660 10 690 50 720 30 
+          C750 10 780 50 810 30 
+          C840 10 870 50 900 30 
+          C930 10 960 50 990 30 
+          C1020 10 1050 50 1080 30 
+          C1110 10 1140 50 1170 30 
+          C1200 10 1230 50 1260 30" />
         </svg>
       </span>
 
@@ -236,13 +268,16 @@
         <a id="joinBtn2" class="join-btn" href="https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls?mode=wwt">
           <span>JOIN GROUP NOW</span>
           <span class="btn-icon" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.3 9.3-1.4-1.42 9.3-9.3H14V3z"/><path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M14 3h7v7h-2V6.41l-9.3 9.3-1.4-1.42 9.3-9.3H14V3z"/>
+              <path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/>
+            </svg>
           </span>
         </a>
       </div>
 
       <div class="note" style="text-align:center; margin-top:12px; font-size:15px">
-        Only the first 50 people to join the group will have access.
+        Only the first 100 people to join the group will have access.
       </div>
 
       <div class="footer">
