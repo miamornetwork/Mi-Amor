@@ -21,7 +21,7 @@
       font-display: swap;
     }
 
-    :root {
+    :root{
       --blue-top:#3f6db0;
       --blue-bottom:#153049;
       --accent:#2fa0ff;
@@ -56,7 +56,7 @@
       margin:0 0 6px 0;
       line-height:1.2;
     }
-    h1{font-size:34px;text-shadow:0 0 10px rgba(47,160,255,0.7);}
+    h1{font-size:34px}
     h2{font-size:26px;color:var(--accent)}
 
     .wave {
@@ -66,7 +66,7 @@
       height:28px;
     }
     .wave svg { width:100%; height:100%; }
-    .wave path { stroke: rgba(255,255,255,0.8); stroke-width:1.4; fill:none; stroke-linecap:round; stroke-linejoin:round }
+    .wave path { stroke: rgba(255,255,255,0.55); stroke-width:1.4; fill:none; stroke-linecap:round; stroke-linejoin:round }
 
     p {
       font-size:20px;
@@ -85,18 +85,24 @@
       gap:12px;
       background: linear-gradient(90deg,var(--accent), var(--accent-dark));
       border-radius:36px;
-      padding:14px 28px;
+      padding:16px 32px;
       text-decoration:none;
       color:#000;
       font-family:"TimesLocal", serif;
-      font-weight:800;
-      font-size:20px;
+      font-weight:900;
+      font-size:22px;
       letter-spacing:0.6px;
       white-space:nowrap;
-      box-shadow:0 8px 22px rgba(0,0,0,0.28);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.28);
       transition: transform .18s cubic-bezier(.2,.9,.2,1), box-shadow .18s ease;
-      animation: heartbeat 2.2s ease-in-out infinite; /* added */
+      animation: pulse 1.9s infinite ease-in-out;
     }
+
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+
     .join-btn:hover{ transform: translateY(-3px); box-shadow:0 12px 28px rgba(0,0,0,0.34) }
     .join-btn:active{ transform: scale(.94); box-shadow:none }
 
@@ -107,12 +113,7 @@
       place-items:center;
       flex-shrink:0;
     }
-    .join-btn .btn-icon svg{ width:22px; height:22px; display:block; fill:currentColor }
-
-    @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.06); }
-    }
+    .join-btn .btn-icon svg{ width:26px; height:26px; display:block; fill:currentColor }
 
     .image-box{ margin-top:26px; overflow:hidden; border-radius:18px; }
     .image-box img{
@@ -132,10 +133,16 @@
     .big-callout{ text-align:center; font-family:"TimesLocal",serif; font-size:21px; font-weight:800; margin-top:18px }
 
     .footer{ text-align:center; margin-top:24px; }
-    .copyright{ font-size:13px; opacity:0.85; margin-top:8px; font-family:"RobotoLocal",sans-serif; letter-spacing:0.2px; }
+    .copyright{
+      font-size:13px;
+      opacity:0.85;
+      margin-top:8px;
+      font-family:"RobotoLocal",sans-serif;
+      letter-spacing:0.2px;
+    }
 
     @media (max-width:520px){
-      .join-btn{ font-size:17px; padding:12px 20px; gap:8px }
+      .join-btn{ font-size:18px; padding:13px 24px; gap:8px }
       h1{ font-size:24px }
       p, li { font-size:16px }
       .wave{ width:180px }
@@ -149,13 +156,11 @@
     <!-- ===== SECTION 1 ===== -->
     <section class="card" id="section1">
       <h1>TURN YOUR NORMAL DAILY ONLINE ACTIVITIES INTO STEADY CASH OUTS</h1>
-
       <span class="wave" aria-hidden="true">
-        <svg viewBox="0 0 300 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 300 40" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 20 C60 4 120 36 180 20 C220 8 260 32 300 20" stroke-width="1.2" />
         </svg>
       </span>
-
       <p>
         Make <span class="highlight">₦100,000 - ₦200,000</span> weekly by chatting &amp; doing tasks on social media.<br>
         No experience needed.<br>
@@ -167,9 +172,8 @@
         <a id="joinBtn" class="join-btn" href="https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls?mode=wwt">
           <span>JOIN GROUP NOW</span>
           <span class="btn-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.29 6.29-3.3 3.3c-.39.39-.39 1.02 0 1.41l3.3 3.3 1.41-1.41-2.59-2.59 2.59-2.59-1.41-1.41z"/>
-            </svg>
+            <!-- new modern “arrow out of box” icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.3 9.3-1.4-1.42 9.3-9.3H14V3z"/><path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/></svg>
           </span>
         </a>
       </div>
@@ -178,7 +182,6 @@
         Only the first 50 people to join the group will have access.
       </div>
 
-      <!-- First Image -->
       <div class="image-box">
         <img id="promoImg" src="hero6.jpg" alt="MiaMor Promo">
       </div>
@@ -186,16 +189,14 @@
 
     <!-- ===== SECTION 2 ===== -->
     <section class="card" id="section2">
-
-      <!-- NEW second image on top -->
-      <div class="image-box">
-        <img id="promoImg2" src="hero10.jpg" alt="Second Promo Image">
+      <!-- moved image slightly upward -->
+      <div class="image-box" style="margin-top:-10px; margin-bottom:22px;">
+        <img src="hero10.jpg" alt="Do Not Join">
       </div>
 
       <h2>DO NOT JOIN THIS CLASS IF:</h2>
-
       <span class="wave" aria-hidden="true">
-        <svg viewBox="0 0 300 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 300 40" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 20 C60 4 120 36 180 20 C220 8 260 32 300 20" stroke-width="1.2" />
         </svg>
       </span>
@@ -213,9 +214,7 @@
         <a id="joinBtn2" class="join-btn" href="https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls?mode=wwt">
           <span>JOIN GROUP NOW</span>
           <span class="btn-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.29 6.29-3.3 3.3c-.39.39-.39 1.02 0 1.41l3.3 3.3 1.41-1.41-2.59-2.59 2.59-2.59-1.41-1.41z"/>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.3 9.3-1.4-1.42 9.3-9.3H14V3z"/><path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/></svg>
           </span>
         </a>
       </div>
@@ -239,40 +238,16 @@
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: 0.18 });
     cards.forEach(c => io.observe(c));
 
     const img = document.getElementById('promoImg');
-    const img2 = document.getElementById('promoImg2');
-    [img, img2].forEach(i=>{
-      if(i){
-        i.addEventListener('click',()=>{
-          i.classList.add('zoomed');
-          setTimeout(()=>i.classList.remove('zoomed'),1700);
-        });
-      }
-    });
-
-    function shrinkAndGo(el,url){
-      el.style.transform='scale(.94)';
-      setTimeout(()=>{ el.style.transform=''; if(url) window.location.href=url; },150);
+    if (img) {
+      img.addEventListener('click', () => {
+        img.classList.add('zoomed');
+        setTimeout(() => img.classList.remove('zoomed'), 1700);
+      });
     }
-    const joinBtn=document.getElementById('joinBtn');
-    const joinBtn2=document.getElementById('joinBtn2');
-    const link="https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls?mode=wwt";
-    [joinBtn,joinBtn2].forEach(btn=>{
-      if(!btn)return;
-      btn.addEventListener('click',(ev)=>{
-        ev.preventDefault();
-        shrinkAndGo(btn,link);
-      });
-      btn.addEventListener('keydown',(e)=>{
-        if(e.key==='Enter'||e.key===' '){
-          e.preventDefault();
-          shrinkAndGo(btn,link);
-        }
-      });
-    });
   </script>
 </body>
-   </html>
+  </html>
