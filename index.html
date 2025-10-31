@@ -22,18 +22,26 @@
     }
 
     :root{
-      --blue-top:#3f6db0;
-      --blue-bottom:#153049;
+      --blue-dark:#0a1628;
       --accent:#2fa0ff;
       --accent-dark:#0f7ad6;
-      --card-bg: rgba(10,25,45,0.88);
+      --card-bg: rgba(5, 15, 30, 0.95);
       --text:#ffffff;
       --max-w:820px;
       --radius:24px;
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:"RobotoLocal", Arial, sans-serif;background:linear-gradient(180deg,var(--blue-top),var(--blue-bottom));color:var(--text);-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+    html,body{
+      height:100%;
+      margin:0;
+      font-family:"RobotoLocal", Arial, sans-serif;
+      background:var(--blue-dark);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      scroll-behavior:smooth;
+    }
+
     .container{max-width:var(--max-w);margin:0 auto;padding:28px}
 
     .card{
@@ -41,7 +49,7 @@
       border-radius:var(--radius);
       padding:44px 30px;
       margin-bottom:34px;
-      box-shadow:0 12px 32px rgba(3,9,20,0.45);
+      box-shadow:0 12px 32px rgba(3,9,20,0.55);
       opacity:0;
       transform: translateY(36px);
       transition: transform .9s cubic-bezier(.22,.9,.35,1), opacity .9s ease;
@@ -62,11 +70,17 @@
     .wave {
       display:block;
       margin:10px auto 24px;
-      width:260px;
-      height:28px;
+      width:360px;
+      height:40px;
     }
     .wave svg { width:100%; height:100%; }
-    .wave path { stroke: rgba(255,255,255,0.55); stroke-width:1.4; fill:none; stroke-linecap:round; stroke-linejoin:round }
+    .wave path {
+      stroke: rgba(255,255,255,0.75);
+      stroke-width:1.5;
+      fill:none;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
 
     p {
       font-size:20px;
@@ -84,14 +98,14 @@
       justify-content:center;
       gap:12px;
       background: linear-gradient(90deg,var(--accent), var(--accent-dark));
-      border-radius:36px;
-      padding:16px 32px;
+      border-radius:38px;
+      padding:18px 38px;
       text-decoration:none;
       color:#000;
       font-family:"TimesLocal", serif;
       font-weight:900;
-      font-size:22px;
-      letter-spacing:0.6px;
+      font-size:24px;
+      letter-spacing:0.8px;
       white-space:nowrap;
       box-shadow: 0 8px 22px rgba(0,0,0,0.28);
       transition: transform .18s cubic-bezier(.2,.9,.2,1), box-shadow .18s ease;
@@ -100,20 +114,20 @@
 
     @keyframes pulse {
       0%,100% { transform: scale(1); }
-      50% { transform: scale(1.06); }
+      50% { transform: scale(1.08); }
     }
 
     .join-btn:hover{ transform: translateY(-3px); box-shadow:0 12px 28px rgba(0,0,0,0.34) }
     .join-btn:active{ transform: scale(.94); box-shadow:none }
 
     .join-btn .btn-icon{
-      width:26px;
-      height:26px;
+      width:28px;
+      height:28px;
       display:inline-grid;
       place-items:center;
       flex-shrink:0;
     }
-    .join-btn .btn-icon svg{ width:26px; height:26px; display:block; fill:currentColor }
+    .join-btn .btn-icon svg{ width:28px; height:28px; display:block; fill:currentColor }
 
     .image-box{ margin-top:26px; overflow:hidden; border-radius:18px; }
     .image-box img{
@@ -142,11 +156,20 @@
     }
 
     @media (max-width:520px){
-      .join-btn{ font-size:18px; padding:13px 24px; gap:8px }
+      .join-btn{ font-size:19px; padding:14px 26px; gap:8px }
       h1{ font-size:24px }
       p, li { font-size:16px }
-      .wave{ width:180px }
+      .wave{ width:220px; height:28px; }
       .image-box img{ width:100%; margin-left:0 }
+    }
+
+    /* smooth zoom animation for second image */
+    @keyframes zoomIn {
+      from { transform: scale(1); }
+      to { transform: scale(1.08); }
+    }
+    .image-box.zoom-animate img {
+      animation: zoomIn 6s ease-in-out infinite alternate;
     }
   </style>
 </head>
@@ -157,12 +180,12 @@
     <section class="card" id="section1">
       <h1>TURN YOUR NORMAL DAILY ONLINE ACTIVITIES INTO STEADY CASH OUTS</h1>
       <span class="wave" aria-hidden="true">
-        <svg viewBox="0 0 300 40" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 20 C60 4 120 36 180 20 C220 8 260 32 300 20" stroke-width="1.2" />
+        <svg viewBox="0 0 600 60" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 30 C80 8 160 52 240 28 C320 6 400 54 480 28 C560 10 640 50 720 28" />
         </svg>
       </span>
       <p>
-        Make <span class="highlight">₦100,000 - ₦200,000</span> weekly by chatting &amp; doing tasks on social media.<br>
+        Make <span class="highlight">₦100,000 - ₦200,000</span> weekly by chatting, playing fun games &amp; doing simple tasks on social media!<br>
         No experience needed.<br>
         No hidden secrets.<br>
         Just register and start earning massively.
@@ -172,7 +195,7 @@
         <a id="joinBtn" class="join-btn" href="https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls?mode=wwt">
           <span>JOIN GROUP NOW</span>
           <span class="btn-icon" aria-hidden="true">
-            <!-- new modern “arrow out of box” icon -->
+            <!-- arrow-out-of-box icon -->
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.3 9.3-1.4-1.42 9.3-9.3H14V3z"/><path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/></svg>
           </span>
         </a>
@@ -189,15 +212,14 @@
 
     <!-- ===== SECTION 2 ===== -->
     <section class="card" id="section2">
-      <!-- moved image slightly upward -->
-      <div class="image-box" style="margin-top:-10px; margin-bottom:22px;">
+      <div class="image-box zoom-animate" style="margin-top:-10px; margin-bottom:22px;">
         <img src="hero10.jpg" alt="Do Not Join">
       </div>
 
       <h2>DO NOT JOIN THIS CLASS IF:</h2>
       <span class="wave" aria-hidden="true">
-        <svg viewBox="0 0 300 40" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 20 C60 4 120 36 180 20 C220 8 260 32 300 20" stroke-width="1.2" />
+        <svg viewBox="0 0 600 60" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 30 C80 8 160 52 240 28 C320 6 400 54 480 28 C560 10 640 50 720 28" />
         </svg>
       </span>
 
