@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MiaMor | Join Group</title>
+  <title>MiaMor | Connect, Chat & Earn</title>
 
   <style>
     @font-face {
@@ -22,27 +22,37 @@
     }
 
     :root {
-      --blue-dark: #111c30; /* slightly lighter background */
+      --blue-dark: #0c1830;
       --accent: #2fa0ff;
       --accent-dark: #0f7ad6;
       --card-bg: rgba(10, 25, 45, 0.95);
       --text: #ffffff;
-      --max-w: 940px; /* increased width */
+      --max-w: 940px;
       --radius: 24px;
     }
 
-    * { box-sizing: border-box }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       height: 100%;
-      margin: 0;
       font-family: "RobotoLocal", Arial, sans-serif;
-      background: var(--blue-dark);
       color: var(--text);
-      -webkit-font-smoothing: antialiased;
+      background: linear-gradient(135deg, #0b1a36, #0a2049, #0b1a36);
+      background-size: 300% 300%;
+      animation: gradientMove 16s ease infinite;
       scroll-behavior: smooth;
     }
 
-    .container { max-width: var(--max-w); margin: 0 auto; padding: 28px }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 28px;
+    }
 
     .card {
       background: var(--card-bg);
@@ -51,32 +61,45 @@
       margin-bottom: 34px;
       box-shadow: 0 12px 32px rgba(3,9,20,0.55);
       opacity: 0;
-      transform: translateY(36px);
-      transition: transform .9s cubic-bezier(.22,.9,.35,1), opacity .9s ease;
+      transform: translateY(40px);
+      transition: transform 0.9s cubic-bezier(.22,.9,.35,1), opacity 0.9s ease;
     }
-    .card.visible { opacity: 1; transform: translateY(0) }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     h1, h2 {
       font-family: "TimesLocal", serif;
       text-transform: uppercase;
       text-align: center;
       letter-spacing: 2px;
-      margin: 0 0 6px 0;
-      line-height: 1.2;
+      margin-bottom: 10px;
     }
-    h1 { font-size: 34px }
-    h2 { font-size: 26px; color: var(--accent) }
+
+    h1 {
+      font-size: 34px;
+      text-shadow: 0 0 18px rgba(47,160,255,0.7);
+    }
+
+    h2 {
+      font-size: 26px;
+      color: var(--accent);
+    }
 
     .wave {
       display: block;
       margin: 10px auto 24px;
-      width: 540px; /* longer */
-      height: 40px;
+      width: 580px;
+      height: 50px;
     }
+
     .wave svg { width: 100%; height: 100%; }
+
     .wave path {
-      stroke: rgba(255,255,255,0.75);
-      stroke-width: 1.5;
+      stroke: rgba(255,255,255,0.8);
+      stroke-width: 2;
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -87,11 +110,12 @@
       line-height: 1.7;
       text-align: center;
       margin: 6px 0 20px;
-      font-family: "RobotoLocal", sans-serif;
     }
-    .highlight { color: var(--accent); font-weight: 800 }
 
-    .cta-wrap { text-align: center; margin-top: 10px }
+    .highlight { color: var(--accent); font-weight: 800; }
+
+    .cta-wrap { text-align: center; margin-top: 10px; }
+
     .join-btn {
       display: inline-flex;
       align-items: center;
@@ -99,12 +123,12 @@
       gap: 12px;
       background: linear-gradient(90deg, var(--accent), var(--accent-dark));
       border-radius: 38px;
-      padding: 18px 38px;
+      padding: 18px 46px;
       text-decoration: none;
       color: #000;
       font-family: "TimesLocal", serif;
       font-weight: 900;
-      font-size: 24px;
+      font-size: 26px;
       letter-spacing: 0.8px;
       white-space: nowrap;
       box-shadow: 0 8px 22px rgba(0,0,0,0.28);
@@ -117,19 +141,23 @@
       50% { transform: scale(1.08); }
     }
 
-    .join-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.34); }
-    .join-btn:active { transform: scale(.94); box-shadow: none; }
-
-    .join-btn .btn-icon {
-      width: 28px;
-      height: 28px;
-      display: inline-grid;
-      place-items: center;
-      flex-shrink: 0;
+    .join-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.34);
     }
-    .join-btn .btn-icon svg { width: 28px; height: 28px; display: block; fill: currentColor }
 
-    .image-box { margin-top: 26px; overflow: hidden; border-radius: 18px; }
+    .join-btn .btn-icon svg {
+      width: 30px;
+      height: 30px;
+      fill: currentColor;
+    }
+
+    .image-box {
+      margin-top: 26px;
+      overflow: hidden;
+      border-radius: 18px;
+    }
+
     .image-box img {
       display: block;
       width: 103%;
@@ -137,80 +165,92 @@
       margin-left: -1.5%;
       transition: transform .55s cubic-bezier(.2,.9,.2,1);
       cursor: pointer;
-    }
-    .image-box img.zoomed { transform: scale(1.12); }
-
-    ul { list-style: none; padding: 0; margin: 20px 0 6px }
-    li { display: flex; gap: 12px; align-items: flex-start; font-size: 19px; margin: 12px 0; font-family: "RobotoLocal", sans-serif }
-    li span.icon { font-size: 22px; line-height: 1; }
-
-    .big-callout { text-align: center; font-family: "TimesLocal", serif; font-size: 21px; font-weight: 800; margin-top: 18px }
-
-    .footer { text-align: center; margin-top: 24px; }
-    .copyright {
-      font-size: 13px;
-      opacity: 0.85;
-      margin-top: 8px;
-      font-family: "RobotoLocal", sans-serif;
-      letter-spacing: 0.2px;
+      animation: zoomIn 6s ease-in-out infinite alternate;
     }
 
-    @media (max-width: 520px) {
-      .join-btn { font-size: 19px; padding: 14px 26px; gap: 8px }
-      h1 { font-size: 24px }
-      p, li { font-size: 16px }
-      .wave { width: 260px; height: 28px }
-      .image-box img { width: 100%; margin-left: 0 }
-    }
-
-    /* Smooth zoom animation for second image */
     @keyframes zoomIn {
       from { transform: scale(1); }
       to { transform: scale(1.08); }
     }
-    .image-box.zoom-animate img {
-      animation: zoomIn 6s ease-in-out infinite alternate;
+
+    ul { list-style: none; padding: 0; margin: 20px 0 6px; }
+    li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 19px;
+      margin: 12px 0;
+    }
+
+    li span.icon { font-size: 22px; line-height: 1; }
+
+    .big-callout {
+      text-align: center;
+      font-family: "TimesLocal", serif;
+      font-size: 21px;
+      font-weight: 800;
+      margin-top: 18px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .copyright {
+      font-size: 13px;
+      opacity: 0.85;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 520px) {
+      .join-btn { font-size: 20px; padding: 14px 26px; gap: 8px; }
+      h1 { font-size: 24px; }
+      p, li { font-size: 16px; }
+      .wave { width: 260px; height: 28px; }
     }
   </style>
 </head>
+
 <body>
   <div class="container">
 
     <!-- ===== SECTION 1 ===== -->
     <section class="card" id="section1">
       <h1>TURN YOUR NORMAL DAILY ONLINE ACTIVITIES INTO STEADY CASH OUTS</h1>
-      <span class="wave" aria-hidden="true">
+      <span class="wave">
         <svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg">
-          <!-- denser, continuous wave -->
           <path d="M0 30 
-          C30 10 60 50 90 30 
-          C120 10 150 50 180 30 
-          C210 10 240 50 270 30 
-          C300 10 330 50 360 30 
-          C390 10 420 50 450 30 
-          C480 10 510 50 540 30 
-          C570 10 600 50 630 30 
-          C660 10 690 50 720 30 
-          C750 10 780 50 810 30 
-          C840 10 870 50 900 30 
-          C930 10 960 50 990 30 
-          C1020 10 1050 50 1080 30 
-          C1110 10 1140 50 1170 30 
-          C1200 10 1230 50 1260 30" />
+          C25 5 50 55 75 30 
+          C100 5 125 55 150 30 
+          C175 5 200 55 225 30 
+          C250 5 275 55 300 30 
+          C325 5 350 55 375 30 
+          C400 5 425 55 450 30 
+          C475 5 500 55 525 30 
+          C550 5 575 55 600 30 
+          C625 5 650 55 675 30 
+          C700 5 725 55 750 30 
+          C775 5 800 55 825 30 
+          C850 5 875 55 900 30 
+          C925 5 950 55 975 30 
+          C1000 5 1025 55 1050 30 
+          C1075 5 1100 55 1125 30 
+          C1150 5 1175 55 1200 30" />
         </svg>
       </span>
 
       <p>
-        Make <span class="highlight">₦100,000 - ₦200,000</span> weekly by chatting,playing fun games, connecting with people &amp; doing simple tasks on social media!<br>
-        — No experience needed.<br>
-        — No hidden secrets.<br>
-        Just register and start earning massively!!
+        Make <span class="highlight">₦100,000 - ₦200,000</span> weekly by chatting, playing games &amp; doing simple tasks on social media.<br>
+        📍 No experience needed.<br>
+        📍 No hidden secrets.<br>
+        — Just register and start earning massively.
       </p>
 
       <div class="cta-wrap">
-        <a id="joinBtn" class="join-btn" href="https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls?mode=wwt">
+        <a class="join-btn" href="https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls?mode=wwt">
           <span>JOIN GROUP NOW</span>
-          <span class="btn-icon" aria-hidden="true">
+          <span class="btn-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M14 3h7v7h-2V6.41l-9.3 9.3-1.4-1.42 9.3-9.3H14V3z"/>
               <path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/>
@@ -219,55 +259,57 @@
         </a>
       </div>
 
-      <div class="note" style="text-align:center; margin-top:12px; font-size:15px">
-        Only the first 100 people to join the group will have access.
+      <div style="text-align:center; margin-top:12px; font-size:15px">
+        <span style="color:red;">*</span> Only the first 50 people to join the group will have access.
       </div>
 
       <div class="image-box">
-        <img id="promoImg" src="hero6.jpg" alt="MiaMor Promo">
+        <img src="hero6.jpg" alt="MiaMor Promo">
       </div>
     </section>
 
     <!-- ===== SECTION 2 ===== -->
     <section class="card" id="section2">
-      <div class="image-box zoom-animate" style="margin-top:-10px; margin-bottom:22px;">
+      <div class="image-box" style="margin-top:-10px; margin-bottom:22px;">
         <img src="hero10.jpg" alt="Do Not Join">
       </div>
 
       <h2>DO NOT JOIN THIS CLASS IF:</h2>
-      <span class="wave" aria-hidden="true">
+      <span class="wave">
         <svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 30 
-          C30 10 60 50 90 30 
-          C120 10 150 50 180 30 
-          C210 10 240 50 270 30 
-          C300 10 330 50 360 30 
-          C390 10 420 50 450 30 
-          C480 10 510 50 540 30 
-          C570 10 600 50 630 30 
-          C660 10 690 50 720 30 
-          C750 10 780 50 810 30 
-          C840 10 870 50 900 30 
-          C930 10 960 50 990 30 
-          C1020 10 1050 50 1080 30 
-          C1110 10 1140 50 1170 30 
-          C1200 10 1230 50 1260 30" />
+          C25 5 50 55 75 30 
+          C100 5 125 55 150 30 
+          C175 5 200 55 225 30 
+          C250 5 275 55 300 30 
+          C325 5 350 55 375 30 
+          C400 5 425 55 450 30 
+          C475 5 500 55 525 30 
+          C550 5 575 55 600 30 
+          C625 5 650 55 675 30 
+          C700 5 725 55 750 30 
+          C775 5 800 55 825 30 
+          C850 5 875 55 900 30 
+          C925 5 950 55 975 30 
+          C1000 5 1025 55 1050 30 
+          C1075 5 1100 55 1125 30 
+          C1150 5 1175 55 1200 30" />
         </svg>
       </span>
 
       <ul>
-        <li><span class="icon">📵</span> You are someone who does not like taking action</li>
-        <li><span class="icon">📵</span> You are not ready to invest in yourself financially</li>
-        <li><span class="icon">📵</span> You are someone who thinks every opportunity is a scam</li>
-        <li><span class="icon">📵</span> You will not attend the class</li>
+        <li><span class="icon">📵</span> You are someone who does not like taking action!</li>
+        <li><span class="icon">📵</span> You are not ready to invest in yourself financially!</li>
+        <li><span class="icon">📵</span> You are someone who thinks every opportunity is a scam!</li>
+        <li><span class="icon">📵</span> You will not attend the class!</li>
       </ul>
 
-      <div class="big-callout">IF YOU ARE DIFFERENT FROM THE PERSONS ABOVE,<br>THEN DON'T MISS THIS OPPORTUNITY.</div>
+      <div class="big-callout">IF YOU ARE DIFFERENT FROM THE PERSONS ABOVE, THEN DON'T MISS THIS OPPORTUNITY ‼️</div>
 
       <div style="text-align:center; margin-top:26px;">
-        <a id="joinBtn2" class="join-btn" href="https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls?mode=wwt">
+        <a class="join-btn" href="https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls?mode=wwt">
           <span>JOIN GROUP NOW</span>
-          <span class="btn-icon" aria-hidden="true">
+          <span class="btn-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M14 3h7v7h-2V6.41l-9.3 9.3-1.4-1.42 9.3-9.3H14V3z"/>
               <path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/>
@@ -276,8 +318,8 @@
         </a>
       </div>
 
-      <div class="note" style="text-align:center; margin-top:12px; font-size:15px">
-        Only the first 100 people to join the group will have access.
+      <div style="text-align:center; margin-top:12px; font-size:15px">
+        <span style="color:red;">*</span> Only the first 100 people to join the group will have access.
       </div>
 
       <div class="footer">
@@ -295,16 +337,8 @@
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.18 });
+    }, { threshold: 0.15 });
     cards.forEach(c => io.observe(c));
-
-    const img = document.getElementById('promoImg');
-    if (img) {
-      img.addEventListener('click', () => {
-        img.classList.add('zoomed');
-        setTimeout(() => img.classList.remove('zoomed'), 1700);
-      });
-    }
   </script>
 </body>
-  </html>
+            </html>
