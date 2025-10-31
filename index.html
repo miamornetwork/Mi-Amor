@@ -36,7 +36,7 @@
       height: 100%;
       font-family: "RobotoLocal", Arial, sans-serif;
       color: var(--text);
-      background: linear-gradient(135deg, #0b1a36, #0a2049, #0b1a36);
+      background: linear-gradient(135deg, #102b57, #13366a, #102b57);
       background-size: 300% 300%;
       animation: gradientMove 16s ease infinite;
       scroll-behavior: smooth;
@@ -80,7 +80,7 @@
 
     h1 {
       font-size: 34px;
-      text-shadow: 0 0 18px rgba(47,160,255,0.7);
+      text-shadow: 0 0 26px rgba(30, 130, 255, 0.9);
     }
 
     h2 {
@@ -156,6 +156,7 @@
       margin-top: 26px;
       overflow: hidden;
       border-radius: 18px;
+      position: relative;
     }
 
     .image-box img {
@@ -163,14 +164,18 @@
       width: 103%;
       max-width: none;
       margin-left: -1.5%;
-      transition: transform .55s cubic-bezier(.2,.9,.2,1);
+      transition: transform 0.3s ease-out;
       cursor: pointer;
-      animation: zoomIn 6s ease-in-out infinite alternate;
+      animation: zoomIn 3s ease-in-out infinite alternate;
     }
 
     @keyframes zoomIn {
       from { transform: scale(1); }
       to { transform: scale(1.08); }
+    }
+
+    .image-box img.active {
+      transform: scale(1.1);
     }
 
     ul { list-style: none; padding: 0; margin: 20px 0 6px; }
@@ -241,9 +246,10 @@
       </span>
 
       <p>
-        Make <span class="highlight">₦100,000 - ₦200,000</span> weekly by chatting, playing games &amp; doing simple tasks on social media.<br>
-        📍 No experience needed.<br>
-        📍 No hidden secrets.<br>
+        <span style="color:red;">*</span>
+        Make <span class="highlight">₦100,000 - ₦200,000</span> weekly by chatting, playing games &amp; doing simple tasks on social media!<br>
+        📍 No experience needed!<br>
+        📍 No hidden secrets!<br>
         — Just register and start earning massively.
       </p>
 
@@ -260,7 +266,7 @@
       </div>
 
       <div style="text-align:center; margin-top:12px; font-size:15px">
-        <span style="color:red;">*</span> Only the first 50 people to join the group will have access.
+        <span style="color:red;">*</span> Only the first 100 people to join the group will have access.
       </div>
 
       <div class="image-box">
@@ -319,7 +325,7 @@
       </div>
 
       <div style="text-align:center; margin-top:12px; font-size:15px">
-        <span style="color:red;">*</span> Only the first 100 people to join the group will have access.
+        <span style="color:red;">*</span> Only the first 50 people to join the group will have access.
       </div>
 
       <div class="footer">
@@ -329,6 +335,7 @@
   </div>
 
   <script>
+    // Scroll animation for cards
     const cards = document.querySelectorAll('.card');
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -339,6 +346,19 @@
       });
     }, { threshold: 0.15 });
     cards.forEach(c => io.observe(c));
+
+    // Interactive zoom effect on images
+    const imgs = document.querySelectorAll('.image-box img');
+    imgs.forEach(img => {
+      img.addEventListener('click', () => {
+        img.classList.add('active');
+        setTimeout(() => img.classList.remove('active'), 300);
+      });
+      img.addEventListener('scroll', () => {
+        img.classList.add('active');
+        setTimeout(() => img.classList.remove('active'), 300);
+      });
+    });
   </script>
 </body>
-            </html>
+        </html>
