@@ -1,333 +1,317 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mi Amor Network — Join The Group</title>
-  <meta name="description" content="Turn your normal daily online activities into steady cashouts. Join the group." />
-
-  <!-- Open Graph / Preview (update og:image and og:url after upload) -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Mi Amor Network — Join The Group" />
-  <meta property="og:description" content="Turn your normal daily online activities into steady cashouts. Join the group." />
-  <meta property="og:image" content="images/preview.jpg" />
-  <meta property="og:url" content="https://your-github-pages-url/" />
-
-  <link rel="icon" href="images/favicon.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiaMor | Join The Group</title>
 
   <style>
-    /* ---------- Base / Reset ---------- */
-    :root{
-      --deep-1:#0b2340;
-      --deep-2:#082041;
-      --gloss-1: rgba(255,255,255,0.04);
-      --card-glass: rgba(255,255,255,0.02);
-      --accent-left: #2fbdf7;
-      --accent-right:#1e68ff;
-      --white: #ffffff;
-      --muted: rgba(255,255,255,0.72);
+    /* === Local Font Setup === */
+    @font-face {
+      font-family: "TimesLocal";
+      src: url("fonts/TimesNewRoman.ttf") format("truetype");
     }
-    *{box-sizing:border-box}
-    html,body{height:100%; margin:0; font-family: "Montserrat", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
-    body{
-      background:
-        radial-gradient(600px 300px at 10% 10%, rgba(30,104,255,0.06), transparent 6%),
-        radial-gradient(500px 260px at 90% 90%, rgba(47,189,247,0.03), transparent 6%),
-        linear-gradient(180deg,var(--deep-1),var(--deep-2));
-      color:var(--white); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-      display:flex;align-items:center;justify-content:center;padding:28px;
-      -webkit-tap-highlight-color: transparent;
+    @font-face {
+      font-family: "RobotoLocal";
+      src: url("fonts/Roboto-Regular.ttf") format("truetype");
     }
 
-    /* ---------- Page container ---------- */
-    .page {
-      width:100%; max-width:760px; border-radius:20px;
-      padding:18px 22px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.004));
-      border:1px solid rgba(255,255,255,0.03);
-      box-shadow: 0 28px 60px rgba(2,6,23,0.65), inset 0 1px 0 rgba(255,255,255,0.02);
-      overflow:hidden;
+    :root {
+      --blue-top: #3f6db0;
+      --blue-bottom: #153049;
+      --accent: #2fa0ff;
+      --accent-dark: #0f7ad6;
+      --text-light: #fff;
+      --rounded: 24px;
+      --max-width: 760px;
     }
 
-    /* ---------- decorative rounded top area to mimic screenshot ---------- */
-    .top-hero {
-      border-radius:14px; padding:14px; margin-bottom:10px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));
-      display:block;
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: "RobotoLocal", Arial, sans-serif;
+      color: var(--text-light);
+      background: linear-gradient(180deg, var(--blue-top), var(--blue-bottom));
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    /* ---------- big headings / paragraphs ---------- */
-    .big-title {
-      font-weight:800; font-size:20px; letter-spacing:2px;
-      text-align:center; color:#bfe6ff; margin:8px 0 10px;
-    }
-    .big-block {
-      font-size:20px; font-weight:800; text-transform:uppercase;
-      text-align:center; color:#e6f5ff; line-height:1.05; letter-spacing:2px;
-      margin:14px 0;
+    .container {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 20px;
     }
 
-    .wavy {
-      width:100%; height:14px; margin:10px 0;
-      background-image: radial-gradient(circle at 10% 50%, rgba(255,255,255,0.02), transparent 10%);
-      position:relative;
-    }
-    /* decorative squiggly line using svg background */
-    .squiggle {
-      width:100%; height:12px; display:block; margin:14px 0 8px;
-      mask-image: none;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 100% 100%;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="24" viewBox="0 0 600 24"><path fill="none" stroke="%23cfe9ff" stroke-opacity="0.18" stroke-width="2" d="M0 12c50 0 50-10 100-10s50 10 100 10 50-10 100-10 50 10 100 10 50-10 100-10 50 10 100 10" stroke-linecap="round" stroke-linejoin="round"/></svg>');
-      opacity:0.9;
+    /* ===== HERO SECTION ===== */
+    .card {
+      background: rgba(9, 23, 43, 0.88);
+      border-radius: var(--rounded);
+      padding: 36px 24px;
+      box-shadow: 0 10px 28px rgba(3, 9, 20, 0.45);
+      margin-bottom: 30px;
+      animation: fadeUp 1.2s ease forwards;
+      opacity: 0;
+      transform: translateY(30px);
     }
 
-    .text-normal { font-size:16px; color:var(--white); line-height:1.55; text-align:center; margin:6px 0; }
-    .text-muted { font-size:15px; color:var(--muted); text-align:center; margin:6px 0 14px; }
-
-    /* ---------- CTA button style (rounded pill) ---------- */
-    .cta {
-      display:inline-flex; align-items:center; gap:12px;
-      padding:16px 26px; border-radius:40px;
-      background: linear-gradient(90deg, var(--accent-left), var(--accent-right));
-      color:#041229; font-weight:800; font-size:20px;
-      text-decoration:none; border: none; cursor:pointer;
-      box-shadow: 0 12px 30px rgba(30,104,255,0.18);
-      transition: transform .12s ease, box-shadow .12s ease, opacity .12s;
-      margin: 14px auto 8px; display:block; width:85%;
-      text-align:left;
-    }
-    .cta .icon { font-size:20px; display:inline-block; width:28px; height:28px; text-align:center; }
-    .cta:active { transform: scale(.96); } /* fallback */
-    .cta.shrink { animation: ctaShrink .18s forwards; }
-    @keyframes ctaShrink {
-      0% { transform: scale(1); }
-      40% { transform: scale(.92); }
-      100% { transform: scale(1); }
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    /* smaller note under button */
-    .small-note { font-size:15px; color:var(--white); text-align:center; margin-top:10px; }
-
-    /* ---------- image area ---------- */
-    .image-wrap {
-      width:100%; max-width:100%; margin:14px auto 8px; border-radius:14px; overflow:hidden; cursor:zoom-in;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.008));
-      border:1px solid rgba(255,255,255,0.03);
-      box-shadow: 0 20px 40px rgba(2,6,23,0.5);
+    h1 {
+      font-family: "TimesLocal", serif;
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 30px;
+      line-height: 1.2;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
     }
-    .image-wrap img { width:100%; height:auto; display:block; object-fit:cover; }
 
-    /* ---------- small section with bullets matching screenshot ---------- */
-    .bullets { padding:12px 6px; margin-top:6px; }
-    .bullet-item { display:flex; gap:12px; align-items:flex-start; margin:14px 10px; }
-    .bullet-icon {
-      width:36px; height:36px; border-radius:50%; background:#ff4545; flex:0 0 36px; display:grid; place-items:center; border:3px solid #fff;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+    p {
+      font-family: "RobotoLocal", sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      text-align: center;
+      margin-bottom: 20px;
     }
-    .bullet-text { font-weight:700; font-size:18px; line-height:1.35; color:#fff; }
 
-    /* ---------- bottom icons ---------- */
-    .icons-row { display:flex; gap:18px; align-items:center; justify-content:center; margin:18px 0 6px; }
-    .round-icon {
-      width:64px; height:64px; border-radius:999px; border:2px solid rgba(255,255,255,0.18);
-      display:grid; place-items:center; cursor:pointer; background: rgba(255,255,255,0.02);
-      transition: transform .12s ease;
+    .highlight {
+      color: var(--accent);
+      font-weight: bold;
     }
-    .round-icon:active { transform: scale(.96) }
 
-    /* copyright */
-    .copyright { font-size:12px; color:var(--muted); text-align:center; margin-top:6px; }
+    .join-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      color: #000;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 18px;
+      padding: 14px 24px;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      text-decoration: none;
+    }
 
-    /* ---------- reveal animation ---------- */
-    .reveal { opacity:0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); will-change:opacity,transform; }
-    .reveal.visible { opacity:1; transform: translateY(0); }
+    .join-btn:active {
+      transform: scale(0.93);
+      box-shadow: none;
+    }
 
-    /* ---------- tap-to-zoom ---------- */
-    .zoomed { transform: scale(1.08); transition: transform .32s cubic-bezier(.2,.9,.3,1); box-shadow: 0 40px 120px rgba(2,6,23,0.7); z-index:10; }
+    .note {
+      text-align: center;
+      font-size: 15px;
+      margin-top: 12px;
+      opacity: 0.9;
+    }
 
-    /* ---------- responsive ---------- */
-    @media (max-width:520px){
-      .page { padding:14px; border-radius:12px; }
-      .big-block { font-size:18px; }
-      .bullet-text { font-size:16px; }
-      .cta { font-size:18px; width:92%; }
-      .round-icon { width:56px; height:56px; }
+    .image-box {
+      margin-top: 24px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      padding: 10px;
+    }
+
+    .image-box img {
+      width: 100%;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .image-box img.zoomed {
+      transform: scale(1.08);
+    }
+
+    /* ===== SECOND SECTION ===== */
+    h2 {
+      font-family: "TimesLocal", serif;
+      font-size: 24px;
+      text-align: center;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    li {
+      font-family: "RobotoLocal", sans-serif;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 16px 0;
+      font-size: 18px;
+      line-height: 1.4;
+    }
+
+    li span.icon {
+      font-size: 22px;
+    }
+
+    .big-callout {
+      font-family: "TimesLocal", serif;
+      font-weight: bold;
+      text-align: center;
+      font-size: 20px;
+      margin-top: 18px;
+      letter-spacing: 1px;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .footer-icons {
+      display: flex;
+      justify-content: center;
+      gap: 26px;
+      margin-top: 14px;
+    }
+
+    .footer-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      color: white;
+      text-decoration: none;
+      font-size: 24px;
+      transition: transform 0.2s ease;
+    }
+
+    .footer-icons a:hover {
+      transform: scale(1.1);
+      color: var(--accent);
+    }
+
+    .copyright {
+      font-size: 14px;
+      opacity: 0.8;
+      margin-top: 10px;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 22px; }
+      p { font-size: 16px; }
+      li { font-size: 16px; }
+      .join-btn { font-size: 17px; padding: 12px 20px; }
     }
   </style>
 </head>
+
 <body>
-  <main class="page" id="root">
-    <!-- Top area (keeps spacing similar to screenshot) -->
-    <div class="top-hero reveal" id="topHero">
-      <div style="height:6px;"></div>
-      <!-- (You said no logo) -->
-    </div>
+  <div class="container">
 
-    <!-- DO NOT JOIN THIS CLASS IF: -->
-    <div class="reveal" id="dontJoinTitle">
-      <div class="big-block" style="font-size:22px; text-align:center; color:#a9defb;">
-        DO NOT JOIN THIS CLASS<br>IF:
+    <!-- ===== FIRST SECTION ===== -->
+    <div class="card" id="section1">
+      <h1>TURN YOUR NORMAL DAILY ONLINE ACTIVITIES INTO STEADY CASH OUTS</h1>
+      <p>
+        Make <span class="highlight">₦100,000 - ₦200,000</span> weekly by chatting & doing tasks on social media.<br>
+        No experience needed.<br>
+        No hidden secrets.<br>
+        Just register and start earning massively.
+      </p>
+
+      <div style="text-align:center;">
+        <a href="https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls?mode=wwt" class="join-btn">
+          <span>Join The Group Here</span>
+        </a>
       </div>
-      <div class="squiggle" aria-hidden="true"></div>
-    </div>
+      <div class="note">Only the first 50 people to join the group will have access.</div>
 
-    <!-- bullets (copy exact text from screenshot) -->
-    <div class="bullets" id="bulletsWrap">
-      <div class="bullet-item reveal">
-        <div class="bullet-icon" aria-hidden>🚫</div>
-        <div class="bullet-text">You are someone who does not like taking action</div>
-      </div>
-
-      <div class="bullet-item reveal">
-        <div class="bullet-icon" aria-hidden>🚫</div>
-        <div class="bullet-text">You are not ready to invest in yourself financially</div>
-      </div>
-
-      <div class="bullet-item reveal">
-        <div class="bullet-icon" aria-hidden>🚫</div>
-        <div class="bullet-text">You are someone who thinks every opportunity is a scam</div>
-      </div>
-
-      <div class="bullet-item reveal">
-        <div class="bullet-icon" aria-hidden>🚫</div>
-        <div class="bullet-text">You will not attend the class</div>
+      <!-- EDIT IMAGE NAME HERE -->
+      <div class="image-box">
+        <img src="images/sample-section1.jpg" alt="Promo Image" id="promoImg">
       </div>
     </div>
 
-    <div class="squiggle reveal" style="margin-top:6px;"></div>
+    <!-- ===== SECOND SECTION ===== -->
+    <div class="card" id="section2">
+      <h2>DO NOT JOIN THIS CLASS IF:</h2>
+      <ul>
+        <li><span class="icon">📵</span> You are someone who does not like taking action</li>
+        <li><span class="icon">📵</span> You are not ready to invest in yourself financially</li>
+        <li><span class="icon">📵</span> You are someone who thinks every opportunity is a scam</li>
+        <li><span class="icon">📵</span> You will not attend the class</li>
+      </ul>
 
-    <!-- IF YOU ARE DIFFERENT FROM THE PERSONS ABOVE... -->
-    <div class="reveal" id="differentMsg" style="margin-top:8px;">
-      <div class="big-block" style="font-size:20px; text-align:center;">
-        IF YOU ARE DIFFERENT<br>FROM THE PERSONS<br>ABOVE,<br><br>THEN DON'T MISS THIS<br>OPPORTUNITY.
+      <div class="big-callout">
+        IF YOU ARE DIFFERENT FROM THE PERSONS ABOVE,<br>
+        THEN DON'T MISS THIS OPPORTUNITY.
+      </div>
+
+      <div style="text-align:center; margin-top:20px;">
+        <a href="https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls?mode=wwt" class="join-btn">
+          <span>Join The Group Here</span>
+        </a>
+      </div>
+
+      <div class="note">Only the first 50 people to join the group will have access.</div>
+
+      <!-- ===== FOOTER ===== -->
+      <div class="footer">
+        <div class="footer-icons">
+          <a href="https://www.tiktok.com/@pandafxmedia001?_r=1&_t=ZS-910ti1iu4NI" title="TikTok">
+            <!-- TikTok vector -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="22" fill="currentColor"><path d="M448,209.9a210.1,210.1,0,0,1-122.77-39.27v139.3A202.38,202.38,0,1,1,136.48,112a205.38,205.38,0,0,1,23.71,1.38v94.43A108.22,108.22,0,1,0,243.54,308V12h81.84a122.64,122.64,0,0,0,122.62,122.62Z"/></svg>
+          </a>
+          <a href="https://wa.me/+2347035172111" title="WhatsApp">
+            <!-- WhatsApp vector -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="22" fill="currentColor"><path d="M380.9 97.1C339-10.7 197.9-29.2 112 56.8A199.8 199.8 0 0020 256l-19 92.3 94.8-24.8A199.6 199.6 0 00256 456a200 200 0 00124.9-358.9zm-124.8 334a166.1 166.1 0 01-84.5-23.1l-5.9-3.5-56.2 14.7 15-54.8-3.8-6A167.3 167.3 0 01256 88c93.1 0 168.8 75.7 168.8 168.8S349.1 431 256.1 431zm90.6-122.6c-4.9-2.4-29.2-14.4-33.7-16-4.5-1.7-7.8-2.4-11 2.4s-12.6 16-15.5 19.3c-2.9 3.1-5.7 3.6-10.6 1.2s-20.6-7.6-39.2-24.3c-14.5-12.9-24.3-28.8-27.2-33.7s-.3-7.5 2.1-9.9c2.1-2.1 4.9-5.7 7.3-8.5s3.1-4.9 4.7-8.2c1.6-3.3.8-6.2-.4-8.6s-11-26.4-15.1-36.2c-4-9.6-8.1-8.3-11-8.4h-9.4c-2.8 0-8.3 1.2-12.6 6.2s-16.5 16.1-16.5 39.2 16.9 45.4 19.3 48.5 33.2 50.7 80.4 71.2c11.2 4.8 19.9 7.7 26.7 9.9 11.2 3.6 21.3 3.1 29.3 1.9 8.9-1.3 27.4-11.2 31.3-22 3.9-10.8 3.9-20.1 2.7-22.1-1.3-2-4.9-3.3-9.8-5.7z"/></svg>
+          </a>
+          <a href="mailto:favourmedia01@gmail.com" title="Gmail">
+            <!-- Email vector -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" fill="currentColor"><path d="M502.3 190.8L352 294.1l-136-98.1L16.1 192C7.2 195.2 0 203.9 0 214v84c0 10.1 7.2 18.8 16.1 22l199.9 96.2c8.4 4 18.4 3.9 26.7-.1L496 316c8.9-3.3 16-12 16-22.1v-84c0-10.1-7.1-18.8-9.7-19.1z"/></svg>
+          </a>
+        </div>
+        <div class="copyright">© MiaMor 2025. All rights reserved.</div>
       </div>
     </div>
-
-    <!-- CTA button (exact label) -->
-    <div class="reveal" style="display:flex; justify-content:center; margin-top:14px;">
-      <!-- Button opens in same tab per your request -->
-      <a id="joinGroupBtn" href="https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls?mode=wwt" class="cta" role="button" aria-label="Join The Group Here">
-        <span class="icon" style="font-size:22px; color:#021428;">🔗</span>
-        <span style="flex:1; font-weight:900; text-align:center;">Join The Group Here</span>
-      </a>
-    </div>
-
-    <div class="reveal">
-      <div class="small-note">Only the first 50 people to join the group will have access.</div>
-    </div>
-
-    <div class="squiggle reveal" style="margin-top:12px;"></div>
-
-    <!-- Banner image (the only image you said is on page) -->
-    <div class="image-wrap reveal" id="imageWrap" title="Tap to zoom">
-      <!-- Replace the src below with the path to the image you upload to GitHub.
-           Suggested path: images/main.jpg
-           Example: https://raw.githubusercontent.com/<username>/<repo>/main/images/main.jpg
-      -->
-      <img id="mainImage" src="images/main.jpg" alt="Mi Amor promotion image">
-    </div>
-
-    <div class="squiggle reveal" style="margin-top:6px;"></div>
-
-    <!-- bottom icons row: TikTok / WhatsApp / Email (plugs & placeholders) -->
-    <div class="icons-row">
-      <!-- TikTok -->
-      <a class="round-icon reveal" href="REPLACE_WITH_TIKTOK_LINK" id="tiktokIcon" aria-label="TikTok" title="TikTok">
-        <!-- simple TikTok glyph -->
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-          <path d="M12 2v9.5A4.5 4.5 0 1 1 9.5 7V9a3 3 0 1 0 2.5 2.98V2z"/>
-        </svg>
-      </a>
-
-      <!-- WhatsApp (we'll link this to the same group) -->
-      <a class="round-icon reveal" href="https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls?mode=wwt" id="whatsappIcon" aria-label="WhatsApp" title="WhatsApp">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-          <path d="M20 4.9A11.9 11.9 0 1 0 4.9 20L3 21l1-3A11.9 11.9 0 0 0 20 4.9zM16.6 14.3c-.3-.1-1.7-.8-1.9-.9s-.5-.2-.7.2-.8.9-1 1.1-.4.2-.7.1c-.3-.1-1.1-.4-2-.9-.7-.6-1.2-1.4-1.3-1.7-.1-.3 0-.6.1-.8.1-.2.1-.3.2-.5.1-.2.0-.3 0-.5 0-.1-.7-1.7-1-2.3-.3-.6-.6-.5-.7-.5-.2 0-.4 0-.6 0s-.5.1-.7.3c-.2.1-.9.9-0.9 2.1s1 2.4 1.1 2.6c.1.2 1.9 3.1 4.5 4.2 2.9 1.1 3.2.9 3.8 0 .6-.9.6-1.7.4-1.8-.1-.2-.5-.3-.9-.5z"/>
-        </svg>
-      </a>
-
-      <!-- Email -->
-      <a class="round-icon reveal" href="mailto:REPLACE_WITH_EMAIL" id="emailIcon" aria-label="Email" title="Email">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
-        </svg>
-      </a>
-    </div>
-
-    <div class="copyright">© miamor2025 All rights reserved</div>
-  </main>
+  </div>
 
   <script>
-    // ---------- set up reveal on scroll ----------
-    (function() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            observer.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.12 });
-
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    })();
-
-    // ---------- tap-to-zoom for the main image ----------
-    (function(){
-      const imageWrap = document.getElementById('imageWrap');
-      const mainImg = document.getElementById('mainImage');
-      if (imageWrap && mainImg) {
-        let zoomTimeout = null;
-        imageWrap.addEventListener('click', () => {
-          imageWrap.classList.add('zoomed');
-          clearTimeout(zoomTimeout);
-          zoomTimeout = setTimeout(() => imageWrap.classList.remove('zoomed'), 900);
-        });
-        // support double-tap touch: extend zoom on double-tap
-        let lastTap = 0;
-        imageWrap.addEventListener('touchend', (ev) => {
-          const now = Date.now();
-          if (now - lastTap < 350) {
-            imageWrap.classList.add('zoomed');
-            clearTimeout(zoomTimeout);
-            zoomTimeout = setTimeout(() => imageWrap.classList.remove('zoomed'), 1400);
-          }
-          lastTap = now;
-        });
-      }
-    })();
-
-    // ---------- shrink animation when clicking CTA (keeps link same-tab) ----------
-    (function(){
-      const btn = document.getElementById('joinGroupBtn');
-      if (!btn) return;
-      btn.addEventListener('click', (e) => {
-        // visually animate; do NOT prevent default: open in same tab immediately
-        btn.classList.remove('shrink');
-        // force reflow then add class so it restarts
-        // eslint-disable-next-line no-unused-expressions
-        btn.offsetWidth;
-        btn.classList.add('shrink');
+    // Fade-in on scroll
+    const cards = document.querySelectorAll(".card");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
       });
-    })();
+    }, { threshold: 0.2 });
+    cards.forEach(card => observer.observe(card));
 
-    // ---------- small helper: if your image missing, show placeholder SVG ----------
-    document.querySelectorAll('img').forEach(img => {
-      img.addEventListener('error', () => {
-        img.src = "data:image/svg+xml;utf8," + encodeURIComponent(
-          '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480"><rect width="100%" height="100%" fill="#0b2340"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="22" fill="#cfe9ff">Upload images/main.jpg to your GitHub repo or change this src</text></svg>'
-        );
-      });
-    });
-
-    // ---------- keyboard accessibility for round icons ----------
-    document.querySelectorAll('.round-icon').forEach(btn => {
-      btn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') btn.click();
-      });
+    // Zoom image on click
+    const promoImg = document.getElementById("promoImg");
+    promoImg.addEventListener("click", () => {
+      promoImg.classList.add("zoomed");
+      setTimeout(() => promoImg.classList.remove("zoomed"), 2200);
     });
   </script>
 </body>
-  </html>
+          </html>
