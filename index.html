@@ -349,72 +349,62 @@
     </section>
   </div>
 
-  <script>
-    // Scroll animation
-    const cards = document.querySelectorAll('.card');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    cards.forEach(c => io.observe(c));
-
-    // Image zoom animation
-    const imgs = document.querySelectorAll('.image-box img');
-    imgs.forEach(img => {
-      img.addEventListener('click', () => {
-        img.classList.add('active');
-        setTimeout(() => img.classList.remove('active'), 300);
-      });
+   <script>
+  // Scroll animation
+  const cards = document.querySelectorAll('.card');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
     });
+  }, { threshold: 0.15 });
+  cards.forEach(c => io.observe(c));
 
-    // ✅ Updated Universal WhatsApp Deep Link
-    const whatsappGroup = "https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls";
+  // Image zoom animation
+  const imgs = document.querySelectorAll('.image-box img');
+  imgs.forEach(img => {
+    img.addEventListener('click', () => {
+      img.classList.add('active');
+      setTimeout(() => img.classList.remove('active'), 300);
+    });
+  });
 
-    function openWhatsApp() {
-      // TikTok Pixel event tracking (keep this as it is)
-      if (typeof ttq !== "undefined") {
-        ttq.track('ClickButton', { button_name: 'Join WhatsApp Group' });
-      }
+  // ✅ Silent WhatsApp Auto-Open (tries WhatsApp → Business → fallback)
+  const whatsappGroup = "https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls";
 
-      const groupCode = whatsappGroup.split("/").pop();
-      const userAgent = navigator.userAgent.toLowerCase();
-
-      // Prefer WhatsApp, fallback to Business if installed
-      const tryOpen = (scheme) => {
-        const iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.src = scheme;
-        document.body.appendChild(iframe);
-        setTimeout(() => iframe.remove(), 1500);
-      };
-
-      try {
-        if (/iphone|ipad|ipod|android/.test(userAgent)) {
-          // Try opening WhatsApp app directly
-          tryOpen(`whatsapp://chat?code=${groupCode}`);
-          // If user also has Business, try after 1s
-          setTimeout(() => tryOpen(`whatsapp-business://chat?code=${groupCode}`), 1000);
-
-          // If nothing happens after 2s, stay on site
-          setTimeout(() => {
-            alert("Please make sure WhatsApp or WhatsApp Business is installed to join the group.");
-          }, 2000);
-        } else {
-          // Desktop fallback
-          window.open("https://web.whatsapp.com/accept?code=" + groupCode, "_blank");
-        }
-      } catch (e) {
-        window.location.href = whatsappGroup;
-      }
+  function openWhatsApp() {
+    // TikTok Pixel tracking (keep if Pixel exists)
+    if (typeof ttq !== "undefined") {
+      ttq.track('ClickButton', { button_name: 'Join WhatsApp Group' });
     }
 
-    // Buttons
-    document.getElementById("joinBtn1").addEventListener("click", openWhatsApp);
-    document.getElementById("joinBtn2").addEventListener("click", openWhatsApp);
-  </script>
+    const userAgent = navigator.userAgent.toLowerCase();
+    const groupCode = whatsappGroup.split("/").pop();
+
+    if (userAgent.includes("android")) {
+      // Try normal WhatsApp first
+      window.location.href = `intent://chat.whatsapp.com/${groupCode}#Intent;scheme=https;package=com.whatsapp;end`;
+
+      // After 1s, try WhatsApp Business if WhatsApp isn't installed
+      setTimeout(() => {
+        window.location.href = `intent://chat.whatsapp.com/${groupCode}#Intent;scheme=https;package=com.whatsapp.w4b;end`;
+      }, 1000);
+    }
+    else if (userAgent.includes("iphone") || userAgent.includes("ipad")) {
+      // iPhone automatically handles installed WhatsApp
+      window.location.href = whatsappGroup;
+    }
+    else {
+      // Desktop fallback
+      window.open(whatsappGroup, "_blank");
+    }
+  }
+
+  // Buttons
+  document.getElementById("joinBtn1").addEventListener("click", openWhatsApp);
+  document.getElementById("joinBtn2").addEventListener("click", openWhatsApp);
+</script>
 </body>
 </html>
