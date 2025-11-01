@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>MiaMor | Connect, Chat & Earn</title>
 
-  <!-- TikTok Pixel Code -->
+  <!-- TikTok Pixel Code Start -->
   <script>
   !function (w, d, t) {
     w.TiktokAnalyticsObject=t;
@@ -36,6 +36,21 @@
   <!-- TikTok Pixel Code End -->
 
   <style>
+    @font-face {
+      font-family: "TimesLocal";
+      src: url("fonts/TimesNewRoman.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "RobotoLocal";
+      src: url("fonts/Roboto-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
       --blue-dark: #0c1830;
       --accent: #2fa0ff;
@@ -45,20 +60,30 @@
       --max-w: 940px;
       --radius: 24px;
     }
-    * {box-sizing:border-box;margin:0;padding:0;}
-    html,body {
-      font-family: "Roboto", sans-serif;
-      background: linear-gradient(135deg,#123364,#19437d,#123364);
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      font-family: "RobotoLocal", Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, #123364, #19437d, #123364);
       background-size: 300% 300%;
       animation: gradientMove 16s ease infinite;
-      color: var(--text);
+      scroll-behavior: smooth;
     }
+
     @keyframes gradientMove {
-      0%{background-position:0% 50%;}
-      50%{background-position:100% 50%;}
-      100%{background-position:0% 50%;}
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
-    .container {max-width:var(--max-w);margin:auto;padding:28px;}
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 28px;
+    }
+
     .card {
       background: var(--card-bg);
       border-radius: var(--radius);
@@ -67,32 +92,160 @@
       box-shadow: 0 12px 32px rgba(3,9,20,0.55);
       opacity: 0;
       transform: translateY(40px);
-      transition: all 0.9s ease;
+      transition: transform 0.9s cubic-bezier(.22,.9,.35,1), opacity 0.9s ease;
     }
-    .card.visible {opacity:1;transform:translateY(0);}
-    h1,h2{text-align:center;font-family:serif;text-transform:uppercase;margin-bottom:10px;}
-    h1{font-size:34px;text-shadow:0 0 28px rgba(25,120,255,1);}
-    h2{font-size:26px;color:var(--accent);}
-    p{font-size:20px;text-align:center;line-height:1.7;margin:10px 0 20px;}
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1, h2 {
+      font-family: "TimesLocal", serif;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 34px;
+      text-shadow: 0 0 28px rgba(25, 120, 255, 1), 0 0 10px rgba(0,0,128,0.8), 0 0 18px rgba(0,60,150,0.6);
+    }
+
+    h2 {
+      font-size: 26px;
+      color: var(--accent);
+    }
+
+    .wave {
+      display: block;
+      margin: 10px auto 24px;
+      width: 580px;
+      height: 60px;
+    }
+
+    .wave svg { width: 100%; height: 100%; }
+
+    .wave path {
+      stroke: rgba(255,255,255,0.9);
+      stroke-width: 3.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      animation: waveMotion 5s linear infinite;
+    }
+
+    @keyframes waveMotion {
+      from { transform: translateX(0); }
+      to { transform: translateX(-80px); }
+    }
+
+    p {
+      font-size: 20px;
+      line-height: 1.7;
+      text-align: center;
+      margin: 6px 0 20px;
+    }
+
+    .highlight { color: var(--accent); font-weight: 800; }
+
+    .cta-wrap { text-align: center; margin-top: 10px; }
+
     .join-btn {
-      display:inline-flex;align-items:center;justify-content:center;
-      background:linear-gradient(90deg,var(--accent),var(--accent-dark));
-      border-radius:38px;padding:20px 50px;color:#000;
-      font-weight:900;font-size:24px;text-decoration:none;
-      box-shadow:0 8px 22px rgba(0,0,0,0.28);
-      transition:transform .18s, box-shadow .18s;
-      animation:pulse 1.9s infinite ease-in-out;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      border-radius: 38px;
+      padding: 20px 50px;
+      text-decoration: none;
+      color: #000;
+      font-family: "TimesLocal", serif;
+      font-weight: 900;
+      font-size: 28px;
+      letter-spacing: 0.8px;
+      white-space: nowrap;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.28);
+      transition: transform .18s cubic-bezier(.2,.9,.2,1), box-shadow .18s ease;
+      animation: pulse 1.9s infinite ease-in-out;
     }
-    @keyframes pulse {0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
-    .join-btn:active {transform:scale(0.95);}
-    .image-box{margin-top:26px;overflow:hidden;border-radius:18px;}
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    .join-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.34);
+    }
+
+    .join-btn .btn-icon svg {
+      width: 34px;
+      height: 34px;
+      fill: currentColor;
+    }
+
+    .image-box {
+      margin-top: 26px;
+      overflow: hidden;
+      border-radius: 18px;
+      position: relative;
+    }
+
     .image-box img {
-      width:100%;transition:transform 0.25s ease;cursor:pointer;
+      display: block;
+      width: 103%;
+      max-width: none;
+      margin-left: -1.5%;
+      transition: transform 0.25s ease-out;
+      cursor: pointer;
+      animation: zoomIn 2.5s ease-in-out infinite alternate;
     }
-    .image-box img:active {transform:scale(1.05);}
-    ul{list-style:none;margin:20px 0;padding:0;}
-    li{font-size:19px;margin:10px 0;}
-    .footer{text-align:center;margin-top:24px;font-size:13px;opacity:0.8;}
+
+    @keyframes zoomIn {
+      from { transform: scale(1); }
+      to { transform: scale(1.08); }
+    }
+
+    ul { list-style: none; padding: 0; margin: 20px 0 6px; }
+    li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 19px;
+      margin: 12px 0;
+    }
+
+    li span.icon { font-size: 22px; line-height: 1; }
+
+    .big-callout {
+      text-align: center;
+      font-family: "TimesLocal", serif;
+      font-size: 21px;
+      font-weight: 800;
+      margin-top: 18px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .copyright {
+      font-size: 13px;
+      opacity: 0.85;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 520px) {
+      .join-btn { font-size: 20px; padding: 14px 26px; gap: 8px; }
+      h1 { font-size: 24px; }
+      p, li { font-size: 16px; }
+      .wave { width: 260px; height: 28px; }
+    }
   </style>
 </head>
 
@@ -102,24 +255,39 @@
     <!-- SECTION 1 -->
     <section class="card" id="section1">
       <h1>TURN YOUR NORMAL DAILY ONLINE ACTIVITIES INTO STEADY CASH OUTS</h1>
+      <span class="wave">
+        <svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 30 C15 0 45 60 75 30 C105 0 135 60 165 30 C195 0 225 60 255 30 C285 0 315 60 345 30
+          C375 0 405 60 435 30 C465 0 495 60 525 30 C555 0 585 60 615 30 C645 0 675 60 705 30
+          C735 0 765 60 795 30 C825 0 855 60 885 30 C915 0 945 60 975 30 C1005 0 1035 60 1065 30
+          C1095 0 1125 60 1155 30 C1185 0 1215 60 1245 30"/>
+        </svg>
+      </span>
 
       <p>
-        <span style="color:red">*</span>
-        Make <b style="color:var(--accent)">₦100,000 - ₦200,000</b> weekly by chatting, playing games &amp; doing simple tasks on social media!<br>
+        <span style="color:red;">*</span>
+        Make <span class="highlight">₦100,000 - ₦200,000</span> weekly by chatting, playing games &amp; doing simple tasks on social media!<br>
         📍 No experience needed!<br>
         📍 No hidden secrets!<br>
         — Just register and start earning massively.
       </p>
 
-      <div style="text-align:center;">
-        <a class="join-btn" href="#" id="joinBtn1">JOIN GROUP NOW</a>
+      <div class="cta-wrap">
+        <a class="join-btn" href="#" id="joinBtn1">
+          <span>JOIN GROUP NOW</span>
+          <span class="btn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M14 3h7v7h-2V6.41l-9.3 9.3-1.4-1.42 9.3-9.3H14V3z"/>
+              <path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/>
+            </svg>
+          </span>
+        </a>
       </div>
 
-      <div style="text-align:center;margin-top:12px;font-size:15px">
-        <span style="color:red">*</span> Only the first 100 people to join the group will have access.
+      <div style="text-align:center; margin-top:12px; font-size:15px">
+        <span style="color:red;">*</span> Only the first 100 people to join the group will have access.
       </div>
 
-      <!-- 🖼️ EDIT IMAGE NAME HERE -->
       <div class="image-box">
         <img src="hero6.jpg" alt="MiaMor Promo">
       </div>
@@ -127,62 +295,110 @@
 
     <!-- SECTION 2 -->
     <section class="card" id="section2">
-      <!-- 🖼️ EDIT IMAGE NAME HERE -->
-      <div class="image-box">
+      <div class="image-box" style="margin-top:-10px; margin-bottom:22px;">
         <img src="hero10.jpg" alt="Do Not Join">
       </div>
 
       <h2>DO NOT JOIN THIS CLASS IF:</h2>
+      <span class="wave">
+        <svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 30 C15 0 45 60 75 30 C105 0 135 60 165 30 
+          C195 0 225 60 255 30 
+          C285 0 315 60 345 30 
+          C375 0 405 60 435 30 
+          C465 0 495 60 525 30 
+          C555 0 585 60 615 30 
+          C645 0 675 60 705 30 
+          C735 0 765 60 795 30 
+          C825 0 855 60 885 30 
+          C915 0 945 60 975 30 
+          C1005 0 1035 60 1065 30 
+          C1095 0 1125 60 1155 30 
+          C1185 0 1215 60 1245 30"/>
+        </svg>
+      </span>
 
       <ul>
-        <li>📵 You are someone who does not like taking action!</li>
-        <li>📵 You are not ready to invest in yourself financially!</li>
-        <li>📵 You are someone who thinks every opportunity is a scam!</li>
-        <li>📵 You will not attend the class!</li>
+        <li><span class="icon">📵</span> You are someone who does not like taking action!</li>
+        <li><span class="icon">📵</span> You are not ready to invest in yourself financially!</li>
+        <li><span class="icon">📵</span> You are someone who thinks every opportunity is a scam!</li>
+        <li><span class="icon">📵</span> You will not attend the class!</li>
       </ul>
 
-      <p style="font-weight:700;">IF YOU ARE DIFFERENT FROM THE PERSONS ABOVE, THEN DON'T MISS THIS OPPORTUNITY ‼️</p>
+      <div class="big-callout">IF YOU ARE DIFFERENT FROM THE PERSONS ABOVE, THEN DON'T MISS THIS OPPORTUNITY ‼️</div>
 
-      <div style="text-align:center;margin-top:26px;">
-        <a class="join-btn" href="#" id="joinBtn2">JOIN GROUP NOW</a>
+      <div style="text-align:center; margin-top:26px;">
+        <a class="join-btn" href="#" id="joinBtn2">
+          <span>JOIN GROUP NOW</span>
+          <span class="btn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M14 3h7v7h-2V6.41l-9.3 9.3-1.4-1.42 9.3-9.3H14V3z"/>
+              <path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/>
+            </svg>
+          </span>
+        </a>
       </div>
 
-      <div class="footer">© MiaMor 2025. All rights reserved.</div>
+      <div style="text-align:center; margin-top:12px; font-size:15px">
+        <span style="color:red;">*</span> Only the first 100 people to join the group will have access.
+      </div>
+
+      <div class="footer">
+        <div class="copyright">© MiaMor 2025. All rights reserved.</div>
+      </div>
     </section>
   </div>
 
   <script>
-    // ======== EDIT YOUR WHATSAPP GROUP LINK HERE =========
-    const whatsappGroup = "https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls";
-    // ====================================================
-
     // Scroll animation
     const cards = document.querySelectorAll('.card');
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
       });
-    },{threshold:0.2});
-    cards.forEach(c=>io.observe(c));
+    }, { threshold: 0.15 });
+    cards.forEach(c => io.observe(c));
 
-    // Universal WhatsApp redirect
-    function openWhatsApp(){
-      ttq.track('ClickButton',{button_name:'Join WhatsApp Group'});
-      const groupID = whatsappGroup.split("/").pop();
-      const directApp = "whatsapp://chat?code=" + groupID;
-      const webLink = whatsappGroup;
+    // Image zoom animation
+    const imgs = document.querySelectorAll('.image-box img');
+    imgs.forEach(img => {
+      img.addEventListener('click', () => {
+        img.classList.add('active');
+        setTimeout(() => img.classList.remove('active'), 300);
+      });
+    });
 
-      // Try to open app directly
-      window.location.href = directApp;
+    // Universal WhatsApp deep link
+    const whatsappGroup = "https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls";
+    function openWhatsApp() {
+      ttq.track('ClickButton', { button_name: 'Join WhatsApp Group' });
 
-      // Fallback to browser version if app not installed
-      setTimeout(()=>{
-        window.location.href = webLink;
-      }, 1000);
+      try {
+        const encoded = encodeURIComponent(whatsappGroup);
+        const directScheme = "whatsapp://send?text=" + encoded;
+        const iosScheme = "whatsapp://chat?code=" + whatsappGroup.split("/").pop();
+        const userAgent = navigator.userAgent.toLowerCase();
+
+        // Try direct open
+        if (userAgent.includes("android") || userAgent.includes("iphone") || userAgent.includes("ipad")) {
+          window.location.href = directScheme;
+          setTimeout(() => {
+            window.location.href = whatsappGroup;
+          }, 800);
+        } else {
+          // Desktop fallback
+          window.open("https://web.whatsapp.com/send?text=" + encoded, "_blank");
+        }
+      } catch (e) {
+        window.location.href = whatsappGroup;
+      }
     }
 
     document.getElementById("joinBtn1").addEventListener("click", openWhatsApp);
     document.getElementById("joinBtn2").addEventListener("click", openWhatsApp);
   </script>
 </body>
-</html>
+  </html>
