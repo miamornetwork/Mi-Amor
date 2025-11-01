@@ -371,38 +371,75 @@
     });
   });
 
-  // ✅ Silent WhatsApp Auto-Open (tries WhatsApp → Business → fallback)
+  // ✅ Enhanced WhatsApp Deep Link System
   const whatsappGroup = "https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls";
+  let clickAttempts = 0;
+
+  function showPopupMessage(message) {
+    const popup = document.createElement("div");
+    popup.textContent = message;
+    popup.style.position = "fixed";
+    popup.style.bottom = "20px";
+    popup.style.left = "50%";
+    popup.style.transform = "translateX(-50%)";
+    popup.style.background = "rgba(0, 0, 0, 0.8)";
+    popup.style.color = "#fff";
+    popup.style.padding = "10px 20px";
+    popup.style.borderRadius = "25px";
+    popup.style.fontSize = "14px";
+    popup.style.zIndex = "9999";
+    popup.style.opacity = "0";
+    popup.style.transition = "opacity 0.3s ease";
+
+    document.body.appendChild(popup);
+
+    // fade in
+    setTimeout(() => popup.style.opacity = "1", 50);
+    // fade out after 3s
+    setTimeout(() => {
+      popup.style.opacity = "0";
+      setTimeout(() => popup.remove(), 400);
+    }, 3000);
+  }
 
   function openWhatsApp() {
-    // TikTok Pixel tracking (keep if Pixel exists)
+    // TikTok Pixel tracking
     if (typeof ttq !== "undefined") {
       ttq.track('ClickButton', { button_name: 'Join WhatsApp Group' });
     }
 
     const userAgent = navigator.userAgent.toLowerCase();
     const groupCode = whatsappGroup.split("/").pop();
+    let opened = false;
 
-    if (userAgent.includes("android")) {
-      // Try normal WhatsApp first
-      window.location.href = `intent://chat.whatsapp.com/${groupCode}#Intent;scheme=https;package=com.whatsapp;end`;
+    const openScheme = (scheme) => {
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.src = scheme;
+      document.body.appendChild(iframe);
+      setTimeout(() => iframe.remove(), 1000);
+    };
 
-      // After 1s, try WhatsApp Business if WhatsApp isn't installed
+    if (/iphone|ipad|ipod|android/.test(userAgent)) {
+      openScheme(`whatsapp://chat?code=${groupCode}`);
+      setTimeout(() => openScheme(`whatsapp-business://chat?code=${groupCode}`), 800);
+
+      // check fallback behavior
       setTimeout(() => {
-        window.location.href = `intent://chat.whatsapp.com/${groupCode}#Intent;scheme=https;package=com.whatsapp.w4b;end`;
-      }, 1000);
-    }
-    else if (userAgent.includes("iphone") || userAgent.includes("ipad")) {
-      // iPhone automatically handles installed WhatsApp
-      window.location.href = whatsappGroup;
-    }
-    else {
-      // Desktop fallback
+        if (!opened) {
+          clickAttempts++;
+          if (clickAttempts >= 2) {
+            showPopupMessage("No supported app found. Please install WhatsApp to continue.");
+          }
+        }
+      }, 2000);
+    } else {
+      // Desktop
       window.open(whatsappGroup, "_blank");
     }
   }
 
-  // Buttons
+  // Attach to buttons
   document.getElementById("joinBtn1").addEventListener("click", openWhatsApp);
   document.getElementById("joinBtn2").addEventListener("click", openWhatsApp);
 </script>
