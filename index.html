@@ -5,6 +5,36 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>MiaMor | Connect, Chat & Earn</title>
 
+  <!-- TikTok Pixel Code Start -->
+  <script>
+  !function (w, d, t) {
+    w.TiktokAnalyticsObject=t;
+    var ttq=w[t]=w[t]||[];
+    ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"];
+    ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}; 
+    for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]); 
+    ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e};
+    ttq.load=function(e,n){
+      var r="https://analytics.tiktok.com/i18n/pixel/events.js",
+      o=n&&n.partner;
+      ttq._i=ttq._i||{},
+      ttq._i[e]=[],
+      ttq._i[e]._u=r,
+      ttq._t=ttq._t||{},
+      ttq._t[e]=+new Date,
+      ttq._o=ttq._o||{},
+      ttq._o[e]=n||{};
+      n=document.createElement("script");
+      n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;
+      e=document.getElementsByTagName("script")[0];
+      e.parentNode.insertBefore(n,e)
+    };
+    ttq.load('D42PLD3C77UER98123O0');
+    ttq.page();
+  }(window, document, 'ttq');
+  </script>
+  <!-- TikTok Pixel Code End -->
+
   <style>
     @font-face {
       font-family: "TimesLocal";
@@ -80,7 +110,7 @@
 
     h1 {
       font-size: 34px;
-      text-shadow: 0 0 28px rgba(25, 120, 255, 1), 0 0 10px rgba(0,0,128,0.8);
+      text-shadow: 0 0 28px rgba(25, 120, 255, 1), 0 0 10px rgba(0,0,128,0.8), 0 0 18px rgba(0,60,150,0.6);
     }
 
     h2 {
@@ -92,14 +122,14 @@
       display: block;
       margin: 10px auto 24px;
       width: 580px;
-      height: 50px;
+      height: 60px;
     }
 
     .wave svg { width: 100%; height: 100%; }
 
     .wave path {
       stroke: rgba(255,255,255,0.9);
-      stroke-width: 2.8;
+      stroke-width: 3.5;
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -108,7 +138,7 @@
 
     @keyframes waveMotion {
       from { transform: translateX(0); }
-      to { transform: translateX(-60px); }
+      to { transform: translateX(-80px); }
     }
 
     p {
@@ -180,10 +210,6 @@
       to { transform: scale(1.08); }
     }
 
-    .image-box img.active {
-      transform: scale(1.12);
-    }
-
     ul { list-style: none; padding: 0; margin: 20px 0 6px; }
     li {
       display: flex;
@@ -226,15 +252,15 @@
 <body>
   <div class="container">
 
-    <!-- ===== SECTION 1 ===== -->
+    <!-- SECTION 1 -->
     <section class="card" id="section1">
       <h1>TURN YOUR NORMAL DAILY ONLINE ACTIVITIES INTO STEADY CASH OUTS</h1>
       <span class="wave">
         <svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 30 C25 5 50 55 75 30 C100 5 125 55 150 30 C175 5 200 55 225 30 C250 5 275 55 300 30 
-          C325 5 350 55 375 30 C400 5 425 55 450 30 C475 5 500 55 525 30 C550 5 575 55 600 30 
-          C625 5 650 55 675 30 C700 5 725 55 750 30 C775 5 800 55 825 30 C850 5 875 55 900 30 
-          C925 5 950 55 975 30 C1000 5 1025 55 1050 30 C1075 5 1100 55 1125 30 C1150 5 1175 55 1200 30"/>
+          <path d="M0 30 C15 0 45 60 75 30 C105 0 135 60 165 30 C195 0 225 60 255 30 C285 0 315 60 345 30
+          C375 0 405 60 435 30 C465 0 495 60 525 30 C555 0 585 60 615 30 C645 0 675 60 705 30
+          C735 0 765 60 795 30 C825 0 855 60 885 30 C915 0 945 60 975 30 C1005 0 1035 60 1065 30
+          C1095 0 1125 60 1155 30 C1185 0 1215 60 1245 30"/>
         </svg>
       </span>
 
@@ -267,7 +293,7 @@
       </div>
     </section>
 
-    <!-- ===== SECTION 2 ===== -->
+    <!-- SECTION 2 -->
     <section class="card" id="section2">
       <div class="image-box" style="margin-top:-10px; margin-bottom:22px;">
         <img src="hero10.jpg" alt="Do Not Join">
@@ -276,12 +302,11 @@
       <h2>DO NOT JOIN THIS CLASS IF:</h2>
       <span class="wave">
         <svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 30 C25 5 50 55 75 30 C100 5 125 55 150 30 C175 5 200 55 225 30 
-          C250 5 275 55 300 30 C325 5 350 55 375 30 C400 5 425 55 450 30 
-          C475 5 500 55 525 30 C550 5 575 55 600 30 C625 5 650 55 675 30 
-          C700 5 725 55 750 30 C775 5 800 55 825 30 C850 5 875 55 900 30 
-          C925 5 950 55 975 30 C1000 5 1025 55 1050 30 C1075 5 1100 55 1125 30 
-          C1150 5 1175 55 1200 30"/>
+          <path d="M0 30 C15 0 45 60 75 30 C105 0 135 60 165 30 C195 0 225 60 255 30 
+          C285 0 315 60 345 30 C375 0 405 60 435 30 C465 0 495 60 525 30 
+          C555 0 585 60 615 30 C645 0 675 60 705 30 C735 0 765 60 795 30 
+          C825 0 855 60 885 30 C915 0 945 60 975 30 C1005 0 1035 60 1065 30 
+          C1095 0 1125 60 1155 30 C1185 0 1215 60 1245 30"/>
         </svg>
       </span>
 
@@ -317,7 +342,7 @@
   </div>
 
   <script>
-    // Scroll animation for cards
+    // Scroll animation
     const cards = document.querySelectorAll('.card');
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -338,14 +363,14 @@
       });
     });
 
-    // WhatsApp deep link for Android + iPhone
+    // WhatsApp deep link
     const whatsappGroup = "https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls";
-
     function openWhatsApp() {
+      ttq.track('ClickButton', { button_name: 'Join WhatsApp Group' }); // TikTok click tracking
+
       const userAgent = navigator.userAgent.toLowerCase();
       if (userAgent.includes('android')) {
-        window.location.href =
-          "intent://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls#Intent;scheme=https;package=com.whatsapp;end";
+        window.location.href = "intent://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls#Intent;scheme=https;package=com.whatsapp;end";
       } else if (userAgent.includes('iphone') || userAgent.includes('ipad') || userAgent.includes('ipod')) {
         window.location.href = whatsappGroup;
       } else {
@@ -357,4 +382,4 @@
     document.getElementById("joinBtn2").addEventListener("click", openWhatsApp);
   </script>
 </body>
-            </html>
+          </html>
