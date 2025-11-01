@@ -371,34 +371,50 @@
       });
     });
 
-    // Universal WhatsApp deep link
+    // ✅ Updated Universal WhatsApp Deep Link
     const whatsappGroup = "https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls";
+
     function openWhatsApp() {
-      ttq.track('ClickButton', { button_name: 'Join WhatsApp Group' });
+      // TikTok Pixel event tracking (keep this as it is)
+      if (typeof ttq !== "undefined") {
+        ttq.track('ClickButton', { button_name: 'Join WhatsApp Group' });
+      }
+
+      const groupCode = whatsappGroup.split("/").pop();
+      const userAgent = navigator.userAgent.toLowerCase();
+
+      // Prefer WhatsApp, fallback to Business if installed
+      const tryOpen = (scheme) => {
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = scheme;
+        document.body.appendChild(iframe);
+        setTimeout(() => iframe.remove(), 1500);
+      };
 
       try {
-        const encoded = encodeURIComponent(whatsappGroup);
-        const directScheme = "whatsapp://send?text=" + encoded;
-        const iosScheme = "whatsapp://chat?code=" + whatsappGroup.split("/").pop();
-        const userAgent = navigator.userAgent.toLowerCase();
+        if (/iphone|ipad|ipod|android/.test(userAgent)) {
+          // Try opening WhatsApp app directly
+          tryOpen(`whatsapp://chat?code=${groupCode}`);
+          // If user also has Business, try after 1s
+          setTimeout(() => tryOpen(`whatsapp-business://chat?code=${groupCode}`), 1000);
 
-        // Try direct open
-        if (userAgent.includes("android") || userAgent.includes("iphone") || userAgent.includes("ipad")) {
-          window.location.href = directScheme;
+          // If nothing happens after 2s, stay on site
           setTimeout(() => {
-            window.location.href = whatsappGroup;
-          }, 800);
+            alert("Please make sure WhatsApp or WhatsApp Business is installed to join the group.");
+          }, 2000);
         } else {
           // Desktop fallback
-          window.open("https://web.whatsapp.com/send?text=" + encoded, "_blank");
+          window.open("https://web.whatsapp.com/accept?code=" + groupCode, "_blank");
         }
       } catch (e) {
         window.location.href = whatsappGroup;
       }
     }
 
+    // Buttons
     document.getElementById("joinBtn1").addEventListener("click", openWhatsApp);
     document.getElementById("joinBtn2").addEventListener("click", openWhatsApp);
   </script>
 </body>
-  </html>
+</html>
