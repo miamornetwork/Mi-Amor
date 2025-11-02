@@ -371,77 +371,57 @@
     });
   });
 
-  // ✅ Enhanced WhatsApp Deep Link System
+  // ✅ Enhanced WhatsApp Deep Link System with TikTok browser redirect
   const whatsappGroup = "https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls";
-  let clickAttempts = 0;
 
-  function showPopupMessage(message) {
-    const popup = document.createElement("div");
-    popup.textContent = message;
-    popup.style.position = "fixed";
-    popup.style.bottom = "20px";
-    popup.style.left = "50%";
-    popup.style.transform = "translateX(-50%)";
-    popup.style.background = "rgba(0, 0, 0, 0.8)";
-    popup.style.color = "#fff";
-    popup.style.padding = "10px 20px";
-    popup.style.borderRadius = "25px";
-    popup.style.fontSize = "14px";
-    popup.style.zIndex = "9999";
-    popup.style.opacity = "0";
-    popup.style.transition = "opacity 0.3s ease";
-
-    document.body.appendChild(popup);
-
-    // fade in
-    setTimeout(() => popup.style.opacity = "1", 50);
-    // fade out after 3s
-    setTimeout(() => {
-      popup.style.opacity = "0";
-      setTimeout(() => popup.remove(), 400);
-    }, 3000);
+  function isTikTokBrowser() {
+    return /tiktok/i.test(navigator.userAgent);
   }
 
   function openWhatsApp() {
-    // TikTok Pixel tracking
+    // Track pixel event
     if (typeof ttq !== "undefined") {
       ttq.track('ClickButton', { button_name: 'Join WhatsApp Group' });
     }
 
     const userAgent = navigator.userAgent.toLowerCase();
     const groupCode = whatsappGroup.split("/").pop();
-    let opened = false;
 
-    const openScheme = (scheme) => {
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.src = scheme;
-      document.body.appendChild(iframe);
-      setTimeout(() => iframe.remove(), 1000);
-    };
+    // ✅ If inside TikTok browser — open this same page in external browser
+    if (isTikTokBrowser()) {
+      const currentUrl = window.location.href;
+      const encoded = encodeURIComponent(currentUrl + "?go=whatsapp");
+      window.location.href = `https://www.google.com/url?q=${encoded}`;
+      return;
+    }
 
-    if (/iphone|ipad|ipod|android/.test(userAgent)) {
-      openScheme(`whatsapp://chat?code=${groupCode}`);
-      setTimeout(() => openScheme(`whatsapp-business://chat?code=${groupCode}`), 800);
-
-      // check fallback behavior
+    // ✅ If page reloaded externally with "?go=whatsapp" → open WhatsApp link
+    if (window.location.search.includes("go=whatsapp")) {
       setTimeout(() => {
-        if (!opened) {
-          clickAttempts++;
-          if (clickAttempts >= 2) {
-            showPopupMessage("No supported app found. Please install WhatsApp to continue.");
-          }
+        if (/android/.test(userAgent)) {
+          window.location.href = `intent://chat.whatsapp.com/${groupCode}#Intent;scheme=https;package=com.whatsapp;end`;
+        } else if (/iphone|ipad|ipod/.test(userAgent)) {
+          window.location.href = whatsappGroup;
+        } else {
+          window.open(whatsappGroup, "_blank");
         }
-      }, 2000);
+      }, 600);
+      return;
+    }
+
+    // ✅ Normal direct open if not in TikTok
+    if (/android/.test(userAgent)) {
+      window.location.href = `intent://chat.whatsapp.com/${groupCode}#Intent;scheme=https;package=com.whatsapp;end`;
+    } else if (/iphone|ipad|ipod/.test(userAgent)) {
+      window.location.href = whatsappGroup;
     } else {
-      // Desktop
       window.open(whatsappGroup, "_blank");
     }
   }
 
-  // Attach to buttons
+  // Attach events
   document.getElementById("joinBtn1").addEventListener("click", openWhatsApp);
   document.getElementById("joinBtn2").addEventListener("click", openWhatsApp);
-</script>
-</body>
-</html>
+   </script>
+   </body>
+       </html>
