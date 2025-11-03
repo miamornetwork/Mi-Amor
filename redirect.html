@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Please follow the introduction to continue</title>
+  <title>Please follow the instructions to continue</title></title>
   <style>
     :root {
       --bg-light: #ffffff;
@@ -35,9 +35,7 @@
         background-color: var(--bg-dark);
         color: var(--text-dark);
       }
-      .sub {
-        color: var(--sub-dark);
-      }
+      .sub { color: var(--sub-dark); }
     }
 
     h1 {
@@ -55,7 +53,7 @@
     }
 
     .arrow {
-      position: absolute;
+      position: fixed;
       top: 14px;
       right: 26px;
       width: 32px;
@@ -73,18 +71,26 @@
 
     #instruction {
       display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100%;
     }
   </style>
 </head>
 <body>
   <div id="instruction">
-    <svg class="arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4l8 8m0 0l-8 8m8-8H4" />
+    <svg class="arrow" xmlns="http://www.w3.org/2000/svg" fill="none"
+         viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 4l8 8m0 0l-8 8m8-8H4" />
     </svg>
 
-    <h1>Please Tap the three dots at the top-right corner,<br>then choose <strong>“Open in Browser”</strong> to continue.</h1>
+    <h1>Please tap the three dots at the top-right corner,<br>
+      then choose <strong>“Open in Browser”</strong> to continue.</h1>
     <p class="sub">This step is only for iPhone users.  
-    iOS prevents direct redirects — if you open the link inside TikTok, it may take you to the App Store instead of WhatsApp.</p>
+      iOS prevents direct redirects — if you open the link inside TikTok, it may take you to the App Store instead of WhatsApp.</p>
   </div>
 
   <script>
@@ -93,18 +99,17 @@
     const isTikTok = /tiktok/i.test(userAgent);
     const landingPage = "https://miamornetwork.github.io/Mi-Amor/";
 
-    if (!isIOS) {
-      // Android or other — open landing page directly
-      window.location.href = landingPage;
-    } else {
-      // iPhone
+    if (isIOS) {
       if (isTikTok) {
-        // Inside TikTok browser — show instruction
+        // Inside TikTok on iPhone → show the full instruction screen
         document.getElementById('instruction').style.display = 'flex';
       } else {
-        // Already in Safari or normal browser — open landing page
-        window.location.href = landingPage;
+        // Already in Safari or any external browser → open landing page
+        window.location.replace(landingPage);
       }
+    } else {
+      // Android or others → go directly
+      window.location.replace(landingPage);
     }
   </script>
 </body>
