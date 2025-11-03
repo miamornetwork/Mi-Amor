@@ -3,24 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirecting...</title>
+  <title>Open in Browser</title>
+  <style>
+    body {
+      background-color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      padding: 20px;
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    p {
+      font-size: 15px;
+      color: #666;
+      line-height: 1.4;
+      margin-bottom: 24px;
+      max-width: 300px;
+    }
+    a {
+      display: inline-block;
+      background-color: #007aff;
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: background 0.2s ease-in-out;
+    }
+    a:active {
+      background-color: #005ecb;
+    }
+    small {
+      color: #999;
+      font-size: 13px;
+      margin-top: 24px;
+    }
+  </style>
   <script>
-    // Detect if user is on iPhone or iPad
+    const landingPage = "https://miamornetwork.github.io/Mi-Amor/";
     const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-    // Your real landing page link
-    const landingPage = "https://miamornetwork.github.io/Mi-Amor/";
-
-    if (isIOS) {
-      // Try to open Safari or default browser
-      window.location.href = "https://www.google.com/search?q=" + encodeURIComponent(landingPage);
-    } else {
-      // Android users just go straight to landing page (in TikTok browser)
+    if (!isIOS) {
+      // Android → go straight to landing page
       window.location.href = landingPage;
+    } else {
+      // Detect possible default browser names for iOS
+      let browserName = "Safari";
+      const ua = navigator.userAgent.toLowerCase();
+
+      if (ua.includes("crios")) browserName = "Chrome";
+      else if (ua.includes("fxios")) browserName = "Firefox";
+      else if (ua.includes("edgios")) browserName = "Edge";
+      else if (ua.includes("opr")) browserName = "Opera";
+
+      window.onload = () => {
+        document.getElementById("browserName").textContent = browserName;
+      };
     }
   </script>
 </head>
 <body>
-  <p>Redirecting, please wait...</p>
+  <h2>Open in your browser</h2>
+  <p>To continue, please tap the button below to open this page in <span id="browserName">your browser</span>.</p>
+  <a href="https://miamornetwork.github.io/Mi-Amor/" target="_blank">Open in <span id="browserName">Safari</span></a>
+  <small>If nothing happens, please copy the link and open it manually.</small>
 </body>
-</html>
+  </html>
