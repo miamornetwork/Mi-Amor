@@ -362,7 +362,7 @@
   }, { threshold: 0.15 });
   cards.forEach(c => io.observe(c));
 
-  // Image zoom animation
+  // Image click pulse
   const imgs = document.querySelectorAll('.image-box img');
   imgs.forEach(img => {
     img.addEventListener('click', () => {
@@ -371,7 +371,7 @@
     });
   });
 
-  // ✅ Enhanced WhatsApp Deep Link System with TikTok browser redirect
+  // ✅ Improved WhatsApp Deep Link Logic
   const whatsappGroup = "https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls";
 
   function isTikTokBrowser() {
@@ -379,7 +379,6 @@
   }
 
   function openWhatsApp() {
-    // Track pixel event
     if (typeof ttq !== "undefined") {
       ttq.track('ClickButton', { button_name: 'Join WhatsApp Group' });
     }
@@ -387,22 +386,33 @@
     const userAgent = navigator.userAgent.toLowerCase();
     const groupCode = whatsappGroup.split("/").pop();
 
-    // ✅ If inside TikTok browser — open this same page in external browser
-    if (isTikTokBrowser()) {
-      const currentUrl = window.location.href;
-      const encoded = encodeURIComponent(currentUrl + "?go=whatsapp");
+    // If opened from TikTok in-app browser on iPhone
+    if (isTikTokBrowser() && /iphone|ipad|ipod/.test(userAgent)) {
+      // Try to force open in Safari
+      const safariURL = "x-web-search://" + encodeURIComponent(window.location.href + "?go=whatsapp");
+      window.location.href = safariURL;
+
+      // Fallback if x-web-search fails
+      setTimeout(() => {
+        window.location.href = "https://www.google.com/search?q=" + encodeURIComponent(window.location.href + "?go=whatsapp");
+      }, 1500);
+      return;
+    }
+
+    // If opened from TikTok on Android
+    if (isTikTokBrowser() && /android/.test(userAgent)) {
+      const encoded = encodeURIComponent(window.location.href + "?go=whatsapp");
       window.location.href = `https://www.google.com/url?q=${encoded}`;
       return;
     }
 
-    // ✅ If page reloaded externally with "?go=whatsapp" → open WhatsApp link
+    // If page reloaded externally with ?go=whatsapp, then finally open the WhatsApp link
     if (window.location.search.includes("go=whatsapp")) {
       setTimeout(() => {
         if (/android/.test(userAgent)) {
           window.location.href = `intent://chat.whatsapp.com/${groupCode}#Intent;scheme=https;package=com.whatsapp;end`;
         } else if (/iphone|ipad|ipod/.test(userAgent)) {
-          const encoded = encodeURIComponent(whatsappGroup);
-          window.location.href = `https://www.google.com/url?q=${encoded}`;
+          window.location.href = whatsappGroup;
         } else {
           window.open(whatsappGroup, "_blank");
         }
@@ -410,20 +420,18 @@
       return;
     }
 
-    // ✅ Normal direct open if not in TikTok
+    // Otherwise, normal behavior
     if (/android/.test(userAgent)) {
       window.location.href = `intent://chat.whatsapp.com/${groupCode}#Intent;scheme=https;package=com.whatsapp;end`;
     } else if (/iphone|ipad|ipod/.test(userAgent)) {
-      const encoded = encodeURIComponent(whatsappGroup);
-      window.location.href = `https://www.google.com/url?q=${encoded}`;
+      window.location.href = whatsappGroup;
     } else {
       window.open(whatsappGroup, "_blank");
     }
   }
 
-  // Attach events
   document.getElementById("joinBtn1").addEventListener("click", openWhatsApp);
   document.getElementById("joinBtn2").addEventListener("click", openWhatsApp);
    </script>
-</body>
-</html>
+    </body>
+     </html>
