@@ -411,13 +411,14 @@
 
     // ✅ Normal direct open if not in TikTok
     if (/android/.test(userAgent)) {
-      window.location.href = `intent://chat.whatsapp.com/${groupCode}#Intent;scheme=https;package=com.whatsapp;end`;
-    } else if (/iphone|ipad|ipod/.test(userAgent)) {
-      window.location.href = whatsappGroup;
-    } else {
-      window.open(whatsappGroup, "_blank");
-    }
-  }
+  window.location.href = `intent://chat.whatsapp.com/${groupCode}#Intent;scheme=https;package=com.whatsapp;end`;
+} else if (/iphone|ipad|ipod/.test(userAgent)) {
+  // Try to open in Safari or any default browser
+  const encoded = encodeURIComponent(whatsappGroup);
+  window.location.href = `https://www.google.com/url?q=${encoded}`;
+} else {
+  window.open(whatsappGroup, "_blank");
+     }
 
   // Attach events
   document.getElementById("joinBtn1").addEventListener("click", openWhatsApp);
