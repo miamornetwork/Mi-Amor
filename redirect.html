@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting...</title>
+  <script>
+    // Detect if user is on iPhone or iPad
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    // Your real landing page link
+    const landingPage = "https://miamornetwork.github.io/Mi-Amor/";
+
+    if (isIOS) {
+      // Try to open Safari or default browser
+      window.location.href = "https://www.google.com/search?q=" + encodeURIComponent(landingPage);
+    } else {
+      // Android users just go straight to landing page (in TikTok browser)
+      window.location.href = landingPage;
+    }
+  </script>
+</head>
+<body>
+  <p>Redirecting, please wait...</p>
+</body>
+</html>
