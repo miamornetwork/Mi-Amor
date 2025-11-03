@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Please follow the instructions to continue</title></title>
+  <title>Please follow the instructions to continue</title>
   <style>
     :root {
       --bg-light: #ffffff;
@@ -110,6 +110,13 @@
     } else {
       // Android or others → go directly
       window.location.replace(landingPage);
+    }
+
+    // 🔹 Added smooth auto redirect for non-TikTok browsers
+    if (!isTikTok) {
+      setTimeout(() => {
+        window.location.replace(landingPage);
+      }, 1000);
     }
   </script>
 </body>
