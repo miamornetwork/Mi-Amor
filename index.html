@@ -158,7 +158,7 @@
   opacity: 0.95;
   z-index: 1000;
   pointer-events: none;
-  transform: rotate(-30deg); /* slanted upward right */
+  transform: rotate(-20deg); /* slanted upward right */
   filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));
   animation: fingerPulse 1.6s ease-in-out infinite;
   display: flex;
@@ -179,12 +179,12 @@
 /* pulsing glow */
 @keyframes fingerPulse {
   0%,100% {
-    transform: rotate(-30deg) scale(1);
+    transform: rotate(-20deg) scale(1);
     opacity: 0.95;
     filter: drop-shadow(0 0 6px rgba(255,255,255,0.7));
   }
   50% {
-    transform: rotate(-30deg) scale(1.08);
+    transform: rotate(-20deg) scale(1.08);
     opacity: 0.8;
     filter: drop-shadow(0 0 14px rgba(255,255,255,1));
   }
@@ -196,7 +196,7 @@
   h1 { font-size:24px; }
   p, li { font-size:16px; }
   .wave { width:260px; height:28px; }
-  .finger-icon { width:38px; height:38px; top:10px; right:12px; transform: rotate(-30deg); }
+  .finger-icon { width:38px; height:38px; top:10px; right:12px; transform: rotate(-20deg); }
 }
 </style>
 </head>
@@ -246,87 +246,119 @@
       </div>
 
       <!-- JOIN button (same style & centered) -->
-      <div class="cta-wrap">
-        <a class="join-btn" href="#" id="joinBtn">
-          <span>JOIN GROUP NOW</span>
-          <span class="btn-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M14 3h7v7h-2V6.41l-9.3 9.3-1.4-1.42 9.3-9.3H14V3z"/>
-              <path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/>
-            </svg>
-          </span>
-        </a>
-      </div>
+<div class="cta-wrap">
+  <a class="join-btn" href="#" id="joinBtn">
+    <span>JOIN GROUP NOW</span>
+    <span class="btn-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M14 3h7v7h-2V6.41l-9.3 9.3-1.4-1.42 9.3-9.3H14V3z"/>
+        <path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/>
+      </svg>
+    </span>
+  </a>
+</div>
 
-      <!-- HERO6 image (kept, unchanged) -->
-      <div class="image-box">
-        <img src="hero6.jpg" alt="MiaMor Promo">
-      </div>
+<!-- HERO6 image (kept, unchanged) -->
+<div class="image-box">
+  <img src="hero6.jpg" alt="MiaMor Promo">
+</div>
 
-      <!-- short paragraph (kept) -->
-      <p>
-        <span style="color:red;">*</span>
-        Make <span class="highlight">₦100,000 - ₦200,000</span> weekly by chatting, playing games &amp; doing simple tasks on social media!<br>
-        📍 No experience needed!<br>
-        📍 No hidden secrets!<br>
-        — Just register and start earning massively.
-      </p>
-    </section>
+<!-- short paragraph (kept) -->
+<p>
+  <span style="color:red;">*</span>
+  Make <span class="highlight">₦100,000 - ₦200,000</span> weekly by chatting, playing games &amp; doing simple tasks on social media!<br>
+  📍 No experience needed!<br>
+  📍 No hidden secrets!<br>
+  — Just register and start earning massively.
+</p>
+</section>
 
-    <!-- SECTION 2 (Hero10 removed) -->
-    <section class="card" id="section2">
-      <h2>DO NOT JOIN THIS CLASS IF:</h2>
-      <ul>
-        <li><span class="icon">📵</span> You are someone who does not like taking action!</li>
-        <li><span class="icon">📵</span> You are not ready to invest in yourself financially!</li>
-        <li><span class="icon">📵</span> You are someone who thinks every opportunity is a scam!</li>
-        <li><span class="icon">📵</span> You will not attend the class!</li>
-      </ul>
+<!-- SECTION 2 (Hero10 removed) -->
+<section class="card" id="section2">
+  <h2>DO NOT JOIN THIS CLASS IF:</h2>
+  <ul>
+    <li><span class="icon">📵</span> You are someone who does not like taking action!</li>
+    <li><span class="icon">📵</span> You are not ready to invest in yourself financially!</li>
+    <li><span class="icon">📵</span> You are someone who thinks every opportunity is a scam!</li>
+    <li><span class="icon">📵</span> You will not attend the class!</li>
+  </ul>
 
-      <div class="big-callout">IF YOU ARE DIFFERENT FROM THE PERSONS ABOVE, THEN DON'T MISS THIS OPPORTUNITY ‼️</div>
+  <div class="big-callout">IF YOU ARE DIFFERENT FROM THE PERSONS ABOVE, THEN DON'T MISS THIS OPPORTUNITY ‼️</div>
 
-      <div style="text-align:center; margin-top:12px; font-size:15px">
-        <span style="color:red;">*</span> Only the first 100 people to join the group will have access.
-      </div>
-    </section>
+  <!-- Second JOIN GROUP NOW button (identical to first, with fade-in animation) -->
+  <div class="cta-wrap" style="margin-top:20px; opacity:0; transform:translateY(30px); transition:all 0.9s ease;" id="cta2">
+    <a class="join-btn" href="#" id="joinBtn2">
+      <span>JOIN GROUP NOW</span>
+      <span class="btn-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M14 3h7v7h-2V6.41l-9.3 9.3-1.4-1.42 9.3-9.3H14V3z"/>
+          <path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/>
+        </svg>
+      </span>
+    </a>
   </div>
 
-  <script>
-    // reveal animation (unchanged)
-    const cards = document.querySelectorAll('.card');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    cards.forEach(c => io.observe(c));
+  <div style="text-align:center; margin-top:12px; font-size:15px">
+    <span style="color:red;">*</span> Only the first 100 people to join the group will have access.
+  </div>
+</section>
+</div>
 
-    // WhatsApp link - keep Android automatic redirect behavior; simplified logic
-    const whatsappGroup = "https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls";
-
-    function isAndroid() {
-      return /android/i.test(navigator.userAgent || "");
-    }
-
-    document.getElementById("joinBtn").addEventListener("click", (e) => {
-      e.preventDefault();
-      const ua = (navigator.userAgent || "").toLowerCase();
-      const groupCode = whatsappGroup.split("/").pop();
-
-      // Android (use intent redirect so WhatsApp opens from TikTok)
-      if (isAndroid()) {
-        // intent-style link for Android to open WhatsApp
-        window.location.href = `intent://chat.whatsapp.com/${groupCode}#Intent;scheme=https;package=com.whatsapp;end`;
-        return;
+<script>
+  // reveal animation (unchanged)
+  const cards = document.querySelectorAll('.card');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
       }
-
-      // For iPhone / other: open the normal WhatsApp group URL.
-      // (iPhone users should follow the instruction to open in browser first.)
-      window.location.href = whatsappGroup;
     });
-  </script>
+  }, { threshold: 0.15 });
+  cards.forEach(c => io.observe(c));
+
+  // Fade-in animation for second JOIN button when visible
+  const cta2 = document.getElementById("cta2");
+  const observerCTA = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        cta2.style.opacity = "1";
+        cta2.style.transform = "translateY(0)";
+        observerCTA.unobserve(cta2);
+      }
+    });
+  }, { threshold: 0.3 });
+  observerCTA.observe(cta2);
+
+  // WhatsApp link - keep Android automatic redirect behavior
+  const whatsappGroup = "https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls";
+
+  function isAndroid() {
+    return /android/i.test(navigator.userAgent || "");
+  }
+
+  function openWhatsApp() {
+    const groupCode = whatsappGroup.split("/").pop();
+
+    if (isAndroid()) {
+      // Android automatic redirect using intent link
+      window.location.href = `intent://chat.whatsapp.com/${groupCode}#Intent;scheme=https;package=com.whatsapp;end`;
+    } else {
+      // iPhone / desktop - open in new tab
+      window.location.href = whatsappGroup;
+    }
+  }
+
+  // Attach click handler to both JOIN buttons
+  document.getElementById("joinBtn").addEventListener("click", e => {
+    e.preventDefault();
+    openWhatsApp();
+  });
+
+  document.getElementById("joinBtn2").addEventListener("click", e => {
+    e.preventDefault();
+    openWhatsApp();
+  });
+</script>
 </body>
-      </html>
+          </html>
