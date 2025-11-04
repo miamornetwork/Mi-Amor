@@ -158,7 +158,7 @@
   opacity: 0.95;
   z-index: 1000;
   pointer-events: none;
-  transform: rotate(-45deg); /* slanted upward right */
+  transform: rotate(-25deg); /* slanted upward right */
   filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));
   animation: fingerPulse 1.6s ease-in-out infinite;
   display: flex;
@@ -179,12 +179,12 @@
 /* pulsing glow */
 @keyframes fingerPulse {
   0%,100% {
-    transform: rotate(-45deg) scale(1);
+    transform: rotate(-25deg) scale(1);
     opacity: 0.95;
     filter: drop-shadow(0 0 6px rgba(255,255,255,0.7));
   }
   50% {
-    transform: rotate(-45deg) scale(1.08);
+    transform: rotate(-25deg) scale(1.08);
     opacity: 0.8;
     filter: drop-shadow(0 0 14px rgba(255,255,255,1));
   }
