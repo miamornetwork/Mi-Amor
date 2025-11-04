@@ -5,326 +5,119 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>MiaMor | Connect, Chat & Earn</title>
 
-  <!-- TikTok Pixel Code Start -->
+  <!-- TikTok Pixel Code -->
   <script>
-  !function (w, d, t) {
+  !function(w,d,t){
     w.TiktokAnalyticsObject=t;
     var ttq=w[t]=w[t]||[];
     ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"];
     ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}; 
     for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]); 
     ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e};
-    ttq.load=function(e,n){
-      var r="https://analytics.tiktok.com/i18n/pixel/events.js",
-      o=n&&n.partner;
-      ttq._i=ttq._i||{},
-      ttq._i[e]=[],
-      ttq._i[e]._u=r,
-      ttq._t=ttq._t||{},
-      ttq._t[e]=+new Date,
-      ttq._o=ttq._o||{},
-      ttq._o[e]=n||{};
-      n=document.createElement("script");
-      n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;
-      e=document.getElementsByTagName("script")[0];
-      e.parentNode.insertBefore(n,e)
+    ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js";
+      o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,
+      ttq._o=ttq._o||{},ttq._o[e]=n||{},n=document.createElement("script"),
+      n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t,
+      e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)
     };
     ttq.load('D42PLD3C77UER98123O0');
     ttq.page();
-  }(window, document, 'ttq');
+  }(window,document,'ttq');
   </script>
-  <!-- TikTok Pixel Code End -->
 
   <style>
-    @font-face {
-      font-family: "TimesLocal";
-      src: url("fonts/TimesNewRoman.ttf") format("truetype");
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: "RobotoLocal";
-      src: url("fonts/Roboto-Regular.ttf") format("truetype");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    :root {
-      --blue-dark: #0c1830;
-      --accent: #2fa0ff;
-      --accent-dark: #0f7ad6;
-      --card-bg: rgba(10, 25, 45, 0.95);
-      --text: #ffffff;
-      --max-w: 940px;
-      --radius: 24px;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      height: 100%;
-      font-family: "RobotoLocal", Arial, sans-serif;
-      color: var(--text);
-      background: linear-gradient(135deg, #123364, #19437d, #123364);
-      background-size: 300% 300%;
-      animation: gradientMove 16s ease infinite;
-      scroll-behavior: smooth;
-    }
-
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .container {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 28px;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 44px 30px;
-      margin-bottom: 34px;
-      box-shadow: 0 12px 32px rgba(3,9,20,0.55);
-      opacity: 0;
-      transform: translateY(40px);
-      transition: transform 0.9s cubic-bezier(.22,.9,.35,1), opacity 0.9s ease;
-    }
-
-    .card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    h1, h2 {
-      font-family: "TimesLocal", serif;
-      text-transform: uppercase;
-      text-align: center;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      font-size: 34px;
-      text-shadow: 0 0 28px rgba(25, 120, 255, 1), 0 0 10px rgba(0,0,128,0.8), 0 0 18px rgba(0,60,150,0.6);
-    }
-
-    h2 {
-      font-size: 26px;
-      color: var(--accent);
-    }
-
-    .wave {
-      display: block;
-      margin: 10px auto 24px;
-      width: 580px;
-      height: 60px;
-    }
-
-    .wave svg { width: 100%; height: 100%; }
-
-    .wave path {
-      stroke: rgba(255,255,255,0.9);
-      stroke-width: 3.5;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      animation: waveMotion 5s linear infinite;
-    }
-
-    @keyframes waveMotion {
-      from { transform: translateX(0); }
-      to { transform: translateX(-80px); }
-    }
-
-    p {
-      font-size: 20px;
-      line-height: 1.7;
-      text-align: center;
-      margin: 6px 0 20px;
-    }
-
-    .highlight { color: var(--accent); font-weight: 800; }
-
-    .cta-wrap { text-align: center; margin-top: 10px; }
-
-    .join-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
-      border-radius: 38px;
-      padding: 20px 50px;
-      text-decoration: none;
-      color: #000;
-      font-family: "TimesLocal", serif;
-      font-weight: 900;
-      font-size: 28px;
-      letter-spacing: 0.8px;
-      white-space: nowrap;
-      box-shadow: 0 8px 22px rgba(0,0,0,0.28);
-      transition: transform .18s cubic-bezier(.2,.9,.2,1), box-shadow .18s ease;
-      animation: pulse 1.9s infinite ease-in-out;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-    }
-
-    .join-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.34);
-    }
-
-    .join-btn .btn-icon svg {
-      width: 34px;
-      height: 34px;
-      fill: currentColor;
-    }
-
-    .image-box {
-      margin-top: 26px;
-      overflow: hidden;
-      border-radius: 18px;
-      position: relative;
-    }
-
-    .image-box img {
-      display: block;
-      width: 103%;
-      max-width: none;
-      margin-left: -1.5%;
-      transition: transform 0.25s ease-out;
-      cursor: pointer;
-      animation: zoomIn 2.5s ease-in-out infinite alternate;
-    }
-
-    @keyframes zoomIn {
-      from { transform: scale(1); }
-      to { transform: scale(1.08); }
-    }
-
-    ul { list-style: none; padding: 0; margin: 20px 0 6px; }
-    li {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      font-size: 19px;
-      margin: 12px 0;
-    }
-
-    li span.icon { font-size: 22px; line-height: 1; }
-
-    .big-callout {
-      text-align: center;
-      font-family: "TimesLocal", serif;
-      font-size: 21px;
-      font-weight: 800;
-      margin-top: 18px;
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 24px;
-    }
-
-    .copyright {
-      font-size: 13px;
-      opacity: 0.85;
-      margin-top: 8px;
-    }
-
-    @media (max-width: 520px) {
-      .join-btn { font-size: 20px; padding: 14px 26px; gap: 8px; }
-      h1 { font-size: 24px; }
-      p, li { font-size: 16px; }
-      .wave { width: 260px; height: 28px; }
-    }
-
-  /*=== popup arrow animation === */
-@keyframes pulseArrow {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.3); opacity: 0.6; }
-  100% { transform: scale(1); opacity: 1; }
-  }
+    /* Fonts and colors */
+    @font-face{font-family:"TimesLocal";src:url("fonts/TimesNewRoman.ttf") format("truetype");font-weight:700;}
+    @font-face{font-family:"RobotoLocal";src:url("fonts/Roboto-Regular.ttf") format("truetype");font-weight:400;}
+    :root{--blue-dark:#0c1830;--accent:#2fa0ff;--accent-dark:#0f7ad6;--card-bg:rgba(10,25,45,0.95);--text:#fff;--radius:24px;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html,body{height:100%;font-family:"RobotoLocal",Arial,sans-serif;color:var(--text);
+      background:linear-gradient(135deg,#123364,#19437d,#123364);
+      background-size:300% 300%;animation:gradientMove 16s ease infinite;scroll-behavior:smooth;}
+    @keyframes gradientMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    .container{max-width:940px;margin:0 auto;padding:28px;}
+    .card{background:var(--card-bg);border-radius:var(--radius);padding:44px 30px;margin-bottom:34px;
+      box-shadow:0 12px 32px rgba(3,9,20,0.55);opacity:0;transform:translateY(40px);
+      transition:transform .9s cubic-bezier(.22,.9,.35,1),opacity .9s ease;}
+    .card.visible{opacity:1;transform:translateY(0);}
+    h1,h2{font-family:"TimesLocal",serif;text-transform:uppercase;text-align:center;letter-spacing:2px;margin-bottom:10px;}
+    h1{font-size:34px;text-shadow:0 0 28px rgba(25,120,255,1),0 0 10px rgba(0,0,128,.8),0 0 18px rgba(0,60,150,.6);}
+    h2{font-size:26px;color:var(--accent);}
+    p{font-size:20px;line-height:1.7;text-align:center;margin:6px 0 20px;}
+    .highlight{color:var(--accent);font-weight:800;}
+    .cta-wrap{text-align:center;margin-top:10px;}
+    .join-btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-dark));border-radius:38px;
+      padding:20px 50px;text-decoration:none;color:#000;font-family:"TimesLocal",serif;font-weight:900;
+      font-size:28px;letter-spacing:.8px;white-space:nowrap;box-shadow:0 8px 22px rgba(0,0,0,.28);
+      transition:transform .18s cubic-bezier(.2,.9,.2,1),box-shadow .18s ease;animation:pulse 1.9s infinite ease-in-out;}
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+    .join-btn:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.34);}
+    .join-btn .btn-icon svg{width:34px;height:34px;fill:currentColor;}
+    .image-box{margin-top:26px;overflow:hidden;border-radius:18px;position:relative;}
+    .image-box img{display:block;width:103%;max-width:none;margin-left:-1.5%;transition:transform .25s ease-out;
+      animation:zoomIn 2.5s ease-in-out infinite alternate;}
+    @keyframes zoomIn{from{transform:scale(1)}to{transform:scale(1.08)}}
+    ul{list-style:none;padding:0;margin:20px 0 6px;}
+    li{display:flex;gap:12px;align-items:flex-start;font-size:19px;margin:12px 0;}
+    li span.icon{font-size:22px;line-height:1;}
+    .big-callout{text-align:center;font-family:"TimesLocal",serif;font-size:21px;font-weight:800;margin-top:18px;}
+    .arrow-tip{position:fixed;top:10px;right:22px;width:30px;height:30px;color:#2fa0ff;opacity:0.9;
+      animation:arrowPulse 1.4s ease-in-out infinite,arrowShine 3s linear infinite;
+      transform:rotate(45deg);pointer-events:none;z-index:9999;
+      filter:drop-shadow(0 0 6px rgba(47,160,255,.8));}
+    @keyframes arrowPulse{0%,100%{transform:rotate(45deg) scale(1);opacity:.9}50%{transform:rotate(45deg) scale(1.15);opacity:.6}}
+    @keyframes arrowShine{0%{filter:brightness(1) drop-shadow(0 0 6px rgba(47,160,255,.8))}
+      50%{filter:brightness(1.5) drop-shadow(0 0 10px rgba(47,160,255,1))}
+      100%{filter:brightness(1) drop-shadow(0 0 6px rgba(47,160,255,.8))}}
   </style>
 </head>
-
 <body>
+  <!-- Pulsing arrow at top right -->
+  <svg class="arrow-tip" xmlns="http://www.w3.org/2000/svg" fill="none"
+       viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4l8 8m0 0l-8 8m8-8H4"/>
+  </svg>
+
   <div class="container">
 
-    <!-- SECTION 1 -->
     <section class="card" id="section1">
       <h1>TURN YOUR NORMAL DAILY ONLINE ACTIVITIES INTO STEADY CASH OUTS</h1>
-      <span class="wave">
-        <svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 30 C15 0 45 60 75 30 C105 0 135 60 165 30 C195 0 225 60 255 30 C285 0 315 60 345 30
-          C375 0 405 60 435 30 C465 0 495 60 525 30 C555 0 585 60 615 30 C645 0 675 60 705 30
-          C735 0 765 60 795 30 C825 0 855 60 885 30 C915 0 945 60 975 30 C1005 0 1035 60 1065 30
-          C1095 0 1125 60 1155 30 C1185 0 1215 60 1245 30"/>
-        </svg>
-      </span>
 
-      <p>
-        <span style="color:red;">*</span>
-        Make <span class="highlight">₦100,000 - ₦200,000</span> weekly by chatting, playing games &amp; doing simple tasks on social media!<br>
-        📍 No experience needed!<br>
-        📍 No hidden secrets!<br>
-        — Just register and start earning massively.
+      <h2 style="text-align:center;font-size:1.2rem;margin-top:10px;text-transform:uppercase;font-weight:900;color:#fff;">
+        FOLLOW THESE INSTRUCTIONS TO JOIN THE TRAINING GROUP NOW
+      </h2>
+      <p style="max-width:600px;margin:10px auto 30px;font-size:1rem;line-height:1.6;">
+        <strong>This is mostly for iPhone users.</strong> Tap the three dots at the top-right corner and select
+        <strong>“Open in Browser.”</strong>  
+        If you try to join directly inside TikTok, your iPhone might open the App Store instead of WhatsApp.
       </p>
 
       <div class="cta-wrap">
         <a class="join-btn" href="#" id="joinBtn1">
           <span>JOIN GROUP NOW</span>
-          <span class="btn-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M14 3h7v7h-2V6.41l-9.3 9.3-1.4-1.42 9.3-9.3H14V3z"/>
-              <path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/>
-            </svg>
-          </span>
+          <span class="btn-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M14 3h7v7h-2V6.41l-9.3 9.3-1.4-1.42 9.3-9.3H14V3z"/>
+            <path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/></svg></span>
         </a>
-      </div>
-
-      <div style="text-align:center; margin-top:12px; font-size:15px">
-        <span style="color:red;">*</span> Only the first 100 people to join the group will have access.
       </div>
 
       <div class="image-box">
         <img src="hero6.jpg" alt="MiaMor Promo">
       </div>
+
+      <p><span style="color:red">*</span>
+        Make <span class="highlight">₦100,000 – ₦200,000</span> weekly by chatting, playing games &amp; doing simple tasks on social media!<br>
+        📍 No experience needed!<br>📍 No hidden secrets!<br>— Just register and start earning massively.
+      </p>
     </section>
 
-    <!-- SECTION 2 -->
     <section class="card" id="section2">
-      <div class="image-box" style="margin-top:-10px; margin-bottom:22px;">
+      <div class="image-box" style="margin-top:-10px;margin-bottom:22px;">
         <img src="hero10.jpg" alt="Do Not Join">
       </div>
 
       <h2>DO NOT JOIN THIS CLASS IF:</h2>
-      <span class="wave">
-        <svg viewBox="0 0 1200 60" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 30 C15 0 45 60 75 30 C105 0 135 60 165 30 
-          C195 0 225 60 255 30 
-          C285 0 315 60 345 30 
-          C375 0 405 60 435 30 
-          C465 0 495 60 525 30 
-          C555 0 585 60 615 30 
-          C645 0 675 60 705 30 
-          C735 0 765 60 795 30 
-          C825 0 855 60 885 30 
-          C915 0 945 60 975 30 
-          C1005 0 1035 60 1065 30 
-          C1095 0 1125 60 1155 30 
-          C1185 0 1215 60 1245 30"/>
-        </svg>
-      </span>
-
       <ul>
         <li><span class="icon">📵</span> You are someone who does not like taking action!</li>
         <li><span class="icon">📵</span> You are not ready to invest in yourself financially!</li>
@@ -332,185 +125,49 @@
         <li><span class="icon">📵</span> You will not attend the class!</li>
       </ul>
 
-      <div class="big-callout">IF YOU ARE DIFFERENT FROM THE PERSONS ABOVE, THEN DON'T MISS THIS OPPORTUNITY ‼️</div>
-
-      <div style="text-align:center; margin-top:26px;">
-        <a class="join-btn" href="#" id="joinBtn2">
-          <span>JOIN GROUP NOW</span>
-          <span class="btn-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M14 3h7v7h-2V6.41l-9.3 9.3-1.4-1.42 9.3-9.3H14V3z"/>
-              <path d="M5 5h5V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-5h-2v5H5V5z"/>
-            </svg>
-          </span>
-        </a>
-      </div>
-
-      <div style="text-align:center; margin-top:12px; font-size:15px">
-        <span style="color:red;">*</span> Only the first 100 people to join the group will have access.
-      </div>
-
-      <div class="footer">
-        <div class="copyright">© MiaMor 2025. All rights reserved.</div>
-      </div>
+      <div class="big-callout">ONLY THE FIRST 100 PEOPLE TO JOIN THE GROUP WILL HAVE ACCESS.</div>
     </section>
   </div>
 
-   <script>
-  // Scroll animation
-  const cards = document.querySelectorAll('.card');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  cards.forEach(c => io.observe(c));
+  <script>
+  // scroll animation
+  const cards=document.querySelectorAll('.card');
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
+  },{threshold:0.15});
+  cards.forEach(c=>io.observe(c));
 
-  // Image click pulse
-  const imgs = document.querySelectorAll('.image-box img');
-  imgs.forEach(img => {
-    img.addEventListener('click', () => {
-      img.classList.add('active');
-      setTimeout(() => img.classList.remove('active'), 300);
-    });
-  });
-
-  // ✅ Improved WhatsApp Deep Link Logic
-  const whatsappGroup = "https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls";
-
-  function isTikTokBrowser() {
-    return /tiktok/i.test(navigator.userAgent);
-  }
-
-  function openWhatsApp() {
-    if (typeof ttq !== "undefined") {
-      ttq.track('ClickButton', { button_name: 'Join WhatsApp Group' });
-    }
-
-    const userAgent = navigator.userAgent.toLowerCase();
-    const groupCode = whatsappGroup.split("/").pop();
-
-    // If opened from TikTok in-app browser on iPhone
-    if (isTikTokBrowser() && /iphone|ipad|ipod/.test(userAgent)) {
-      // Try to force open in Safari
-      const safariURL = "x-web-search://" + encodeURIComponent(window.location.href + "?go=whatsapp");
-      window.location.href = safariURL;
-
-      // Fallback if x-web-search fails
-      setTimeout(() => {
-        window.location.href = "https://www.google.com/search?q=" + encodeURIComponent(window.location.href + "?go=whatsapp");
-      }, 1500);
+  // join button logic
+  const whatsappGroup="https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls";
+  function isTikTokBrowser(){return /tiktok/i.test(navigator.userAgent);}
+  function openWhatsApp(){
+    const ua=navigator.userAgent.toLowerCase();
+    const code=whatsappGroup.split("/").pop();
+    if(isTikTokBrowser()&&/iphone|ipad|ipod/.test(ua)){
+      window.location.href="x-web-search://"+encodeURIComponent(window.location.href+"?go=whatsapp");
+      setTimeout(()=>{window.location.href="https://www.google.com/search?q="+encodeURIComponent(window.location.href+"?go=whatsapp");},1500);
       return;
     }
-
-    // If opened from TikTok on Android
-    if (isTikTokBrowser() && /android/.test(userAgent)) {
-      const encoded = encodeURIComponent(window.location.href + "?go=whatsapp");
-      window.location.href = `https://www.google.com/url?q=${encoded}`;
-      return;
+    if(isTikTokBrowser()&&/android/.test(ua)){
+      const enc=encodeURIComponent(window.location.href+"?go=whatsapp");
+      window.location.href=`https://www.google.com/url?q=${enc}`;return;
     }
-
-    // If page reloaded externally with ?go=whatsapp, then finally open the WhatsApp link
-    if (window.location.search.includes("go=whatsapp")) {
-      setTimeout(() => {
-        if (/android/.test(userAgent)) {
-          window.location.href = `intent://chat.whatsapp.com/${groupCode}#Intent;scheme=https;package=com.whatsapp;end`;
-        } else if (/iphone|ipad|ipod/.test(userAgent)) {
-          window.location.href = whatsappGroup;
-        } else {
-          window.open(whatsappGroup, "_blank");
-        }
-      }, 600);
-      return;
+    if(window.location.search.includes("go=whatsapp")){
+      setTimeout(()=>{
+        if(/android/.test(ua)){
+          window.location.href=`intent://chat.whatsapp.com/${code}#Intent;scheme=https;package=com.whatsapp;end`;
+        }else if(/iphone|ipad|ipod/.test(ua)){
+          window.location.href=whatsappGroup;
+        }else{window.open(whatsappGroup,"_blank");}
+      },600);return;
     }
-
-    // Otherwise, normal behavior
-    if (/android/.test(userAgent)) {
-      window.location.href = `intent://chat.whatsapp.com/${groupCode}#Intent;scheme=https;package=com.whatsapp;end`;
-    } else if (/iphone|ipad|ipod/.test(userAgent)) {
-      window.location.href = whatsappGroup;
-    } else {
-      window.open(whatsappGroup, "_blank");
-    }
+    if(/android/.test(ua)){
+      window.location.href=`intent://chat.whatsapp.com/${code}#Intent;scheme=https;package=com.whatsapp;end`;
+    }else if(/iphone|ipad|ipod/.test(ua)){
+      window.location.href=whatsappGroup;
+    }else{window.open(whatsappGroup,"_blank");}
   }
-
-  document.getElementById("joinBtn1").addEventListener("click", openWhatsApp);
-  document.getElementById("joinBtn2").addEventListener("click", openWhatsApp);
-
-     // === Show popup only for iPhone users inside TikTok ===
-(function(){
-  const ua = navigator.userAgent.toLowerCase();
-  const isTikTok = /tiktok/.test(ua);
-  const isIOS = /iphone|ipad|ipod/.test(ua);
-  if (isTikTok && isIOS) {
-    const popup = document.getElementById('iosPopup');
-    if (popup) {
-      popup.style.display = 'flex';
-      const closeBtn = document.getElementById('closePopup');
-      if (closeBtn) closeBtn.addEventListener('click', () => { popup.style.display = 'none'; });
-    }
-  }
-})();
-     
-   </script>
-  <!-- iPhone TikTok popup overlay -->
-<div id="iosPopup" style="
-  position: fixed;
-  inset: 0;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(6px);
-  z-index: 9999;
-">
-  <div style="
-    background: #fff;
-    color: #000;
-    padding: 26px 20px;
-    border-radius: 20px;
-    max-width: 340px;
-    text-align: center;
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    position: relative;
-  ">
-    <button id="closePopup" style="
-      position: absolute;
-      top: 8px;
-      right: 10px;
-      background: none;
-      border: none;
-      font-size: 20px;
-      font-weight: 600;
-      color: #007aff;
-      cursor: pointer;
-    ">&times;</button>
-
-    <h2 style="font-size:18px; font-weight:700; margin-bottom:10px;">
-      Open in Browser
-    </h2>
-    <p style="font-size:15px; line-height:1.4; margin-bottom:10px;">
-      Tap the <strong>three dots</strong> at the top-right corner, then choose  
-      <strong>“Open in Browser”</strong> to continue.
-    </p>
-    <p style="font-size:13px; color:#666;">
-      (This message only appears for iPhone users inside TikTok — open in Safari/Chrome to join the group.)
-    </p>
-
-    <!-- pulsing arrow -->
-    <div style="
-      position:absolute;
-      top:-40px;
-      right:-5px;
-      color:#007aff;
-      font-size:34px;
-      animation:pulseArrow 1.3s infinite;
-    ">⬆️</div>
-  </div>
-</div>
-    </body>
-     </html>
+  document.getElementById("joinBtn1").addEventListener("click",openWhatsApp);
+  </script>
+</body>
+            </html>
