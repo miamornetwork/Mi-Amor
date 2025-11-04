@@ -85,7 +85,7 @@
     .wave path { stroke: rgba(255,255,255,0.9); stroke-width:3.5; fill:none; stroke-linecap:round; stroke-linejoin:round; animation: waveMotion 5s linear infinite; }
     @keyframes waveMotion { from{ transform: translateX(0);} to{ transform: translateX(-80px);} }
 
-    p { font-size: 20px; line-height:1.7; text-align:center; margin:6px 0 20px; }
+    p { font-size: 18px; line-height:1.7; text-align:center; margin:6px 0 20px; }
     .highlight { color: var(--accent); font-weight:800; }
 
     .cta-wrap { text-align:center; margin-top:10px; }
@@ -122,8 +122,8 @@
     }
     .instruction-title {
       color: #fff;
-      font-weight: 700; /* slightly less heavy than headline */
-      font-size: 20px;
+      font-weight: 650; /* slightly less heavy than headline */
+      font-size: 15px;
       line-height: 1.15;
       text-transform: uppercase;
       margin-bottom: 8px;
@@ -152,18 +152,18 @@
       opacity: 0.92;
       z-index: 1000;
       pointer-events: none;
-      transform: rotate(-25deg); /* tilt so the pointing tip aims toward top-right three-dots */
+      transform: rotate(25deg); /* tilt so the pointing tip aims toward top-right three-dots */
       filter: drop-shadow(0 6px 14px rgba(0,0,0,0.45));
       animation: fingerPulse 1.6s ease-in-out infinite;
       background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.82));
       border-radius: 10px;
       display:flex; align-items:center; justify-content:center;
     }
-    .finger-icon svg { width: 60%; height:60%; fill: rgba(0,0,0,0.85); opacity:0.95; }
+    .finger-icon svg { width: 80%; height:80%; fill: rgba(0,0,0,0.85); opacity:0.95; }
 
     @keyframes fingerPulse {
-      0%,100% { transform: rotate(-25deg) scale(1); opacity: 0.95; }
-      50% { transform: rotate(-25deg) scale(1.12); opacity: 0.78; }
+      0%,100% { transform: rotate(25deg) scale(1); opacity: 0.95; }
+      50% { transform: rotate(25deg) scale(1.12); opacity: 0.78; }
     }
 
     @media (max-width:520px){
@@ -206,13 +206,13 @@
         <div class="instruction-title">FOLLOW THE INSTRUCTIONS BELOW TO JOIN THE TRAINING GROUP NOW:</div>
         <div class="instruction-body">
           <p style="margin:0 0 8px;">
-            ⚠️ PLEASE THIS INSTRUCTION IS MAINLY FOR IPHONE USERS. 
-          </p>Please tap the <strong>three dots ⋯</strong> at the top-right corner, 
+            ⚠️ (PLEASE THIS INSTRUCTION IS MAINLY FOR IPHONE USERS): 
+          </p>📍Tap the <strong>three dots ⋯</strong> at the top-right corner, 
           </p>Then tap on <span class="cta-word">OPEN IN BROWSER</span> before proceeding.
           </p>
           <p style="margin:0;">
-            When you are in browser, tap <span class="cta-word">JOIN GROUP NOW</span> to open WhatsApp and join the training group.
-          </p>As a iphone user, If you tap “Join Group Now” button directly inside this TikTok, it may open the App Store instead of WhatsApp, because IOS blocks tikok to WhatsApp redirects.
+            📍When you are in browser, tap <span class="cta-word">JOIN GROUP NOW</span> to open WhatsApp and join the training group.
+          </p> <strong>Note: As an iphone user, If you tap <span class="cta-word">JOIN GROUP NOW</span> directly inside this TikTok, it may open the App Store instead of WhatsApp, because IOS blocks Tiktok to WhatsApp redirects.</strong>
           </p>
         </div>
       </div>
