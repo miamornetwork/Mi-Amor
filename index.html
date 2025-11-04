@@ -141,7 +141,12 @@
       font-weight: 800;
       text-transform: uppercase;
     }
-
+    .sub {
+      font-size: 0.9rem;
+      color: var(--sub-light);
+      max-width: 320px;
+      line-height: 1.5;
+    }
     /* glossy finger icon (white, slightly transparent) */
     .finger-icon {
       position: fixed;
@@ -203,16 +208,19 @@
 
       <!-- INSTRUCTION CARD: directly after headline + wave -->
       <div class="instruction-card" role="region" aria-label="How to join - iPhone users please open in browser">
-        <div class="instruction-title">FOLLOW THE INSTRUCTIONS BELOW TO JOIN THE TRAINING GROUP NOW:</div>
+        <div class="instruction-title">PLEASE FOLLOW THE INSTRUCTIONS BELOW TO JOIN THE TRAINING GROUP NOW:</div>
         <div class="instruction-body">
           <p style="margin:0 0 8px;">
-            ⚠️ (PLEASE THIS INSTRUCTION IS MAINLY FOR IPHONE USERS): 
+            <p class="sub">
+            ⚠️ (Please this instruction is mainly for iPhone users): 
           </p>📍Tap the <strong>three dots ⋯</strong> at the top-right corner, 
-          </p>Then tap on <span class="cta-word">OPEN IN BROWSER</span> before proceeding.
+          Then tap on <span class="cta-word">OPEN IN BROWSER</span> before proceeding.
           </p>
           <p style="margin:0;">
             📍When you are in browser, tap <span class="cta-word">JOIN GROUP NOW</span> to open WhatsApp and join the training group.
-          </p> <strong>Note: As an iphone user, If you tap <span class="cta-word">JOIN GROUP NOW</span> directly inside this TikTok, it may open the App Store instead of WhatsApp, because IOS blocks Tiktok to WhatsApp redirects.</strong>
+          </p>
+          <p class="sub">
+          <strong>Note: As an iphone user, If you tap <span class="cta-word">JOIN GROUP NOW</span> directly inside this TikTok, it may open the App Store instead of WhatsApp, because IOS blocks Tiktok to WhatsApp redirects.</strong>
           </p>
         </div>
       </div>
