@@ -232,6 +232,7 @@
         <div class="instruction-body">
           <p style="margin:0 0 8px;">
             <p class="sub">
+              <span style="color:red;">*</span>
             ⚠️ (Please this instruction is mainly for iPhone users): 
           </p> <strong>📍Tap the three dots ⋯ at the top-right corner, 
           Then tap on <span class="cta-word">OPEN IN BROWSER</span> before proceeding.</strong>
@@ -240,6 +241,7 @@
         <strong>📍When you are in browser, tap <span class="cta-word">JOIN GROUP NOW</span> to open WhatsApp and join the training group.</strong>
           </p>
           <p class="sub">
+            <span style="color:red;">*</span>
           Note: As an iphone user, If you tap <span class="cta-word">JOIN GROUP NOW</span> directly inside this TikTok, it may open the App Store instead of WhatsApp, because IOS blocks Tiktok to WhatsApp redirects.
           </p>
         </div>
@@ -285,8 +287,8 @@
 
   <div class="big-callout">IF YOU ARE DIFFERENT FROM THE PERSONS ABOVE, THEN DON'T MISS THIS OPPORTUNITY ‼️</div>
 
-  <!-- Second JOIN GROUP NOW button (identical to first, with fade-in animation) -->
-  <div class="cta-wrap" style="margin-top:20px; opacity:0; transform:translateY(30px); transition:all 0.9s ease;" id="cta2">
+  <!-- Second JOIN GROUP NOW button (identical to first, no fade-in animation) -->
+  <div class="cta-wrap" style="margin-top:20px;">
     <a class="join-btn" href="#" id="joinBtn2">
       <span>JOIN GROUP NOW</span>
       <span class="btn-icon">
@@ -316,19 +318,6 @@
     });
   }, { threshold: 0.15 });
   cards.forEach(c => io.observe(c));
-
-  // Fade-in animation for second JOIN button when visible
-  const cta2 = document.getElementById("cta2");
-  const observerCTA = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        cta2.style.opacity = "1";
-        cta2.style.transform = "translateY(0)";
-        observerCTA.unobserve(cta2);
-      }
-    });
-  }, { threshold: 0.3 });
-  observerCTA.observe(cta2);
 
   // WhatsApp link - keep Android automatic redirect behavior
   const whatsappGroup = "https://chat.whatsapp.com/GKc1yfiXbdAAZIELdDbZls";
@@ -361,4 +350,5 @@
   });
 </script>
 </body>
-          </html>
+</html>
+
